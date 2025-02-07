@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "path": "../",
+      "name": "SI514"
+    },
+    {
+      "path": "../src",
+      "name": "Source Code"
+    },
+    {
+      "path": "../docs",
+      "name": "Documentation"
+    }
+  ],
+  "settings": {}
+}
