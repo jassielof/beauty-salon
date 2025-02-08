@@ -13,5 +13,9 @@
       "name": "Documentation"
     }
   ],
-  "settings": {}
+  "settings": {
+    "cSpell.words": [
+      "Yudy"
+    ]
+  }
 }
