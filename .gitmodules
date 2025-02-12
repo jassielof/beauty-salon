@@ -1,3 +1,6 @@
 [submodule "docs/template"]
 	path = docs/template
 	url = https://github.com/jassielof/typst-templates.git
+[submodule "docs/ref/SI414"]
+	path = docs/ref/SI414
+	url = https://github.com/jassielof/SI414.git
