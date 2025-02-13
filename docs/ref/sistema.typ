@@ -2,18 +2,6 @@
 
 == Casos de Uso
 
-=== Actores
-
-- Administrador de Peluquería.
-
-- Secretaria de Peluquería.
-
-- Peluquero o estilista (empleado).
-
-- Cliente.
-
-- Administrador de la aplicación o plataforma.
-
 === Casos de Uso a Detalle
 
 + #strong[Gestionar Peluquería/Salón]

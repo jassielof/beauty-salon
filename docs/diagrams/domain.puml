@@ -1,0 +1,12 @@
+@startuml domain
+
+' !pragma layout smetana
+' left to right direction
+
+' skinparam linetype polyline
+' skinparam linetype ortho
+' skinparam groupInheritance 2
+
+hide methods
+
+@enduml

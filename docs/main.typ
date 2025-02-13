@@ -348,7 +348,6 @@ apellidos, número de teléfono, dirección de correo electrónico. De la
 misma manera se podrá actualizar la información que los clientes tengan
 guardada en el sistema.
 
-
 #figure(
   table(
     columns: (50%, 50%),
@@ -933,3 +932,7 @@ Ayuda a la respuesta de entradas inmediatas con restricciones de tiempo
 
 En el mundo de las citas, la precisión temporal es crítica para evitar
 dobles reservas o clientes perdidos
+
+#include "sections/uml.typ"
+
+

@@ -7,12 +7,22 @@
 ' skinparam linetype ortho
 ' skinparam groupInheritance 2
 
+hide methods
 
 enum PaymentMethod {
   Cash
   CreditCard
   DebitCard
 }
+
+class Payment {
+  PaymentMethod Method
+}
+
+class Image {
+  string Url
+}
+
 
 enum AppointmentStatus {
   Booked
@@ -31,10 +41,6 @@ class Client {
   string Name
 }
 
-class Image {
-  string Url
-}
-
 class Person {
   string Name
   string Surname
@@ -51,8 +57,6 @@ class Client {
   bool IsLoyal
 }
 
-Person <|-- Client
-
 class User {
   string Name
   string Password
@@ -61,6 +65,8 @@ class User {
 class Role {
   string Name
 }
+
+Person <|-- Client
 
 class Review {
   float Rating
@@ -72,6 +78,8 @@ Review "1..*" -- "1" Service
 class Promotion {
 
 }
+
+
 
 Promotion "1..*" -- "1" Service
 
@@ -104,7 +112,12 @@ class Notification {
 
 }
 
-class BeautySalon
+class BeautySalon {
+  string Name
+  string Address
+  string PhoneNumber
+  string email
+}
 
 class Branch {
   string Address
@@ -130,11 +143,11 @@ Branch "1" -- "1..*" OpeningHours
 Service "1..*" -- "1" BeautySalon
 BeautySalon "1" -- "1..*" SocialNetwork
 BeautySalon "1" -- "1..*" FranchisePayment
-FranchisePayment -- PaymentMethod
+FranchisePayment -- Payment
 
 class Bill {
   DateOnly Date
-  string Code
+  string NIT
   string Name
   string Surname
 }
@@ -157,7 +170,6 @@ Employee "1..*" -- "1..*" Specialty
 Appointment "1" -- "1..*" Notification
 Appointment "1" -- "1..*" Image
 
-hide methods
 
 
 @enduml

@@ -7,9 +7,9 @@ assignees: jassielof
 
 ---
 
-# Use Case: [USE CASE TITLE]
+## Use Case: [USE CASE TITLE]
 
-## Details
+### Details
 
 - Actors:
 - Type:
@@ -19,8 +19,8 @@ assignees: jassielof
 - Postcondition:
 - Reference:
 
-## Workflows
+### Workflows
 
-### Main workflow
+#### Main workflow
 
-### Alternative workflow
+#### Alternative workflow
