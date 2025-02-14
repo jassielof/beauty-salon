@@ -73,26 +73,54 @@ class Review {
   string Comment
 }
 
+class Service {
+  string Name
+  string Description
+  string Category
+  float Price
+  TimeSpan Duration
+}
+
 Review "1..*" -- "1" Service
 
 class Promotion {
-
+  string Name
+  string Description
+  float Discount
+  DateTime StartDate
+  DateTime EndDate
 }
 
 
 
 Promotion "1..*" -- "1" Service
 
-class Category
+class Category {
+  float Rating
+  string Comment
+}
 
 Category "1..*" -- "1..*" Service
 
-class CategoryService
+class CategoryService {
+  string AdditionalInfo
+  DateOnly Date
+}
 
 (Category, Service) .. CategoryService
 
+enum WeekDay {
+  Monday
+  Tuesday
+  Wednesday
+  Thursday
+  Friday
+  Saturday
+  Sunday
+}
+
 class OpeningHours {
-  DateOnly Date
+  WeekDay Day
   TimeOnly OpenTime
   TimeOnly CloseTime
 }
@@ -100,15 +128,24 @@ class OpeningHours {
 class Appointment {
   DateTime Date
   string Note
+  AppointmentStatus Status
+  Payment PaymentInfo
 }
 
 Appointment "1..*" -- "1..*" Service
 
-class ServiceDetail
+class ServiceDetail {
+  float Price
+  TimeSpan Duration
+  DateTime Date
+  int Amount
+}
 
 (Appointment, Service) .. ServiceDetail
 
 class Notification {
+  string Message
+  DateTime Date
 
 }
 
@@ -126,11 +163,19 @@ class Branch {
 
 class Employee
 
-class SocialNetwork
+class SocialNetwork {
+  string Name
+  string Url
+}
 
-class FranchisePayment
+class FranchisePayment {
+  DateOnly Date
+  float Amount
+}
 
-class EmployeeOperationHours
+class EmployeeOperationHours {
+
+}
 
 
 Client "1" -- "0..*" Appointment
@@ -161,7 +206,8 @@ class Specialty {
 }
 
 class Training {
-
+  float Rating
+  ExpertiseLevel Level
 }
 
 Employee "1..*" -- "1..*" Specialty
