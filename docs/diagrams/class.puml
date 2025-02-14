@@ -23,7 +23,6 @@ class Image {
   string Url
 }
 
-
 enum AppointmentStatus {
   Booked
   Confirmed
@@ -215,7 +214,6 @@ Employee "1..*" -- "1..*" Specialty
 
 Appointment "1" -- "1..*" Notification
 Appointment "1" -- "1..*" Image
-
 
 
 @enduml

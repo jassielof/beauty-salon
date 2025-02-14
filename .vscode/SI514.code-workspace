@@ -14,8 +14,11 @@
     }
   ],
   "settings": {
+    "plantuml.exportFormat": "svg",
+    "plantuml.exportOutDir": "diagrams",
+
     "cSpell.words": [
       "Yudy"
     ]
-  }
+  },
 }
