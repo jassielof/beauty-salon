@@ -1,0 +1,86 @@
+name: Detailed Use Case
+description: Use this template for detailed use cases
+title: "UC: "
+labels: ["use case"]
+assignees: ["jassielof"]
+body:
+  - type: input
+    id: uc-title
+    attributes:
+      label: Use Case Title
+      description: The title of the use case
+      placeholder: Enter the use case title
+    validations:
+      required: true
+  - type: textarea
+    id: uc-actors
+    attributes:
+      label: Actors
+      description: List of actors involved in the use case
+      placeholder: Enter the actors involved
+    validations:
+      required: true
+  - type: input
+    id: uc-type
+    attributes:
+      label: Type
+      description: The type of the use case
+      placeholder: Enter the type of the use case
+    validations:
+      required: true
+  - type: input
+    id: uc-purpose
+    attributes:
+      label: Purpose
+      description: The purpose of the use case
+      placeholder: Enter the purpose of the use case
+    validations:
+      required: true
+  - type: input
+    id: uc-precondition
+    attributes:
+      label: Precondition
+      description: The precondition for the use case
+      placeholder: Enter the precondition for the use case
+    validations:
+      required: true
+  - type: textarea
+    id: uc-description
+    attributes:
+      label: Description
+      description: A detailed description of the use case
+      placeholder: Enter the detailed description of the use case
+    validations:
+      required: true
+  - type: input
+    id: uc-postcondition
+    attributes:
+      label: Postcondition
+      description: The postcondition for the use case
+      placeholder: Enter the postcondition for the use case
+    validations:
+      required: true
+  - type: input
+    id: uc-reference
+    attributes:
+      label: Reference
+      description: Any references related to the use case
+      placeholder: Enter any references related to the use case
+    validations:
+      required: false
+  - type: textarea
+    id: uc-main-workflow
+    attributes:
+      label: Main Workflow
+      description: The main workflow of the use case
+      placeholder: Enter the main workflow of the use case
+    validations:
+      required: true
+  - type: textarea
+    id: uc-alternative-workflow
+    attributes:
+      label: Alternative Workflow
+      description: The alternative workflow of the use case
+      placeholder: Enter the alternative workflow of the use case
+    validations:
+      required: false
