@@ -11,6 +11,7 @@ body:
       label: Scope
       description: The system under design
       placeholder: NextGen POS application
+      value: Beauty Salon
     validations:
       required: true
   - type: dropdown
