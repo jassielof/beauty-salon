@@ -25,18 +25,18 @@ body:
         - subfunction
     validations:
       required: true
-  - type: checkboxes
+  - type: dropdown
     id: uc-primary-actor
     attributes:
       label: Primary Actor
       description: Calls on the system to deliver its services
+      multiple: true
       options:
-        - label: Beauty Salon Administrator
-          required: true
-        - label: Beauty Salon Secretary
-        - label: Hairdresser or Stylist (employee)
-        - label: Customer
-        - label: Application or Platform Administrator
+        - Beauty Salon Administrator
+        - Beauty Salon Secretary
+        - Hairdresser or Stylist (employee)
+        - Customer
+        - Application or Platform Administrator
   - type: textarea
     id: uc-stakeholders-interests
     attributes:
