@@ -26,6 +26,6 @@
     "plantuml.exportFormat": "svg",
     "plantuml.exportOutDir": "diagrams",
 
-    "cSpell.words": ["Yudy"]
+    "cSpell.words": ["Larman", "Yudy"]
   }
 }
