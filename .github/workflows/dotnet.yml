@@ -23,8 +23,8 @@ jobs:
       - name: Install dotnet format
         run: dotnet tool install -g dotnet-format
       - name: Restore dependencies
-        run: dotnet restore 
+        run: dotnet restore ${{ env.PROJECT_NAME }}.sln
       - name: Format code
-        run: dotnet format --verbosity normal
+        run: dotnet format ${{ env.PROJECT_NAME }}.sln --verbosity normal
       - name: Build
-        run: dotnet build --no-restore --verbosity normal
+        run: dotnet build ${{ env.PROJECT_NAME }}.sln --no-restore --verbosity normal
