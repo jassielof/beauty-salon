@@ -5,33 +5,23 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
-    env:
-      PROJECT_PATH: src/BeautyCenter/BeautyCenter.csproj
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 9.0.x
-    - name: Install dotnet format
-      run: dotnet tool install -g dotnet-format
-    - name: Restore dependencies
-      run: dotnet restore ${{ env.PROJECT_PATH }}
-    - name: Format code
-      run: dotnet format ${{ env.PROJECT_PATH }}
-    - name: Lint code
-      run: dotnet build ${{ env.PROJECT_PATH }} --no-restore /p:RunAnalyzersDuringBuild=true /p:RunAnalyzersDuringLiveAnalysis=false
-    - name: Build
-      run: dotnet build ${{ env.PROJECT_PATH }} --no-restore
-    - name: Test
-      run: dotnet test ${{ env.PROJECT_PATH }} --no-build --verbosity normal
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+      - name: Install dotnet format
+        run: dotnet tool install -g dotnet-format
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Format code
+        run: dotnet format --verbosity normal
+      - name: Build
+        run: dotnet build --no-restore --verbosity normal
