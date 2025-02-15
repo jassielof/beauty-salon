@@ -14,8 +14,8 @@
       "name": "Pages"
     },
     {
-      "path": "../Components/Layouts",
-      "name": "Layouts"
+      "path": "../Components/Layout",
+      "name": "Layout"
     },
     {
       "path": "../Docs",
