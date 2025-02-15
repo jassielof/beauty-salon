@@ -4,12 +4,21 @@
       "path": "../",
       "name": "SI514"
     },
+    { "path": "../Data", "name": "Data" },
     {
-      "path": "../src/BeautyCenter",
-      "name": "Source Code"
+      "path": "../Components/",
+      "name": "Components"
     },
     {
-      "path": "../docs",
+      "path": "../Components/Pages",
+      "name": "Pages"
+    },
+    {
+      "path": "../Components/Layouts",
+      "name": "Layouts"
+    },
+    {
+      "path": "../Docs",
       "name": "Documentation"
     }
   ],
@@ -17,8 +26,6 @@
     "plantuml.exportFormat": "svg",
     "plantuml.exportOutDir": "diagrams",
 
-    "cSpell.words": [
-      "Yudy"
-    ]
-  },
+    "cSpell.words": ["Yudy"]
+  }
 }
