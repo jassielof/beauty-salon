@@ -1,5 +1,7 @@
 name: Larman Use Case (Fully Dressed)
 description: Use this template for Larman use cases
+assignees: "jassielof"
+projects: ["jassielof/5"]
 title: "[UC]: "
 labels: ["use-case"]
 body:
