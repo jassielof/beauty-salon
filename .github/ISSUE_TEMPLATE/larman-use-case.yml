@@ -32,15 +32,11 @@ body:
       description: Calls on the system to deliver its services
       options:
         - label: Beauty Salon Administrator
-          required: false
+          required: true
         - label: Beauty Salon Secretary
-          required: false
         - label: Hairdresser or Stylist (employee)
-          required: false
         - label: Customer
-          required: false
         - label: Application or Platform Administrator
-          required: false
   - type: textarea
     id: uc-stakeholders-interests
     attributes:
