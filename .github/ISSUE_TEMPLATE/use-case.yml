@@ -17,12 +17,15 @@ body:
         - label: Hairdresser or Stylist (employee)
         - label: Customer
         - label: Application or Platform Administrator
-  - type: input
+  - type: dropdown
     id: uc-type
     attributes:
       label: Type
       description: The type of the use case
-      placeholder: Enter the type of the use case
+      options:
+        - Primary
+        - Secondary
+        - Tertiary
     validations:
       required: true
   - type: input
