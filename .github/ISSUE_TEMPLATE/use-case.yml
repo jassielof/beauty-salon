@@ -1,17 +1,12 @@
 name: Detailed Use Case
 description: Use this template for detailed use cases
-title: "UC: "
+title: "[USE CASE]"
 labels: ["use case"]
 assignees: ["jassielof"]
+type: Enhancement
+projects:
+  - jassielof/5
 body:
-  - type: input
-    id: uc-title
-    attributes:
-      label: Use Case Title
-      description: The title of the use case
-      placeholder: Enter the use case title
-    validations:
-      required: true
   - type: textarea
     id: uc-actors
     attributes:
