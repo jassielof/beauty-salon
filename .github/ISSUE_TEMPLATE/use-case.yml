@@ -6,14 +6,17 @@ assignees: ["jassielof"]
 projects:
   - jassielof/5
 body:
-  - type: textarea
+  - type: checkboxes
     id: uc-actors
     attributes:
-      label: Actors
-      description: List of actors involved in the use case
-      placeholder: Enter the actors involved
-    validations:
-      required: true
+      label: Primary Actor
+      description: Calls on the system to deliver its services
+      options:
+        - label: Beauty Salon Administrator
+        - label: Beauty Salon Secretary
+        - label: Hairdresser or Stylist (employee)
+        - label: Customer
+        - label: Application or Platform Administrator
   - type: input
     id: uc-type
     attributes:
