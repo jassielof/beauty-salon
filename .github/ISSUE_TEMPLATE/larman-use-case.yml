@@ -36,6 +36,8 @@ body:
         - Hairdresser or Stylist (employee)
         - Customer
         - Application or Platform Administrator
+    validations:
+      required: true
   - type: textarea
     id: uc-stakeholders-interests
     attributes:
