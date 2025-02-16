@@ -3,7 +3,6 @@ description: Use this template for detailed use cases
 title: "[USE CASE]"
 labels: ["use case"]
 assignees: ["jassielof"]
-type: Enhancement
 projects:
   - jassielof/5
 body:
