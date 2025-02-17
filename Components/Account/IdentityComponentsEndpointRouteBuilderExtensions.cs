@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Primitives;
-using BeautySalon.Components.Account.Pages;
-using BeautySalon.Components.Account.Pages.Manage;
-using BeautySalon.Data;
+using SI514.Components.Account.Pages;
+using SI514.Components.Account.Pages.Manage;
+using SI514.Data;
 
 namespace Microsoft.AspNetCore.Routing;
 

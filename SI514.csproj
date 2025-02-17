@@ -4,7 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-BeautySalon-cddb8cd8-2f53-40ac-a72b-b74b504b1dd4</UserSecretsId>
+    <UserSecretsId>aspnet-SI514-a3c53173-a8a2-45e7-8313-388143a910c8</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

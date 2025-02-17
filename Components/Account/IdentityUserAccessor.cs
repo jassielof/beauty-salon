@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
-using BeautySalon.Data;
+using SI514.Data;
 
-namespace BeautySalon.Components.Account;
+namespace SI514.Components.Account;
 
 internal sealed class IdentityUserAccessor(UserManager<ApplicationUser> userManager, IdentityRedirectManager redirectManager)
 {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace BeautySalon.Migrations
+namespace SI514.Migrations
 {
     /// <inheritdoc />
     public partial class CreateIdentitySchema : Migration

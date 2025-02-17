@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using BeautySalon.Components;
-using BeautySalon.Components.Account;
-using BeautySalon.Data;
+using SI514.Components;
+using SI514.Components.Account;
+using SI514.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
