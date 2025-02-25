@@ -34,18 +34,14 @@
 
   [Curso alternativo:]
 }
-
+#let fully-dressed-use-case() = {}
 = Modelado y Diagramas UML
 == Casos de Uso
 === Actores
 - Administrador de Peluquería.
-
 - Secretaria de Peluquería.
-
 - Peluquero o estilista (empleado).
-
 - Cliente.
-
 - Administrador de la aplicación o plataforma.
 
 === Casos de Uso a Detalle

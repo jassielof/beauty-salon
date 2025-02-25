@@ -2973,11 +2973,5 @@ Diagrama de estado de casos de uso
 
 = Diagrama de estados de un objeto
 
-
 #image("media/image208.png")
 
-
-
-== Prototipo
-
-#strong[Link: #link("https://jassielof.github.io/SI414-mockup/");]
