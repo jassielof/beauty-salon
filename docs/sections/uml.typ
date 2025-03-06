@@ -113,573 +113,636 @@
   stakeholders-interests: [Registrar una nueva peluquería en el sistema],
   preconditions: [],
   main-success-scenario: [
-    + Se ingresa el nombre de la peluquería/salón, número de teléfono y correo electrónico.
-    + Se verifica que la peluquería/salón no exista en el sistema.
-    + Se ingresa la red social.
-    + Se busca la red social.
-    + Se ingresa el horario de atención.
-    + Se busca el horario de atención.
-    + Se ingresa el servicio.
-    + Se busca el servicio.
-    + Se guarda la información.
-    + Se guarda la información de la nueva peluquería.
+    + Ingresar nombre, número de teléfono y correo electrónico del salón.
+    + Verificar que el salón no exista en el sistema.
+    + Agregar enlaces de redes sociales del salón.
+    + Ingresar horario de atención.
+    + Seleccionar servicios ofrecidos.
+    + Guardar información del salón.
   ],
   extension: [
-    + En el paso 2: Si el correo electrónico ya está registrado en el sistema, se puede eliminar, modificar o salir del sistema.
-    + En el paso 4: Si no existe la red social, se puede modificar, eliminar, consultar o salir del sistema.
-    + En el paso 6: Si no existe el horario de atención, se puede consultar, modificar, eliminar o salir del sistema.
-    + En el paso 8: Si no existe el servicio, se puede consultar, modificar, eliminar o salir del sistema.
+    + Si el correo ya está registrado (paso 2), el usuario puede actualizar los datos o salir.
+    + Si faltan datos obligatorios (cualquier paso), el sistema muestra un mensaje de error.
   ],
-  success-guarantee: [La peluquería/salón de belleza queda registrada en el sistema y podrá administrar sus citas. Además, se enviará el código de acceso al correo electrónico del administrador del salón recientemente registrado.],
+  success-guarantee: [El salón queda registrado y puede administrar citas.],
+  special-requirements: [Conexión a internet, acceso al sistema],
+  technology-and-data-variations: [Puede usarse en web o app móvil],
+  frequency-of-occurrence: [Una vez por nuevo salón],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar métodos de pago],
   primary-actor: uc-actors.platform-admin,
-  stakeholders-interests: [Registrar los métodos de pago que podrán ser utilizados dentro de la aplicación para pagar la franquicia y otros pagos],
-  success-guarantee: [Los métodos de pago quedan registrados en la plataforma para que las peluquerías puedan pagar su franquicia y otros pagos variables.],
+  stakeholders-interests: [Definir formas de pago aceptadas en la plataforma],
+  preconditions: [],
   main-success-scenario: [
-    + Se ingresa el método de pago.
-    + Se verifica que no exista el método de pago.
-    + Guarda el tipo de pago.
-    + Guarda el tipo de pago.
+    + Ingresar nombre del método de pago (ej: Tarjeta, QR).
+    + Verificar que no exista en la base de datos.
+    + Guardar el método de pago.
   ],
   extension: [
-    + En el paso 2: Si ya existe el método de pago se puede consultar, modificar, eliminar o salir del sistema.
+    + Si el método ya existe (paso 2), el administrador puede modificarlo o eliminarlo.
   ],
-  preconditions: [],
+  success-guarantee: [El método de pago queda disponible para todos los salones.],
+  special-requirements: [Acceso administrativo al sistema],
+  technology-and-data-variations: [Integración con pasarelas de pago],
+  frequency-of-occurrence: [Bajo (solo cuando se agregan nuevos métodos)],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Realizar pago de franquicia],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Realizar el pago de la franquicia de la plataforma para poder tener acceso a la misma],
-  preconditions: [La peluquería debe estar registrada en el sistema],
+  stakeholders-interests: [Pagar cuota de acceso a la plataforma],
+  preconditions: [El salón debe estar registrado],
   main-success-scenario: [
-    + Se ingresa el método de pago a través del cual se va a pagar.
-    + Se verifica que el método de pago seleccionado.
-    + Se ingresan los datos del pago ya sea de la tarjeta o el comprobante por qr.
-    + Se guarda en el sistema.
-    + Se guarda en el sistema.
+    + Seleccionar método de pago.
+    + Ingresar datos de pago (número de tarjeta o código QR).
+    + Confirmar pago.
+    + Recibir comprobante por correo.
   ],
   extension: [
-    + En el paso 2: Si no existe el método de pago seleccionado se puede consultar, modificar, eliminar o salir del sistema.
+    + Si el pago falla, el sistema muestra opciones de ayuda.
   ],
-  success-guarantee: [La peluquería o salón registrada tendrá acceso al sistema y a las herramientas provistas por la plataforma para administrar su salón. Se enviará un código al correo registrado con el cual el administrador podrá acceder a la plataforma de su peluquería.],
+  success-guarantee: [El salón obtiene acceso completo a la plataforma.],
+  special-requirements: [Conexión segura, datos bancarios válidos],
+  technology-and-data-variations: [Integración con bancos],
+  frequency-of-occurrence: [Mensual o anual],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar Horarios de atención],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Registrar los horarios en los cuales una peluquería está ofreciendo sus servicios],
-  preconditions: [La peluquería debe estar registrada en el sistema],
+  stakeholders-interests: [Actualizar horarios de servicios],
+  preconditions: [El salón debe estar registrado],
   main-success-scenario: [
-    + El administrador ingresa el código de su peluquería.
-    + Se verifica que la peluquería exista.
-    + El administrador ingresa los horarios de atención según sea necesario.
-    + Se guarda el horario de atención.
+    + Ingresar código del salón.
+    + Verificar existencia del salón.
+    + Agregar nuevos horarios o modificar existentes.
+    + Guardar cambios.
   ],
   extension: [
-    + En el paso 2: Si no existe la peluquería, se puede editar, modificar, eliminar o salir del sistema.
+    + Si el código es incorrecto (paso 2), el sistema sugiere salones similares.
   ],
-  success-guarantee: [Los nuevos horarios de atención quedan guardados en el sistema.],
+  success-guarantee: [Los horarios se actualizan automáticamente en todas las plataformas.],
+  special-requirements: [Formato de hora válido],
+  technology-and-data-variations: [Sincronización en tiempo real],
+  frequency-of-occurrence: [Semanal o cuando cambian horarios],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar Redes Sociales],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Registrar las redes sociales con las que cuenta un salón de belleza],
-  preconditions: [La peluquería o salón debe estar registrada en la plataforma],
+  stakeholders-interests: [Enlazar perfiles sociales del salón],
+  preconditions: [El salón debe estar registrado],
   main-success-scenario: [
-    + El actor ingresa el código del salón de belleza.
-    + Se verifica que el salón de belleza exista en el sistema.
-    + Ingresa el enlace o URL de su red social.
-    + Se verifica que la red social no este registrada en el sistema.
-    + Se guarda.
+    + Ingresar código del salón.
+    + Verificar existencia.
+    + Agregar URL de redes sociales (ej: Instagram, Facebook).
+    + Guardar enlaces.
   ],
   extension: [
-    + En el paso 2: Si no se encuentra el salón, es decir el mail registrado, se puede modificar, eliminar o salir del sistema.
-    + En el paso 4: Si la red social ya se encuentra registrada en el sistema, se puede eliminar, modificar o salir del sistema.
+    + Si la URL es inválida, el sistema muestra un mensaje de error.
   ],
-  success-guarantee: [La red social del salón queda registrada en el sistema.],
+  success-guarantee: [Los enlaces aparecen en el perfil del salón.],
+  special-requirements: [URL válidas],
+  technology-and-data-variations: [Validación automática de URLs],
+  frequency-of-occurrence: [Cuando se crean nuevas redes sociales],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar Sucursales],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Registrar las sucursales con las que cuenta un salón de belleza],
-  preconditions: [La peluquería o salón debe estar registrada en la plataforma],
+  stakeholders-interests: [Registrar ubicaciones adicionales],
+  preconditions: [El salón debe estar registrado],
   main-success-scenario: [
-    + El actor ingresa el código del salón de belleza.
-    + Se verifica que el salón de belleza exista en el sistema.
-    + Ingresa la información de la sucursal en el sistema como su dirección y número de teléfono.
-    + Se verifica que la sucursal no este registrada en el sistema.
-    + Se guarda.
+    + Ingresar código del salón principal.
+    + Verificar existencia.
+    + Agregar dirección, teléfono y horario de la sucursal.
+    + Guardar información.
   ],
   extension: [
-    + En el paso 2: Si no se encuentra el salón, es decir el mail registrado, se puede modificar, eliminar o salir del sistema.
+    + Si la dirección ya existe, el sistema sugiere sucursales similares.
   ],
-  success-guarantee: [La sucursal del salón de belleza queda registrada en el sistema.],
+  success-guarantee: [La sucursal aparece en el directorio del salón.],
+  special-requirements: [Formato de dirección válido],
+  technology-and-data-variations: [Integración con mapas],
+  frequency-of-occurrence: [Cuando abre una nueva sucursal],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Actualizar Peluquería/Salón],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Actualizar la información de la peluquería],
-  preconditions: [La peluquería salón debe estar registrada en la plataforma y tener acceso a ella],
+  stakeholders-interests: [Modificar información del salón],
+  preconditions: [El salón debe estar registrado],
   main-success-scenario: [
-    + Se ingresa el nombre de la peluquería/salón, número de teléfono, correo electrónico.
-    + Se verifica con el mail que el salón este registrado en el sistema.
-    + Se ingresan las redes sociales.
-    + Se buscan las redes sociales.
-    + Se ingresan los horarios de atención.
-    + Se buscan los horarios de atención.
-    + Se insertan los servicios.
-    + Se buscan los servicios.
-    + Se guarda la información actualizada.
-    + Se guardan los datos la peluquería/salón.
+    + Ingresar nuevos datos (nombre, teléfono, correo).
+    + Verificar cambios.
+    + Guardar actualización.
   ],
   extension: [
-    + En el paso 2: Si no se encuentra la peluquería, es decir el mail registrado, se puede modificar, eliminar o salir del sistema.
-    + En el paso 4: Si no existe la red social, se puede modificar, eliminar, consultar o salir del sistema.
-    + En el paso 6: Si no existe el horario de atención, se puede consultar, modificar, eliminar o salir del sistema.
-    + En el paso 8: Si no existe el servicio, se puede consultar, modificar, eliminar o salir del sistema.
+    + Si el correo nuevo ya existe, el sistema pide confirmación.
   ],
-  success-guarantee: [La nueva información de la peluquería/salón se actualiza.],
+  success-guarantee: [Todos los cambios se reflejan inmediatamente.],
+  special-requirements: [Permisos de administrador],
+  technology-and-data-variations: [Historial de cambios],
+  frequency-of-occurrence: [Cuando hay cambios en el negocio],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar Categorías],
   primary-actor: uc-actors.platform-admin,
-  stakeholders-interests: [Registrar las categorías para que los servicios puedan ser categorizados adecuadamente],
+  stakeholders-interests: [Crear clasificaciones de servicios],
   preconditions: [],
   main-success-scenario: [
-    + Se ingresa el nombre de la categoría.
-    + Se verifica que la categoría no exista.
-    + Se guarda.
+    + Ingresar nombre de la categoría (ej: Corte, Tintura).
+    + Verificar originalidad.
+    + Guardar en la base de datos.
   ],
   extension: [
-    + En el paso 2: Si la categoría ya está registrada en el sistema, se puede eliminar, modificar o salir del sistema.
+    + Si la categoría existe, el sistema sugiere variaciones.
   ],
-  success-guarantee: [La categoría queda registrada en el sistema.],
+  success-guarantee: [La categoría aparece en todos los filtros de búsqueda.],
+  special-requirements: [Acceso administrativo],
+  technology-and-data-variations: [Traducción a múltiples idiomas],
+  frequency-of-occurrence: [Cuando se crean nuevos tipos de servicios],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar Servicios],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Registrar un servicio],
-  preconditions: [La peluquería o salón debe estar registrada en el sistema y tener acceso al mismo],
+  stakeholders-interests: [Agregar nuevos servicios al salón],
+  preconditions: [El salón debe estar registrado],
   main-success-scenario: [
-    + Se ingresa la categoría a la que pertenecerá el servicio.
-    + Se verifica que la categoría exista.
-    + Se ingresa el nombre del servicio, descripción, precio del servicio y duración estimada.
-    + Se verifica que no exista el servicio con ese nombre.
-    + Se guarda la información del servicio.
+    + Seleccionar categoría del servicio.
+    + Ingresar nombre, descripción y precio.
+    + Agregar tiempo estimado de duración.
+    + Guardar servicio.
   ],
   extension: [
-    + En el paso 2: Si no existe la peluquería/salón, se puede eliminar, modificar o salir del sistema.
-    + En el paso 4: Si el servicio ya existe, se puede eliminar, modificar o salir del sistema.
+    + Si la categoría no existe, el sistema sugiere crear una nueva.
   ],
-  success-guarantee: [El servicio queda registrado en la plataforma del salón.],
+  success-guarantee: [El servicio aparece en el menú del salón.],
+  special-requirements: [Formato de precio válido],
+  technology-and-data-variations: [Fotos y videos del servicio],
+  frequency-of-occurrence: [Cuando se lanzan nuevos servicios],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar Promociones y Ofertas],
   primary-actor: uc-actors.platform-admin,
-  stakeholders-interests: [Registrar los tipos de promociones que se podrán ofrecer],
+  stakeholders-interests: [Crear tipos de descuentos disponibles],
   preconditions: [],
   main-success-scenario: [
-    + Se ingresa el nombre de la promoción.
-    + Se verifica que no exista la promoción.
-    + Se guarda.
+    + Ingresar nombre de la promoción (ej: 2x1, Descuento 50%).
+    + Verificar originalidad.
+    + Guardar en la plataforma.
   ],
   extension: [
-    + En el paso 2: Si la promoción ya existe en el sistema, se puede eliminar, modificar o salir del sistema.
+    + Si el nombre coincide con una promoción existente, el sistema pide confirmación.
   ],
-  success-guarantee: [La promoción queda registrada para que pueda ser utilizada en la aplicación.],
+  success-guarantee: [La promoción queda disponible para todos los salones.],
+  special-requirements: [Formato de nombre claro],
+  technology-and-data-variations: [validación de fechas],
+  frequency-of-occurrence: [Al inicio de campañas promocionales],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar Promoción u Oferta],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Gestionar promociones y ofertas en los servicios ofrecidos],
-  preconditions: [El establecimiento, y el servicio deben estar registrados],
+  stakeholders-interests: [Aplicar promociones a servicios específicos],
+  preconditions: [El salón y el servicio deben estar registrados],
   main-success-scenario: [
-    + Se ingresa el código del salón.
-    + Se verifica que exista el salón.
-    + Se ingresa el código del servicio que tendrá la promoción.
-    + Se verifica que el servicio exista.
-    + Se ingresa la promoción que tendrá.
-    + Se guarda.
+    + Seleccionar servicio.
+    + Elegir tipo de promoción.
+    + Establecer fechas de vigencia.
+    + Guardar configuración.
   ],
   extension: [
-    + En el paso 2: Si no existe el salón se puede eliminar, modificar o salir del sistema.
-    + En el paso 4: Si no existe el servicio se puede eliminar, modificar o salir del sistema.
+    + Si el servicio ya tiene promoción activa, el sistema sugiere alternativas.
   ],
-  success-guarantee: [Las promociones y ofertas en los servicios ofrecidos se guardan correctamente en el sistema.],
+  success-guarantee: [Los clientes ven la promoción en el catálogo.],
+  special-requirements: [Fechas válidas],
+  technology-and-data-variations: [Contadores de usos],
+  frequency-of-occurrence: [Durante campañas especiales],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar usuarios],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Gestionar los usuarios de todo tipo del salón],
-  preconditions: [El salón debe estar registrado y además debe tener acceso al sistema],
+  stakeholders-interests: [Registrar empleados y asignar roles],
+  preconditions: [El salón debe estar registrado],
   main-success-scenario: [
-    + Se ingresa el empleado.
-    + Se busca al empleado.
-    + Se ingresa el rol.
-    + Se busca el rol.
-    + Se gurda la información del usuario.
+    + Ingresar datos del empleado (nombre, email, teléfono).
+    + Asignar rol (peluquero, secretaria, administrador).
+    + Guardar usuario.
   ],
-  extension: [],
-  success-guarantee: [El salón de belleza debe estar registrado y debe tener acceso al sistema.],
+  extension: [
+    + Si el email ya existe, el sistema sugiere recuperar cuenta.
+  ],
+  success-guarantee: [El empleado puede ingresar con sus credenciales.],
+  special-requirements: [Formato de email válido],
+  technology-and-data-variations: [Autenticación por SMS o email],
+  frequency-of-occurrence: [Al contratar nuevos empleados],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Actualizar Servicio],
   primary-actor: uc-actors.secretary,
-  stakeholders-interests: [Actualizar servicio ofrecido por el salón],
-  preconditions: [El salón de belleza debe estar registrado y debe tener acceso al sistema],
+  stakeholders-interests: [Modificar información de servicios],
+  preconditions: [El salón debe estar registrado],
   main-success-scenario: [
-    + Se ingresa el servicio.
-    + Se verifica que el servicio exista.
-    + Se ingresa la categoría.
-    + Se busca la categoría.
-    + Se ingresa la descripción, precio del servicio y duración estimada.
-    + Se verifica que el servicio exista dentro del sistema.
-    + Se guarda la información del servicio.
+    + Seleccionar servicio a actualizar.
+    + Modificar descripción, precio o duración.
+    + Guardar cambios.
   ],
   extension: [
-    + En el paso 2: Si no existe el servicio, se puede consultar, eliminar, modificar o salir del sistema.
-    + En el paso 4: Si la categoría ingresada no existe, se puede consultar, modificar, eliminar o salir del sistema.
+    + Si el precio nuevo es mayor al anterior, el sistema pide confirmación.
   ],
-  success-guarantee: [La información del servicio queda actualizada en el sistema.],
+  success-guarantee: [Los clientes ven la información actualizada.],
+  special-requirements: [Permisos de edición],
+  technology-and-data-variations: [Historial de cambios],
+  frequency-of-occurrence: [Cuando hay cambios en los servicios],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar Géneros],
   primary-actor: uc-actors.platform-admin,
-  stakeholders-interests: [Registrar los géneros],
+  stakeholders-interests: [Registrar opciones de género para clientes],
   preconditions: [],
   main-success-scenario: [
-    + Se ingresa el nombre del género.
-    + Se verifica que el género no exista dentro del sistema.
-    + Se guardan los cambios.
+    + Ingresar nombre del género (ej: Masculino, Femenino, No binario).
+    + Verificar originalidad.
+    + Guardar en la base de datos.
   ],
   extension: [
-    + En el paso 2: Si el género ya está registrado en el sistema, se puede eliminar, modificar o salir del sistema.
+    + Si el género existe, el sistema sugiere alternativas.
   ],
-  success-guarantee: [Los géneros quedan registrados en el sistema.],
+  success-guarantee: [Las opciones aparecen en los formularios de registro.],
+  special-requirements: [Acceso administrativo],
+  technology-and-data-variations: [Soporte para identidades no binarias],
+  frequency-of-occurrence: [Cuando se actualizan políticas de inclusión],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar Empleados],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Registrar empleados en el salón],
-  preconditions: [El salón de belleza debe estar registrado],
+  stakeholders-interests: [Registrar información laboral de empleados],
+  preconditions: [El salón debe estar registrado],
   main-success-scenario: [
-    + El administrador ingresa el código del salón.
-    + Se verifica que la sucursal exista.
-    + El administrador ingresa los datos del empleado como nombre, apellidos, teléfono, email.
-    + Se verifica que no haya otro empleado registrado con el mismo email.
-    + Se guardan los cambios.
+    + Ingresar datos personales del empleado.
+    + Asignar especialidad y horario.
+    + Guardar información.
   ],
   extension: [
-    + En el paso 2: Si no existe el salón se puede modificar, eliminar o salir del sistema.
-    + En el paso 4: Si el email ingresado ya está registrado se puede eliminar, modificar o salir del sistema.
+    + Si el email ya existe, el sistema sugiere recuperar cuenta.
   ],
-  success-guarantee: [Los cambios en los datos de los empleados quedan guardados en el sistema.],
+  success-guarantee: [El empleado aparece en el directorio del salón.],
+  special-requirements: [Formato de fecha válido para contratación],
+  technology-and-data-variations: [Fotos de perfil],
+  frequency-of-occurrence: [Al contratar nuevos empleados],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar horarios de empleados],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Registrar los horarios en los cuales el empleado trabajará en el salón],
-  preconditions: [El salón y el empleado deben estar registrados en el sistema],
+  stakeholders-interests: [Configurar disponibilidad laboral],
+  preconditions: [El empleado debe estar registrado],
   main-success-scenario: [
-    + Se ingresa el código del salón de belleza.
-    + Se verifica que el salón exista.
-    + Se ingresa el código del empleado.
-    + Se verifica que el empleado exista en el sistema.
-    + Se ingresa sus horarios de trabajo por cada día.
-    + Se guarda.
+    + Seleccionar empleado.
+    + Establecer horarios por días de la semana.
+    - Guardar configuración.
   ],
   extension: [
-    + En el paso 2: Si no existe el salón, se puede editar, modificar, eliminar o salir del sistema.
-    + En el paso 4: Si no existe el empleado, se puede modificar, eliminar o salir del sistema.
+    + Si hay conflictos con otros horarios, el sistema sugiere soluciones.
   ],
-  success-guarantee: [Los horarios de atención de los empleados del salón quedan registrados en el sistema.],
+  success-guarantee: [Los clientes ven los horarios disponibles al reservar.],
+  special-requirements: [Formato de hora válido],
+  technology-and-data-variations: [Sincronización con calendarios],
+  frequency-of-occurrence: [Cuando cambian los horarios laborales],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar especialidad],
   primary-actor: uc-actors.hairdresser,
-  stakeholders-interests: [Registrar la especialidad de cada empleado en el sistema],
-  preconditions: [El empleado debe estar registrado en el sistema],
+  stakeholders-interests: [Registrar habilidades profesionales],
+  preconditions: [El empleado debe estar registrado],
   main-success-scenario: [
-    + Se ingresa el código del empleado.
-    + Se verifica que el empleado exista.
-    + Se ingresa la especialidad.
-    + Se verifica que no se haya ingresado la especialidad anteriormente.
-    + Se guarda.
+    + Ingresar descripción de la especialidad.
+    + Subir ejemplos de trabajo (fotos o videos).
+    + Guardar información.
   ],
   extension: [
-    + En el paso 2: Si no existe el empleado, se puede editar, modificar, eliminar o salir del sistema.
-    + En el paso 4: Si la especialidad ya ha sido registrada anteriormente se puede modificar, eliminar o salir del sistema.
+    + Si la especialidad ya existe, el sistema sugiere alternativas.
   ],
-  success-guarantee: [La especialidad de los empleados queda registrada en el sistema.],
+  success-guarantee: [Los clientes pueden filtrar por esta especialidad.],
+  special-requirements: [Formato de archivo válido],
+  technology-and-data-variations: [Galería multimedia],
+  frequency-of-occurrence: [Al actualizar portafolio],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Actualizar Empleados],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Actualizar los datos de un empleado de la peluquería],
-  preconditions: [El empleado debe estar registrado en el sistema],
+  stakeholders-interests: [Modificar información de empleados],
+  preconditions: [El empleado debe estar registrado],
   main-success-scenario: [
-    + El administrador ingresa el código del salón.
-    + Se verifica que el salón exista.
-    + El administrador ingresa el código de su empleado.
-    + Se verifica que exista el empleado.
-    + El administrador ingresa los datos a actualizar del empleado.
-    + Se guardan los datos.
+    + Seleccionar empleado.
+    + Modificar datos (teléfono, email, especialidad).
+    + Guardar cambios.
   ],
   extension: [
-    + En el paso 2: Si no existe el salón se puede modificar, eliminar o salir del sistema.
-    + En el paso 4: Si no existe el empleado se puede modificar, eliminar o salir del sistema.
+    + Si el nuevo email ya existe, el sistema pide confirmación.
   ],
-  success-guarantee: [Los datos del empleado seleccionado se actualizan en el sistema.],
+  success-guarantee: [La información se actualiza en todos los sistemas.],
+  special-requirements: [Permisos de administrador],
+  technology-and-data-variations: [Notificaciones automáticas al empleado],
+  frequency-of-occurrence: [Cuando hay cambios en el empleado],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Eliminar Empleados],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Eliminar un empleado del sistema y de su peluquería],
-  preconditions: [El empleado debe estar registrado en el sistema],
+  stakeholders-interests: [Dar de baja empleados del sistema],
+  preconditions: [El empleado debe estar registrado],
   main-success-scenario: [
-    + El administrador ingresa el código del empleado que desea eliminar.
-    + Se verifica que el empleado exista.
-    + El administrador presiona el botón de eliminar empleado.
-    + Se elimina el empleado.
+    + Seleccionar empleado.
+    + Confirmar eliminación.
+    + El sistema archiva el registro.
   ],
   extension: [
-    + En el paso 2: Si el empleado no existe se puede modificar o salir del sistema.
+    + Si el empleado tiene citas pendientes, el sistema pide reasignarlas.
   ],
-  success-guarantee: [El empleado seleccionado es eliminado del sistema.],
+  success-guarantee: [El empleado no aparece más en el directorio.],
+  special-requirements: [Permisos de administrador],
+  technology-and-data-variations: [Respaldo automático de datos],
+  frequency-of-occurrence: [Al dar de baja empleados],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar Clientes],
   primary-actor: uc-actors.client,
-  stakeholders-interests: [Registrar clientes para que puedan tener acceso a la plataforma],
-  preconditions: [El cliente debe poder ingresar a la plataforma],
+  stakeholders-interests: [Registrarse en la plataforma],
+  preconditions: [],
   main-success-scenario: [
-    + Se escribe el nombre, apellidos, teléfono, correo electrónico y sexo.
-    + Se verifica que el correo electrónico no exista.
-    + Se guarda la información del cliente.
+    + Ingresar datos personales (nombre, email, teléfono).
+    + Elegir género de preferencia.
+    + Crear contraseña.
+    + Guardar cuenta.
   ],
   extension: [
-    + En el paso 2: En el paso 2 si el correo electrónico ya está registrado, se puede eliminar, modificar o salir del sistema.
+    + Si el email ya existe, el sistema sugiere recuperar cuenta.
   ],
-  success-guarantee: [El cliente queda registrado y puede acceder a la plataforma para realizar reservas.],
+  success-guarantee: [El cliente puede reservar servicios.],
+  special-requirements: [Formato de email válido],
+  technology-and-data-variations: [Autenticación por redes sociales],
+  frequency-of-occurrence: [Al registrarse nuevos clientes],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar Cliente fiel],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Registrar los clientes que son fieles a su peluquería],
-  preconditions: [El cliente y el salón deben estar registrados en el sistema],
+  stakeholders-interests: [Reconocer clientes frecuentes],
+  preconditions: [El cliente y el salón deben estar registrados],
   main-success-scenario: [
-    + Se ingresa el código del salón de belleza.
-    + Se verifica que el salón exista.
-    + Se ingresa el código del cliente.
-    + Se verifica que el cliente exista en el sistema.
-    + Se cambia el estado del cliente a cliente fiel a esa peluquería en el sistema.
-    + Se guarda.
+    + Seleccionar cliente.
+    + Activar opción "Cliente Fiel".
+    + Guardar configuración.
   ],
   extension: [
-    + En el paso 2: Si no existe el salón, se puede editar, modificar, eliminar o salir del sistema.
-    + En el paso 4: Si no existe el cliente, se puede modificar, eliminar o salir del sistema.
+    + Si el cliente ya es fiel, el sistema muestra su historial.
   ],
-  success-guarantee: [El cliente queda registrado como cliente fiel al salón en el sistema.],
+  success-guarantee: [El cliente recibe beneficios especiales.],
+  special-requirements: [Políticas de fidelidad definidas],
+  technology-and-data-variations: [Notificaciones automáticas al cliente],
+  frequency-of-occurrence: [Cuando el cliente alcanza un umbral de visitas],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Actualizar Clientes],
   primary-actor: uc-actors.client,
-  stakeholders-interests: [Modificar la información de un cliente de la plataforma],
-  preconditions: [El cliente debe estar registrado en la plataforma],
+  stakeholders-interests: [Modificar información personal],
+  preconditions: [El cliente debe estar registrado],
   main-success-scenario: [
-    + Se escribe el nombre, apellidos, teléfono, correo electrónico y sexo.
-    + Se verifica que el correo electrónico exista en el sistema.
-    + Se guarda la nueva información del cliente.
+    + Editar datos (teléfono, email, preferencias).
+    + Guardar cambios.
   ],
   extension: [
-    + En el paso 2: En el paso 2 si el correo electrónico no está registrado, se puede eliminar, modificar o salir del sistema.
+    + Si el nuevo email ya existe, el sistema pide confirmación.
   ],
-  success-guarantee: [La información del cliente queda actualizada.],
+  success-guarantee: [La información se actualiza en todos los sistemas.],
+  special-requirements: [Autenticación previa],
+  technology-and-data-variations: [Validación de cambios por SMS],
+  frequency-of-occurrence: [Cuando hay cambios personales],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar Roles],
   primary-actor: uc-actors.platform-admin,
-  stakeholders-interests: [Registrar los roles que habrá dentro de la plataforma],
+  stakeholders-interests: [Crear nuevos roles de usuario],
   preconditions: [],
   main-success-scenario: [
-    + Se ingresa el nuevo rol.
-    + Se verifica que el rol no exista.
-    + Se guarda.
+    + Ingresar nombre del rol (ej: Administrador, Peluquero).
+    + Definir permisos asociados.
+    + Guardar rol.
   ],
   extension: [
-    + En el paso 2: Si existe el rol, se puede modificar, eliminar o salir del sistema.
+    + Si el rol ya existe, el sistema sugiere alternativas.
   ],
-  success-guarantee: [Los roles quedan registrados en el sistema.],
+  success-guarantee: [El rol queda disponible para asignación.],
+  special-requirements: [Acceso administrativo],
+  technology-and-data-variations: [Plantillas de permisos],
+  frequency-of-occurrence: [Al crear nuevos tipos de usuario],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Gestionar Reservas],
   primary-actor: uc-actors.client,
-  stakeholders-interests: [Realizar la reserva de un servicio de una peluquería],
-  preconditions: [El cliente debe estar registrado en la plataforma],
+  stakeholders-interests: [Reservar servicios en línea],
+  preconditions: [El cliente debe estar registrado],
   main-success-scenario: [
-    + Se ingresa el nombre de la peluquería/salón.
-    + Se verifica que la peluquería exista.
-    + Se ingresa el nombre del servicio requerido.
-    + Se verifica que el servicio exista.
-    + Se ingresa el nombre del estilista.
-    + Se verifica que el estilista exista.
-    + Se ingresa la fecha de reserva, imágenes de referencia, detalles y preferencias de pago.
-    + Se guarda la información de la cita.
+    + Seleccionar salón y servicio.
+    + Elegir fecha y hora disponible.
+    + Confirmar reserva.
+    + Recibir comprobante por email.
   ],
   extension: [
-    + En el paso 2: Si no existe la peluquería, se elimina, modifica, se consulta o se sale del sistema.
-    + En el paso 4: Si no existe el servicio, se elimina, modifica, se consulta o se sale del sistema.
-    + En el paso 6: Si no existe el estilista, se elimina, modifica, se consulta o se sale del sistema.
+    + Si no hay horarios disponibles, el sistema sugiere alternativas.
   ],
-  success-guarantee: [La cita queda registrada.],
+  success-guarantee: [La cita aparece en el calendario del cliente y el salón.],
+  special-requirements: [Conexión a internet],
+  technology-and-data-variations: [Integración con calendarios externos],
+  frequency-of-occurrence: [Cada vez que un cliente reserva],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Actualizar Cita],
   primary-actor: uc-actors.secretary,
-  stakeholders-interests: [Permitir actualizar los detalles de una cita existente en el sistema],
-  preconditions: [Tener acceso al sistema, existe al menos una cita registrada],
+  stakeholders-interests: [Modificar citas existentes],
+  preconditions: [Tener acceso al sistema],
   main-success-scenario: [
-    + La secretaria o el peluquero selecciona la opción “Actualizar Cita” en el sistema.
-    + El sistema muestra una lista de citas programadas.
-    + La secretaria o el peluquero selecciona la cita que desea actualizar.
-    + El sistema muestra los detalles de la cita seleccionada.
-    + La secretaria o el peluquero modifica los detalles de la cita: fecha, hora, tipo de servicio y estado.
-    + Guarda la información en el sistema.
+    + Seleccionar cita.
+    + Modificar fecha, hora o servicio.
+    + Guardar cambios.
   ],
   extension: [
-    + En el paso 2: Si no hay citas programadas se sale del sistema.
-    + En el paso 4: Si la cita ya no está disponible para actualizar, el sistema muestra un mensaje indicando que la cita seleccionada ya no está disponible para actualizar y vuelve al paso 2.
-    + En el paso 6: Si el sistema no puede actualizar la cita debido a un error, el sistema muestra un mensaje de error y la secretaria o el peluquero intenta actualizar la cita nuevamente.
+    + Si la nueva fecha está ocupada, el sistema sugiere alternativas.
   ],
-  success-guarantee: [Los detalles de la cita seleccionada se actualizan.],
+  success-guarantee: [Los cambios se notifican al cliente automáticamente.],
+  special-requirements: [Permisos de edición],
+  technology-and-data-variations: [Notificaciones push],
+  frequency-of-occurrence: [Cuando hay cambios en las citas],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Anular Cita],
   primary-actor: uc-actors.secretary,
-  stakeholders-interests: [Permitir la anulación de una cita previamente agendada],
+  stakeholders-interests: [Cancelar citas programadas],
   preconditions: [La cita debe existir],
   main-success-scenario: [
-    + La secretaria o el cliente selecciona la opción “Anular Cita” en el sistema.
-    + El sistema muestra una lista de citas agendadas.
-    + La secretaria o el cliente selecciona la cita que desea anular.
-    + Busca la cita.
-    + Se confirma la anulación.
-    + El sistema elimina la cita del sistema.
+    + Seleccionar cita.
+    + Confirmar anulación.
+    + El sistema libera la hora.
   ],
   extension: [
-    + En el paso 2: Si no hay citas agendadas se sale del sistema.
-    + En el paso 4: Si no se encuentra la cita, se puede modificar, eliminar o salir del sistema.
+    + Si la cita ya fue atendida, el sistema muestra un mensaje de error.
   ],
-  success-guarantee: [La cita queda eliminada.],
+  success-guarantee: [La cita se elimina de ambos calendarios.],
+  special-requirements: [Justificación para anulación],
+  technology-and-data-variations: [Políticas de cancelación],
+  frequency-of-occurrence: [Cuando se cancelan citas],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Elaborar Reportes de citas mensuales],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Generar reportes mensuales de citas],
-  preconditions: [Existen citas programadas en el sistema],
+  stakeholders-interests: [Generar estadísticas de citas],
+  preconditions: [Existen citas registradas],
   main-success-scenario: [
-    + Ingresa la fecha de la cual quiere obtener el reporte.
-    + El sistema busca las citas, estilistas, servicios y la información necesaria y elabora un reporte.
-    + Se muestra el reporte.
+    + Seleccionar mes.
+    + El sistema genera un reporte con:
+      - Número de citas
+      - Ingresos totales
+      - Servicios más solicitados
   ],
   extension: [
-    + En el paso 2: Si no hay citas programadas para la fecha seleccionada, el sistema muestra un mensaje indicando que no hay citas para ese periodo.
+    + Si no hay citas en el mes, el sistema sugiere otros periodos.
   ],
-  success-guarantee: [El reporte de citas mensuales se genera correctamente.],
+  success-guarantee: [El reporte se puede exportar a Excel o PDF.],
+  special-requirements: [Formato de fecha válido],
+  technology-and-data-variations: [Gráficos interactivos],
+  frequency-of-occurrence: [Mensual],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Generar Agenda Diaria],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Generar una agenda diaria con las citas programadas],
-  preconditions: [Tener acceso al sistema y que existan citas programadas para el salón],
+  stakeholders-interests: [Ver citas del día],
+  preconditions: [Existen citas registradas],
   main-success-scenario: [
-    + El administrador o la secretaría selecciona la opción “Generar agenda diaria” en el sistema.
-    + El sistema muestra un calendario con las fechas disponibles.
-    + El administrador o la secretaria selecciona la fecha para la cual desea generar la agenda.
-    + El sistema muestra la agenda diaria con las citas programadas para esa fecha.
+    + Seleccionar fecha.
+    + El sistema muestra:
+      - Citas programadas
+      - Horarios libres
+      - Empleados disponibles
   ],
   extension: [
-    + Si en el paso 3 no hay citas programadas para la fecha seleccionada, el sistema muestra un mensaje indicando que no hay citas para esa fecha y se puede modificar o salir del sistema.
+    + Si no hay citas, el sistema sugiere promociones.
   ],
-  success-guarantee: [La agenda diaria con las citas programadas se genera correctamente.],
+  success-guarantee: [La agenda se actualiza automáticamente.],
+  special-requirements: [Formato de fecha válido],
+  technology-and-data-variations: [Vista calendario],
+  frequency-of-occurrence: [Diario],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Generar Historial de citas de los clientes],
   primary-actor: uc-actors.admin,
-  stakeholders-interests: [Visualizar el historial de citas de los clientes con el salón de belleza],
-  preconditions: [Existen clientes registrados, citas programadas en el sistema y se debe tener acceso al sistema],
+  stakeholders-interests: [Ver historial de servicios de un cliente],
+  preconditions: [Existen citas registradas],
   main-success-scenario: [
-    + El administrador selecciona la opción “Generar historial de citas en el sistema”.
-    + El sistema muestra una lista de clientes registrados que han reservado una cita con su salón de belleza.
-    + El administrador selecciona el cliente del cual desea ver el historial.
-    + El sistema muestra el historial de citas del cliente seleccionado.
+    + Seleccionar cliente.
+    + El sistema muestra:
+      - Todas las citas anteriores
+      - Servicios más frecuentes
+      - Última valoración
   ],
   extension: [
-    + Si no hay clientes registrados, el sistema muestra un mensaje indicando que no hay clientes registrados.
+    + Si no hay historial, el sistema sugiere crear una cita.
   ],
-  success-guarantee: [El historial de citas del cliente seleccionado se genera correctamente.],
+  success-guarantee: [El historial se actualiza con cada nueva cita.],
+  special-requirements: [Permisos de privacidad],
+  technology-and-data-variations: [Exportación de datos],
+  frequency-of-occurrence: [Al revisar información de clientes],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Realizar Reseña de servicio],
   primary-actor: uc-actors.client,
-  stakeholders-interests: [Permitir que los clientes realicen reseñas sobre los servicios recibidos],
-  preconditions: [El cliente recibió un servicio y debe tener acceso al sistema],
+  stakeholders-interests: [Calificar servicios recibidos],
+  preconditions: [El cliente recibió el servicio],
   main-success-scenario: [
-    + Después de recibir el servicio, el sistema solicita al cliente realizar una reseña.
-    + El cliente ingresa su calificación y comentarios sobre el servicio recibido.
-    + El sistema guarda la reseña del cliente.
+    + Calificar del 1 al 5 estrellas.
+    + Escribir comentarios.
+    + Publicar reseña.
   ],
   extension: [
-    + En el paso 3: Si el cliente no desea dejar una reseña puede salir del sistema.
+    + Si el cliente no desea dejar comentario, solo califica.
   ],
-  success-guarantee: [La reseña del cliente sobre el servicio recibido se guarda correctamente en el sistema.],
+  success-guarantee: [La reseña aparece en el perfil del salón.],
+  special-requirements: [Autenticación del cliente],
+  technology-and-data-variations: [Fotos de reseñas],
+  frequency-of-occurrence: [Después de cada cita],
+  miscellaneous: [],
 )
 
 #fully-dressed-use-case(
   name: [Realizar Pagos en línea],
   primary-actor: uc-actors.client,
-  stakeholders-interests: [Permitir que los clientes realicen pagos en línea por los servicios recibidos],
-  preconditions: [El establecimiento ofrece servicios],
+  stakeholders-interests: [Pagar servicios directamente en la plataforma],
+  preconditions: [Existe una cita confirmada],
   main-success-scenario: [
-    + Se ingresa el servicio que se va a pagar.
-    + Se verifica que la cita y el servicio existan.
-    + El cliente elige el método de pago.
-    + Se guarda el pago.
+    + Seleccionar cita.
+    + Elegir método de pago.
+    + Ingresar datos de pago.
+    + Confirmar transacción.
   ],
   extension: [
-    + En el paso 2: Si no exista la cita o no exista el servicio se puede modificar, eliminar o salir del sistema.
+    + Si el pago falla, el sistema sugiere alternativas.
   ],
-  success-guarantee: [El pago queda registrado en el sistema.],
+  success-guarantee: [El cliente recibe un comprobante por email.],
+  special-requirements: [Conexión segura],
+  technology-and-data-variations: [Criptografía de datos],
+  frequency-of-occurrence: [Al momento de pagar],
+  miscellaneous: [],
 )
 
 == Modelo de Dominio
