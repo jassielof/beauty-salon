@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MudBlazor.Services;
-using _.Components;
-using _.Components.Account;
-using _.Data;
+using SI514.Components;
+using SI514.Components.Account;
+using SI514.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

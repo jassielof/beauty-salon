@@ -4,9 +4,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-_-d05ff922-ad07-4009-8927-f740908b48de</UserSecretsId>
-    <RootNamespace>_</RootNamespace>
-    <AssemblyName>`$(AssemblyName.Replace(' ', '_'))</AssemblyName>
+    <UserSecretsId>aspnet-SI514-d39e9dd5-577e-49e8-858b-92b8b83f443f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
