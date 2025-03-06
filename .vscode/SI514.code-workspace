@@ -4,7 +4,18 @@
       "path": "../",
       "name": "SI514"
     },
-    { "path": "../Data", "name": "Data" },
+    {
+      "path": "../Data",
+      "name": "Data"
+    },
+    {
+      "path": "../Data/Models",
+      "name": "Models"
+    },
+    {
+      "path": "../Data/Enums",
+      "name": "Enums"
+    },
     {
       "path": "../Components/",
       "name": "Components"
@@ -25,7 +36,11 @@
   "settings": {
     "plantuml.exportFormat": "svg",
     "plantuml.exportOutDir": "diagrams",
-
-    "cSpell.words": ["jassielof", "Larman", "Yudy"]
+    "cSpell.words": [
+      "geolocalización",
+      "jassielof",
+      "Larman",
+      "Yudy"
+    ]
   }
 }

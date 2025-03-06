@@ -676,46 +676,31 @@ retroalimentación que nos permitirán:
 
 - Reportes de Rendimiento: Resumen de reservas, ingresos y
   calificaciones.
-
 - Alertas de Capacidad: Notifica cuando un servicio está sobre o
   subutilizado.
-
 - Sugerencias de Precios: Basadas en la demanda y precios de la
   competencia.
-
 - Feedback de Empleados: Los estilistas pueden reportar problemas o
   sugerir mejoras.
 
 === Retroalimentación del sistema
 
 - Métricas de Rendimiento: Tiempos de carga, tasas de error.
-
 - Monitoreo de Recursos: Uso de CPU, memoria, base de datos.
-
 - Logs de Errores: Identifica y reporta fallos para su corrección.
-
-- A/B Testing: Prueba diferentes diseños de UI para ver cuál funciona
-  mejor.
+- A/B Testing: Prueba diferentes diseños de UI para ver cuál funciona mejor.
 
 === Retroalimentación de la comunidad
 
 - Foros y Grupos: Espacios donde usuarios discuten el sistema.
-
 - Redes Sociales: Monitorea menciones y sentimientos.
-
 - Canal de Sugerencias: Usuarios proponen nuevas funciones.
 
 === Bucles de retroalimentación
 
-- Cliente → Sistema → Salón: Las reseñas afectan el ranking de los
-  salones.
-
-- Salón → Sistema → Cliente: Cambios en servicios actualizan las
-  opciones del cliente.
-
-- Sistema → Desarrolladores: Errores y rendimiento guían
-  actualizaciones.
-
+- Cliente → Sistema → Salón: Las reseñas afectan el ranking de los salones.
+- Salón → Sistema → Cliente: Cambios en servicios actualizan las opciones del cliente.
+- Sistema → Desarrolladores: Errores y rendimiento guían actualizaciones.
 - Comunidad → Sistema: Sugerencias influyen en el roadmap.
 
 == Descripción y Tipo de Sistema
@@ -732,11 +717,8 @@ de una organización
 En nuestro sistema:
 
 - Se procesarán transacciones de reservas (CRUD)
-
 - Se registrarán servicios realizados
-
 - Se manejarán transacciones de pago
-
 - Se actualizará en tiempo real la disponibilidad de los salones
 
 La función principal del sistema es gestionar el flujo constante de
@@ -749,9 +731,7 @@ Este se comporta como el tipo secundario, que ayuda a la alta gerencia a
 tomar decisiones que afectan la dirección futura de la organización
 
 - Se proporciona un análisis de tendencias de servicios
-
 - Se ofrece insights sobre la satisfacción del cliente
-
 - Se ayuda a los salones a decidir sobre nuevos servicios o precios
 
 Si bien no es su función principal, el sistema proporciona datos
@@ -764,9 +744,7 @@ Los CEP identifican eventos significativos resultantes de las
 combinaciones de muchos eventos más simples.
 
 - Se detectan patrones en las reservas
-
 - Se identifican correlaciones
-
 - Se alerta sobre anomalías
 
 Si bien no es CEP puro, se tiene componentes que analizan patrones
@@ -778,9 +756,7 @@ Para la sugerencia de ítems a usuarios basándose en sus preferencias y
 comportamientos
 
 - Se recomienda servicios basados en el historial
-
 - Se sugiere salones según preferencias y ubicaciones
-
 - Se proporciona paquetes basados en combinaciones populares
 
 Esta función mejora la experiencia del usuario y aumenta las ventas
@@ -791,9 +767,7 @@ cruzadas
 Ayuda a la respuesta de entradas inmediatas con restricciones de tiempo
 
 - Se actualiza la disponibilidad instantáneamente
-
 - Se envía confirmaciones y recordatorios en momentos precisos
-
 - Se ajusta la agenda en tiempo real con cambios
 
 En el mundo de las citas, la precisión temporal es crítica para evitar
@@ -802,6 +776,6 @@ dobles reservas o clientes perdidos
 #include "sections/uml.typ"
 
 #appendix()[
-  = Prototipo
+  = Prototipo de Sistemas de Información
   Enlace: https://si414-45d0a5.gitlab.io/
 ]

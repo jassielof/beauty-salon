@@ -1,11 +1,15 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using SI514.Components;
-using SI514.Components.Account;
-using SI514.Data;
+using MudBlazor.Services;
+using _.Components;
+using _.Components.Account;
+using _.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add MudBlazor services
+builder.Services.AddMudServices();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()

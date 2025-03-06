@@ -1,0 +1,230 @@
+@startuml domain
+
+' !pragma layout smetana
+' left to right direction
+
+' skinparam linetype polyline
+' skinparam linetype ortho
+' skinparam groupInheritance 2
+
+hide methods
+
+enum PaymentMethod {
+  Cash
+  CreditCard
+  DebitCard
+  BankTransfer
+  BankTransferQr
+}
+
+class PaymentInfo {
+  PaymentMethod Method
+  string CardNumber
+  string CardHolder
+  string ExpirationDate
+  string SecurityCode
+  string Bank
+  string AccountNumber
+  string AccountHolder
+}
+
+PaymentInfo ..> PaymentMethod : Uses >
+
+class Image {
+  string Name
+  string Uri
+  string ContentType
+  string Size
+}
+
+enum AppointmentStatus {
+  Booked
+  Confirmed
+  Cancelled
+  Completed
+}
+
+enum ExpertiseLevel {
+  Junior
+  Intermediate
+  Senior
+}
+
+class Client {
+  bool IsLoyal
+}
+
+class User {
+  string Name
+  string Surname
+  string Email
+  string PhoneNumber
+  string LegalId
+  string Address
+  string Sex
+  string Gender
+  DateOnly BirthDate
+  Role Role
+}
+
+enum Role {
+  Admin
+  Client
+  Employee
+}
+
+User "1" <|-- "1" Client : Is >
+User "1" <|-- "1" Employee : Is >
+
+class Review {
+  float Rating
+  string Comment
+}
+
+Service "1" *-- "1..*" Review : Has >
+
+class Service {
+  string Name
+  string Description
+  string Category
+  decimal Price
+  TimeSpan Duration
+}
+
+class Promotion {
+  string Name
+  string Description
+  float Discount
+  DateTime StartDate
+  DateTime EndDate
+}
+
+Promotion "1..*" --* "1" Service : Has 1<
+
+class Category {
+  float Rating
+  string Comment
+}
+
+Category "1..*" --* "1..*" Service : Has <
+
+class CategoryService {
+  string AdditionalInfo
+  DateOnly Date
+}
+
+(Category, Service) .. CategoryService
+
+enum WeekDay {
+  Monday
+  Tuesday
+  Wednesday
+  Thursday
+  Friday
+  Saturday
+  Sunday
+}
+
+class OpeningHours {
+  WeekDay Day
+  TimeOnly OpenTime
+  TimeOnly CloseTime
+}
+
+OpeningHours ..> WeekDay : On >
+
+class Appointment {
+  DateTime Date
+  string Note
+  AppointmentStatus Status
+  PaymentInfo PaymentInfo
+}
+
+Appointment ..> AppointmentStatus : Can be >
+
+Appointment "1..*" o-- "1..*" Service
+
+class ServiceDetail {
+  decimal Price
+  TimeSpan Duration
+  DateTime Date
+  int Amount
+}
+
+(Appointment, Service) .. ServiceDetail
+
+class Notification {
+  string Message
+  DateTime Date
+
+}
+
+class BeautySalon {
+  string Name
+  string Address
+  string PhoneNumber
+  string email
+}
+
+class Branch {
+  string Address
+  string PhoneNumber
+}
+
+BeautySalon "1" *-- "1..*" Branch : Has >
+
+class Employee
+
+Branch "1" *-- "1..*" Employee : Has >
+
+class SocialNetwork {
+  string Name
+  string Url
+}
+
+BeautySalon "1" *-- "1..*" SocialNetwork : Has >
+
+class FranchisePayment {
+  DateOnly Date
+  float Amount
+}
+
+BeautySalon "1" *-- "1..*" FranchisePayment : Has >
+
+class EmployeeOperationHours
+
+Client "1" *-- "0..*" Appointment : Has >
+User "1..*" ..> "1" Role : Has >
+Branch "1" *-- "1..*" OpeningHours : Has >
+Service "1..*" --* "1" BeautySalon : Has <
+FranchisePayment *-- PaymentInfo : Uses >
+
+class Bill {
+  DateOnly Date
+  string NIT
+  string Name
+  string Surname
+}
+
+FranchisePayment *-- Bill : Has >
+Employee "1"-- "1..*" EmployeeOperationHours
+
+class Specialty {
+  string Name
+}
+
+class Training {
+  float Rating
+  ExpertiseLevel Level
+}
+
+Training ..> ExpertiseLevel
+
+Employee "1..*" -- "1..*" Specialty
+(Employee, Specialty) .. Training
+
+Appointment "1" *-- "1..*" Notification : Has >
+Appointment "1" *-- "1..*" Image : Has >
+
+
+@enduml

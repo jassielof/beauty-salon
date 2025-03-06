@@ -1,10 +1,4 @@
-= Modelado UML y Diagramas
-
-== Casos de Uso
-
-=== Casos de Uso a Detalle
-
-+ #strong[Gestionar Peluquería/Salón]
+==== Gestionar Peluquería/Salón
 
 #quote(block: true)[
   #strong[Actores:] Administrador de peluquería/salón de belleza
