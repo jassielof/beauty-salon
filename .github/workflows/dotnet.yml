@@ -20,7 +20,7 @@ jobs:
         run: dotnet restore
 
       - name: Format code
-        run: dotnet format ${{ env.PROJECT_NAME }}. --verbosity normal
+        run: dotnet format --verbosity normal
 
       - name: Build
         run: dotnet build --no-restore --verbosity normal
