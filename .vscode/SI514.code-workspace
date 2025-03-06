@@ -5,30 +5,6 @@
       "name": "SI514"
     },
     {
-      "path": "../Data",
-      "name": "Data"
-    },
-    {
-      "path": "../Data/Models",
-      "name": "Models"
-    },
-    {
-      "path": "../Data/Enums",
-      "name": "Enums"
-    },
-    {
-      "path": "../Components/",
-      "name": "Components"
-    },
-    {
-      "path": "../Components/Pages",
-      "name": "Pages"
-    },
-    {
-      "path": "../Components/Layout",
-      "name": "Layout"
-    },
-    {
       "path": "../Docs",
       "name": "Documentation"
     }
