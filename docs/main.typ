@@ -2,7 +2,7 @@
 
 #show: versatile-apa.with(
   title: [Sistema de Centros de Belleza],
-  custom-authors: [Jassiel Ovando Franco],
+  custom-authors: [Jassiel Ovando Franco - Olver Rioja Valverde],
   custom-affiliations: [Facultad de Ingeniería, Universidad Privada de Santa Cruz de la Sierra],
   due-date: [Primer Semestre, 2025],
   course: [SI514 (A): Gestión de Sistemas],
