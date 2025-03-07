@@ -1,8 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { Search, MapPin, Calendar, Clock, Star, Scissors, Space as Spa, Camera, Users, Heart } from 'lucide-react';
-import Register from './pages/register'; // Asegúrate de que la ruta sea correcta
-import Login from './pages/login'; // Asegúrate de que la ruta sea correcta
+import Register from './pages/register'; 
+import Login from './pages/login'; 
+import ClientRegister from './pages/ClientRegister';
+import BusinessRegister from './pages/BusinessRegister';
 
 const App: React.FC = () => {
   return (
@@ -15,6 +17,8 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register/client" element={<ClientRegister />} />
+          <Route path="/register/business" element={<BusinessRegister />} />
         </Routes>
         {/* Footer */}
         <Footer />
