@@ -1,23 +1,63 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { Search, MapPin, Calendar, Clock, Star, Scissors, Space as Spa, Camera, Users, Heart } from 'lucide-react';
+import Register from './pages/register'; // Asegúrate de que la ruta sea correcta
+import Login from './pages/login'; // Asegúrate de que la ruta sea correcta
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white shadow-sm fixed w-full top-0 z-50">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="text-2xl font-bold text-blue-600">Salón de Belleza</div>
-          <nav className="hidden md:flex space-x-6">
-            <a href="#" className="text-gray-600 hover:text-gray-900">Negocios</a>
-            <a href="#" className="text-gray-600 hover:text-gray-900">Iniciar sesión</a>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-              Registrarse
-            </button>
-          </nav>
-        </div>
-      </header>
+    <Router>
+      <div className="min-h-screen bg-white">
+        {/* Header */}
+        <Header />
+        {/* Rutas */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+        {/* Footer */}
+        <Footer />
+      </div>
+    </Router>
+  );
+};
 
+// Componente Header
+const Header = () => {
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate('/'); // Redirige a la página principal
+    window.scrollTo(0, 0); // Desplaza la página al inicio
+  };
+
+  return (
+    <header className="bg-white shadow-sm fixed w-full top-0 z-50">
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        {/* Botón con manejador de clic personalizado */}
+        <button
+          onClick={handleLogoClick}
+          className="text-2xl font-bold text-blue-600 hover:text-blue-800 focus:outline-none"
+        >
+          Salón de Belleza
+        </button>
+        <nav className="hidden md:flex space-x-6">
+          <Link to="/business" className="text-gray-600 hover:text-gray-900">Negocios</Link>
+          <Link to="/login" className="text-gray-600 hover:text-gray-900">Iniciar sesión</Link>
+          <Link to="/register" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+            Registrarse
+          </Link>
+        </nav>
+      </div>
+    </header>
+  );
+};
+
+// Componente Home
+const Home = () => {
+  return (
+    <>
       {/* Hero Section */}
       <section className="pt-24 pb-16 px-4">
         <div className="container mx-auto text-center">
@@ -121,51 +161,39 @@ function App() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-lg font-bold mb-4">Acerca de</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-gray-300">Sobre nosotros</a></li>
-                <li><a href="#" className="hover:text-gray-300">Carreras</a></li>
-                <li><a href="#" className="hover:text-gray-300">Prensa</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Para Negocios</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-gray-300">Asóciate con nosotros</a></li>
-                <li><a href="#" className="hover:text-gray-300">Inicio de sesión empresarial</a></li>
-                <li><a href="#" className="hover:text-gray-300">Recursos</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Soporte</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-gray-300">Centro de ayuda</a></li>
-                <li><a href="#" className="hover:text-gray-300">Contáctanos</a></li>
-                <li><a href="#" className="hover:text-gray-300">Política de privacidad</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-bold mb-4">Síguenos</h3>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-gray-300">Facebook</a></li>
-                <li><a href="#" className="hover:text-gray-300">Instagram</a></li>
-                <li><a href="#" className="hover:text-gray-300">Twitter</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </>
   );
+};
+
+// Componente Footer
+const Footer = () => {
+  return (
+    <footer className="bg-gray-900 text-white py-12">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div>
+            <h3 className="text-lg font-bold mb-4">Acerca de</h3>
+            <ul className="space-y-2">
+              <li><Link to="/about" className="hover:text-gray-300">Sobre nosotros</Link></li>
+              <li><Link to="/careers" className="hover:text-gray-300">Carreras</Link></li>
+              <li><Link to="/press" className="hover:text-gray-300">Prensa</Link></li>
+            </ul>
+          </div>
+          {/* Otras secciones del footer */}
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+// Componentes auxiliares
+interface CategoryCardProps {
+  icon: React.ReactElement;
+  title: string;
+  count: string;
 }
 
-function CategoryCard({ icon, title, count }: { icon: React.ReactElement; title: string; count: string }) {
+const CategoryCard: React.FC<CategoryCardProps> = ({ icon, title, count }) => {
   return (
     <div className="bg-white rounded-lg p-6 text-center shadow-md hover:shadow-lg transition-shadow">
       <div className="inline-block p-3 bg-blue-50 rounded-full mb-4">
@@ -175,9 +203,17 @@ function CategoryCard({ icon, title, count }: { icon: React.ReactElement; title:
       <p className="text-gray-500">{count} lugares</p>
     </div>
   );
+};
+
+interface VenueCardProps {
+  image: string;
+  name: string;
+  rating: number;
+  reviews: number;
+  location: string;
 }
 
-function VenueCard({ image, name, rating, reviews, location }: { image: string; name: string; rating: number; reviews: number; location: string }) {
+const VenueCard: React.FC<VenueCardProps> = ({ image, name, rating, reviews, location }) => {
   return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
       <img src={image} alt={name} className="w-full h-48 object-cover" />
@@ -195,9 +231,15 @@ function VenueCard({ image, name, rating, reviews, location }: { image: string; 
       </div>
     </div>
   );
+};
+
+interface FeatureCardProps {
+  icon: React.ReactElement;
+  title: string;
+  description: string;
 }
 
-function FeatureCard({ icon, title, description }: { icon: React.ReactElement; title: string; description: string }) {
+const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, description }) => {
   return (
     <div className="text-center p-6">
       <div className="inline-block mb-4">
@@ -207,6 +249,6 @@ function FeatureCard({ icon, title, description }: { icon: React.ReactElement; t
       <p className="text-gray-600">{description}</p>
     </div>
   );
-}
+};
 
 export default App;
