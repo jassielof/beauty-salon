@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // Importa el contexto de autenticación
 import TimePicker from 'react-time-picker';
 import 'react-time-picker/dist/TimePicker.css';
 import 'react-clock/dist/Clock.css';
 
 const BusinessRegister = () => {
   const navigate = useNavigate();
-
-  // Estados para los campos del formulario
+  const { login } = useAuth(); // Obtén la función `login` del contexto
   const [salonName, setSalonName] = useState('');
   const [address, setAddress] = useState('');
   const [phoneNumbers, setPhoneNumbers] = useState('');
@@ -21,12 +21,10 @@ const BusinessRegister = () => {
   const [employees, setEmployees] = useState<{ name: string; role: string }[]>([]);
   const [error, setError] = useState('');
 
-  // Desplazar la página al inicio al cargar
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Función para manejar el envío del formulario
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -40,8 +38,8 @@ const BusinessRegister = () => {
       !confirmPassword ||
       !openingTime ||
       !closingTime ||
-      services.length === 0 || // Asegurar que haya al menos un servicio
-      employees.length === 0 // Asegurar que haya al menos un empleado
+      services.length === 0 ||
+      employees.length === 0
     ) {
       setError('Por favor, complete todos los campos obligatorios.');
       return;
@@ -84,10 +82,10 @@ const BusinessRegister = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Registro exitoso
-        navigate('/login');
+        // Registro exitoso: actualiza el contexto de autenticación
+        login({ username: data.user.email, userType: 'business' }); // Aquí asumimos que el backend devuelve el email y el tipo de usuario
+        navigate('/dashboard/business'); // Redirige al dashboard del negocio
       } else {
-        // Mostrar error del backend
         setError(data.error || 'Error al registrar el negocio.');
       }
     } catch (error) {
@@ -95,18 +93,16 @@ const BusinessRegister = () => {
     }
   };
 
-  // Función para agregar un nuevo servicio
+  // Funciones para manejar servicios y empleados (código existente)
   const addService = () => {
     setServices([...services, { service: '', price: '', currency: '' }]);
   };
 
-  // Función para eliminar un servicio
   const removeService = (index: number) => {
     const updatedServices = services.filter((_, i) => i !== index);
     setServices(updatedServices);
   };
 
-  // Función para actualizar un servicio
   const updateService = (index: number, field: string, value: string) => {
     const updatedServices = services.map((service, i) =>
       i === index ? { ...service, [field]: value } : service
@@ -114,18 +110,15 @@ const BusinessRegister = () => {
     setServices(updatedServices);
   };
 
-  // Función para agregar un nuevo empleado
   const addEmployee = () => {
     setEmployees([...employees, { name: '', role: '' }]);
   };
 
-  // Función para eliminar un empleado
   const removeEmployee = (index: number) => {
     const updatedEmployees = employees.filter((_, i) => i !== index);
     setEmployees(updatedEmployees);
   };
 
-  // Función para actualizar un empleado
   const updateEmployee = (index: number, field: string, value: string) => {
     const updatedEmployees = employees.map((employee, i) =>
       i === index ? { ...employee, [field]: value } : employee
@@ -136,7 +129,6 @@ const BusinessRegister = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-50 to-purple-50 p-4 pt-24">
       <div className="bg-white p-8 rounded-2xl shadow-2xl border border-gray-100 w-full max-w-2xl overflow-y-auto">
-        {/* Título */}
         <div className="text-center mb-8">
           <h2 className="text-4xl font-bold text-gray-800 bg-gradient-to-r from-green-600 to-teal-600 bg-clip-text text-transparent leading-tight py-2">
             Registro de Negocio
@@ -144,7 +136,6 @@ const BusinessRegister = () => {
           <p className="text-gray-500 mt-2">Registra tu salón para empezar</p>
         </div>
 
-        {/* Formulario */}
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Nombre del Salón */}
           <div>

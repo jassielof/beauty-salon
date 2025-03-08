@@ -116,5 +116,41 @@
       }
     ],
     "userType": "business"
+  },
+  {
+    "id": 9,
+    "name": "Prueba2",
+    "paternalSurname": "prueba2",
+    "maternalSurname": "Valverde",
+    "phoneNumber": "12345678",
+    "sex": "Masculino",
+    "email": "cprueba@gmail.com",
+    "password": "12345678",
+    "userType": "client"
+  },
+  {
+    "id": 10,
+    "salonName": "Salon Prueba2",
+    "address": "Prueba",
+    "phoneNumbers": "12345678",
+    "email": "nprueba@gmail.com",
+    "password": "12345678",
+    "socials": "",
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "services": [
+      {
+        "service": "prueba",
+        "price": "999",
+        "currency": "GBP"
+      }
+    ],
+    "employees": [
+      {
+        "name": "prueba",
+        "role": "prueba"
+      }
+    ],
+    "userType": "business"
   }
 ]

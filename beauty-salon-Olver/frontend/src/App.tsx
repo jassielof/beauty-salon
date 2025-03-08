@@ -65,10 +65,24 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode; requiredUserType: 'c
 // Componente Header
 const Header = () => {
   const navigate = useNavigate();
+  const { user, logout } = useAuth(); // Obtén el usuario y la función de logout del contexto
 
   const handleLogoClick = () => {
     navigate('/'); // Redirige a la página principal
     window.scrollTo(0, 0); // Desplaza la página al inicio
+  };
+
+  const handleLogout = () => {
+    logout(); // Cierra la sesión del usuario
+    navigate('/'); // Redirige a la página principal
+  };
+
+  const handleDashboardClick = () => {
+    if (user?.userType === 'client') {
+      navigate('/dashboard/client'); // Redirige al dashboard del cliente
+    } else if (user?.userType === 'business') {
+      navigate('/dashboard/business'); // Redirige al dashboard del negocio
+    }
   };
 
   return (
@@ -82,11 +96,42 @@ const Header = () => {
           Salón de Belleza
         </button>
         <nav className="hidden md:flex space-x-6">
-          <Link to="/business" className="text-gray-600 hover:text-gray-900">Negocios</Link>
-          <Link to="/login" className="text-gray-600 hover:text-gray-900">Iniciar sesión</Link>
-          <Link to="/register" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-            Registrarse
-          </Link>
+          {user ? (
+            // Si el usuario está autenticado, muestra su nombre, tipo de cuenta, botón de Dashboard y Cerrar sesión
+            <div className="flex items-center space-x-4">
+              {/* Nombre del usuario con estilo degradado */}
+              <div
+                className={`px-4 py-2 rounded-lg text-white font-semibold ${
+                  user.userType === 'client'
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600' // Degradado para cliente
+                    : 'bg-gradient-to-r from-green-600 to-teal-600' // Degradado para negocio
+                }`}
+              >
+                {user.username} ({user.userType === 'client' ? 'Cliente' : 'Negocio'})
+              </div>
+              <button
+                onClick={handleDashboardClick}
+                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+              >
+                Dashboard
+              </button>
+              <button
+                onClick={handleLogout}
+                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
+              >
+                Cerrar sesión
+              </button>
+            </div>
+          ) : (
+            // Si no está autenticado, muestra los enlaces de "Iniciar sesión" y "Registrarse"
+            <>
+              <Link to="/business" className="text-gray-600 hover:text-gray-900">Negocios</Link>
+              <Link to="/login" className="text-gray-600 hover:text-gray-900">Iniciar sesión</Link>
+              <Link to="/register" className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                Registrarse
+              </Link>
+            </>
+          )}
         </nav>
       </div>
     </header>

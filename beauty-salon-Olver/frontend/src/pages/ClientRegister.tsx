@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; // Importa el contexto de autenticación
 
 const ClientRegister = () => {
   const navigate = useNavigate();
+  const { login } = useAuth(); // Obtén la función `login` del contexto
   const [name, setName] = useState('');
   const [paternalSurname, setPaternalSurname] = useState('');
   const [maternalSurname, setMaternalSurname] = useState('');
@@ -71,10 +73,10 @@ const ClientRegister = () => {
       const data = await response.json();
 
       if (response.ok) {
-        // Registro exitoso
-        navigate('/login');
+        // Registro exitoso: actualiza el contexto de autenticación
+        login({ username: data.user.email, userType: 'client' }); // Aquí asumimos que el backend devuelve el email y el tipo de usuario
+        navigate('/dashboard/client'); // Redirige al dashboard del cliente
       } else {
-        // Mostrar error del backend
         setError(data.error || 'Error al registrar el cliente.');
       }
     } catch (error) {
