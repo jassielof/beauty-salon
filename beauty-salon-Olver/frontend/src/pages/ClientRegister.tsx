@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const ClientRegister = () => {
   const navigate = useNavigate();
-
-  // Estados para los campos del formulario
   const [name, setName] = useState('');
   const [paternalSurname, setPaternalSurname] = useState('');
   const [maternalSurname, setMaternalSurname] = useState('');
@@ -15,13 +13,7 @@ const ClientRegister = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
 
-  // Desplazar la página al inicio al cargar
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  // Función para manejar el envío del formulario
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // Validación básica
@@ -46,7 +38,7 @@ const ClientRegister = () => {
       return;
     }
 
-    // Validación de contraseña (mínimo 8 caracteres)
+    // Validación de contraseña
     if (password.length < 8) {
       setError('La contraseña debe tener al menos 8 caracteres.');
       return;
@@ -58,28 +50,41 @@ const ClientRegister = () => {
       return;
     }
 
-    // Simulación de registro exitoso
-    console.log('Datos del cliente:', {
-      name,
-      paternalSurname,
-      maternalSurname,
-      phoneNumber,
-      sex,
-      email,
-      password, // ¡Nunca envíes la contraseña en texto plano en una aplicación real!
-    });
+    try {
+      // Enviar datos al backend
+      const response = await fetch('http://localhost:5000/api/register/client', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          paternalSurname,
+          maternalSurname,
+          phoneNumber,
+          sex,
+          email,
+          password,
+        }),
+      });
 
-    // Limpiar el estado de error
-    setError('');
+      const data = await response.json();
 
-    // Redirigir al usuario a la página de inicio
-    navigate('/');
+      if (response.ok) {
+        // Registro exitoso
+        navigate('/login');
+      } else {
+        // Mostrar error del backend
+        setError(data.error || 'Error al registrar el cliente.');
+      }
+    } catch (error) {
+      setError('Error de conexión con el servidor.');
+    }
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-50 to-purple-50 p-4 pt-24">
       <div className="bg-white p-8 rounded-2xl shadow-2xl border border-gray-100 w-full max-w-md overflow-y-auto">
-        {/* Título */}
         <div className="text-center mb-8">
           <h2 className="text-4xl font-bold text-gray-800 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-tight py-2">
             Registro de Cliente
@@ -87,7 +92,6 @@ const ClientRegister = () => {
           <p className="text-gray-500 mt-2">Crea tu cuenta para empezar</p>
         </div>
 
-        {/* Formulario */}
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Nombre */}
           <div>

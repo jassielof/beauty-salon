@@ -27,7 +27,7 @@ const BusinessRegister = () => {
   }, []);
 
   // Función para manejar el envío del formulario
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // Validación básica
@@ -60,24 +60,39 @@ const BusinessRegister = () => {
       return;
     }
 
-    // Simulación de registro exitoso
-    console.log('Datos del negocio:', {
-      salonName,
-      address,
-      phoneNumbers,
-      email,
-      password,
-      socials,
-      hoursOfOperation: `${openingTime} - ${closingTime}`,
-      services,
-      employees,
-    });
+    try {
+      // Enviar datos al backend
+      const response = await fetch('http://localhost:5000/api/register/business', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          salonName,
+          address,
+          phoneNumbers,
+          email,
+          password,
+          socials,
+          openingTime,
+          closingTime,
+          services,
+          employees,
+        }),
+      });
 
-    // Limpiar el estado de error
-    setError('');
+      const data = await response.json();
 
-    // Redirigir al usuario a la página de inicio
-    navigate('/');
+      if (response.ok) {
+        // Registro exitoso
+        navigate('/login');
+      } else {
+        // Mostrar error del backend
+        setError(data.error || 'Error al registrar el negocio.');
+      }
+    } catch (error) {
+      setError('Error de conexión con el servidor.');
+    }
   };
 
   // Función para agregar un nuevo servicio

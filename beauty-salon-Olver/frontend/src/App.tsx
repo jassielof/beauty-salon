@@ -1,30 +1,65 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useNavigate, Navigate } from 'react-router-dom';
 import { Search, MapPin, Calendar, Clock, Star, Scissors, Space as Spa, Camera, Users, Heart } from 'lucide-react';
+import { AuthProvider, useAuth } from './context/AuthContext'; // Importa el contexto de autenticación
 import Register from './pages/register'; 
 import Login from './pages/login'; 
 import ClientRegister from './pages/ClientRegister';
 import BusinessRegister from './pages/BusinessRegister';
+import BusinessDashboard from './pages/BusinessDashboard';
+import ClientDashboard from './pages/ClientDashboard';
 
 const App: React.FC = () => {
   return (
-    <Router>
-      <div className="min-h-screen bg-white">
-        {/* Header */}
-        <Header />
-        {/* Rutas */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register/client" element={<ClientRegister />} />
-          <Route path="/register/business" element={<BusinessRegister />} />
-        </Routes>
-        {/* Footer */}
-        <Footer />
-      </div>
-    </Router>
+    <AuthProvider> {/* Envuelve la aplicación con el AuthProvider */}
+      <Router>
+        <div className="min-h-screen bg-white">
+          {/* Header */}
+          <Header />
+          {/* Rutas */}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register/client" element={<ClientRegister />} />
+            <Route path="/register/business" element={<BusinessRegister />} />
+            <Route
+              path="/dashboard/business"
+              element={
+                <ProtectedRoute requiredUserType="business">
+                  <BusinessDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/dashboard/client"
+              element={
+                <ProtectedRoute requiredUserType="client">
+                  <ClientDashboard />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+          {/* Footer */}
+          <Footer />
+        </div>
+      </Router>
+    </AuthProvider>
   );
+};
+
+// Componente ProtectedRoute para proteger las rutas
+const ProtectedRoute: React.FC<{ children: React.ReactNode; requiredUserType: 'client' | 'business' }> = ({
+  children,
+  requiredUserType,
+}) => {
+  const { user } = useAuth();
+
+  if (!user || user.userType !== requiredUserType) {
+    return <Navigate to="/login" />;
+  }
+
+  return children;
 };
 
 // Componente Header
