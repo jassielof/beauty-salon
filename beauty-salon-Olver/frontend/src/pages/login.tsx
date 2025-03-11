@@ -33,7 +33,7 @@ const Login = () => {
       }
 
       const data = await response.json();
-      login({ username: data.user.email, userType: data.user.userType });
+      login({ username: data.user.email, userType: data.user.userType, email: data.user.email });
 
       if (data.user.userType === 'client') {
         navigate('/dashboard/client');

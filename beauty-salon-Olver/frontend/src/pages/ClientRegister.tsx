@@ -74,7 +74,7 @@ const ClientRegister = () => {
 
       if (response.ok) {
         // Registro exitoso: actualiza el contexto de autenticación
-        login({ username: data.user.email, userType: 'client' }); // Aquí asumimos que el backend devuelve el email y el tipo de usuario
+        login({ username: data.user.email, userType: 'client', email: data.user.email }); // Aquí asumimos que el backend devuelve el email y el tipo de usuario
         navigate('/dashboard/client'); // Redirige al dashboard del cliente
       } else {
         setError(data.error || 'Error al registrar el cliente.');

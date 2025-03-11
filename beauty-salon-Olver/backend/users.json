@@ -41,9 +41,24 @@
     "email": "ariana@gmail.com",
     "password": "Ariana123",
     "socials": "",
-    "openingTime": "09:00",
-    "closingTime": "18:00",
-    "userType": "business"
+    "openingTime": "08:00",
+    "closingTime": "19:00",
+    "userType": "business",
+    "services": [
+      {
+        "service": "Maquillaje",
+        "price": "200",
+        "currency": "BS",
+        "id": 1
+      }
+    ],
+    "employees": [
+      {
+        "name": "Ariana",
+        "role": "Dueña",
+        "id": 1
+      }
+    ]
   },
   {
     "id": 5,
@@ -149,6 +164,229 @@
       {
         "name": "prueba",
         "role": "prueba"
+      }
+    ],
+    "userType": "business"
+  },
+  {
+    "id": 11,
+    "salonName": "Salon Ari",
+    "address": "la Colorada",
+    "phoneNumbers": "77604523",
+    "email": "a@gmail.com",
+    "password": "12345678",
+    "socials": "",
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "services": [
+      {
+        "service": "Corte",
+        "price": "100",
+        "currency": "BS"
+      }
+    ],
+    "employees": [
+      {
+        "name": "Ari",
+        "role": "a"
+      }
+    ],
+    "userType": "business"
+  },
+  {
+    "id": 12,
+    "salonName": "La Mafia",
+    "address": "Santos Dumont",
+    "phoneNumbers": "12345678",
+    "email": "lm@gmail.com",
+    "password": "12345678",
+    "socials": "",
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "services": [
+      {
+        "service": "Corte",
+        "price": "100",
+        "currency": "BS"
+      },
+      {
+        "service": "Peinado",
+        "price": "20",
+        "currency": "BS"
+      },
+      {
+        "service": "Teñido",
+        "price": "350",
+        "currency": "BS"
+      }
+    ],
+    "employees": [
+      {
+        "name": "Juan",
+        "role": "Pro"
+      },
+      {
+        "name": "Carlos",
+        "role": "Pro"
+      }
+    ],
+    "userType": "business"
+  },
+  {
+    "id": 13,
+    "name": "pruebaa",
+    "paternalSurname": "p",
+    "maternalSurname": "p",
+    "phoneNumber": "12345678",
+    "sex": "Masculino",
+    "email": "ppp@gmail.com",
+    "password": "12345678",
+    "userType": "client"
+  },
+  {
+    "id": 14,
+    "salonName": "prueba1",
+    "address": "11",
+    "phoneNumbers": "12345678",
+    "email": "1@gmail.com",
+    "password": "12345678",
+    "socials": "",
+    "openingTime": "23:00",
+    "closingTime": "06:00",
+    "services": [
+      {
+        "service": "Corte",
+        "price": "100",
+        "currency": "BS"
+      },
+      {
+        "service": "Peinado",
+        "price": "20",
+        "currency": "BS"
+      }
+    ],
+    "employees": [
+      {
+        "name": "Ariana",
+        "role": "Boss"
+      },
+      {
+        "name": "Olver",
+        "role": "Boss"
+      }
+    ],
+    "userType": "business"
+  },
+  {
+    "id": 15,
+    "salonName": "sa",
+    "address": "sdsa",
+    "phoneNumbers": "12345678",
+    "email": "11@gmail.com",
+    "password": "12345678",
+    "socials": "",
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "services": [
+      {
+        "service": "a",
+        "price": "1",
+        "currency": "BS",
+        "id": 1
+      },
+      {
+        "service": "2",
+        "price": "11",
+        "currency": "BS",
+        "id": 2
+      }
+    ],
+    "employees": [
+      {
+        "name": "212",
+        "role": "121",
+        "id": 1
+      },
+      {
+        "name": "211",
+        "role": "121",
+        "id": 2
+      }
+    ],
+    "userType": "business"
+  },
+  {
+    "id": 16,
+    "salonName": "Salon Prueba2",
+    "address": "Barrio Guaracachi",
+    "phoneNumbers": "12345678",
+    "email": "salon@gmail.com",
+    "password": "12345678",
+    "socials": "",
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "services": [
+      {
+        "id": 1741667947824,
+        "service": "a",
+        "price": "2",
+        "currency": "USD"
+      },
+      {
+        "id": 1741667956263,
+        "service": "qw",
+        "price": "4",
+        "currency": "USD"
+      }
+    ],
+    "employees": [
+      {
+        "id": 1741667960322,
+        "name": "qwqw",
+        "role": "qwqw"
+      },
+      {
+        "id": 1741667962593,
+        "name": "qsas",
+        "role": "w1w1"
+      }
+    ],
+    "userType": "business"
+  },
+  {
+    "id": 17,
+    "salonName": "a",
+    "address": "a",
+    "phoneNumbers": "12345678",
+    "email": "aa@gmail.com",
+    "password": "12345678",
+    "socials": "",
+    "openingTime": "09:00",
+    "closingTime": "18:00",
+    "services": [
+      {
+        "service": "Corte",
+        "price": "100",
+        "currency": "BS",
+        "id": 1
+      },
+      {
+        "service": "Peinado",
+        "price": "20",
+        "currency": "BS",
+        "id": 2
+      }
+    ],
+    "employees": [
+      {
+        "name": "Mario",
+        "role": "Burro",
+        "id": 1
+      },
+      {
+        "name": "ewq",
+        "role": "wqe",
+        "id": 2
       }
     ],
     "userType": "business"

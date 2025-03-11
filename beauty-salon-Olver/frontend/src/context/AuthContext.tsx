@@ -1,21 +1,24 @@
+// AuthContext.tsx
 import React, { createContext, useContext, useState } from 'react';
 
-// Define el tipo para userType
-export type UserType = 'client' | 'business';
-
+// Definir la interfaz User
 interface User {
   username: string;
-  userType: UserType;
+  userType: 'client' | 'business';
+  email: string; // Asegúrate de que esta propiedad esté definida
 }
 
+// Definir el tipo para el contexto de autenticación
 interface AuthContextType {
   user: User | null;
-  login: (user: User) => void;
+  login: (userData: User) => void;
   logout: () => void;
 }
 
-const AuthContext = createContext<AuthContextType | null>(null);
+// Crear el contexto de autenticación
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Proveedor de autenticación
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
@@ -34,6 +37,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   );
 };
 
+// Hook para usar el contexto de autenticación
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {

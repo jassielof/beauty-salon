@@ -83,7 +83,7 @@ const BusinessRegister = () => {
 
       if (response.ok) {
         // Registro exitoso: actualiza el contexto de autenticación
-        login({ username: data.user.email, userType: 'business' }); // Aquí asumimos que el backend devuelve el email y el tipo de usuario
+        login({ username: data.user.email, userType: 'business', email: data.user.email }); // Aquí asumimos que el backend devuelve el email y el tipo de usuario
         navigate('/dashboard/business'); // Redirige al dashboard del negocio
       } else {
         setError(data.error || 'Error al registrar el negocio.');
@@ -93,7 +93,7 @@ const BusinessRegister = () => {
     }
   };
 
-  // Funciones para manejar servicios y empleados (código existente)
+  // Funciones para manejar servicios y empleados
   const addService = () => {
     setServices([...services, { service: '', price: '', currency: '' }]);
   };
