@@ -1,4 +1,4 @@
-name: Next.JS
+name: Next.JS CI
 
 on: push
 
@@ -9,3 +9,22 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install dependencies
+        run: bun install
+        working-directory: ./beauty-salon
+
+      - name: Lint the project
+        run: bun run lint
+        working-directory: ./beauty-salon
+
+      - name: Build the project
+        run: bun run build
+        working-directory: ./beauty-salon
+
+      - name: Run tests
+        run: bun run test
+        working-directory: ./beauty-salon
