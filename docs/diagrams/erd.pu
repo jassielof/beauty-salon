@@ -122,7 +122,7 @@ namespace AppointmentManagement {
 }
 
 namespace FileManagement {
-  entity Image {
+  entity File {
     id Int
     name String
     uri String
@@ -259,12 +259,12 @@ namespace SalonManagement {
 namespace Authentication {
   entity Employee {
     id Int
-    userId Int
     bio String
     startDate DateTime
     createdAt DateTime
     updatedAt DateTime
     --
+    userId Int
     branchId Int
   }
 
@@ -287,7 +287,7 @@ namespace Authentication {
     address String
     sex String
     gender String
-    bateOnly DateTime
+    birthDate DateTime
     password String
     role Role
     createdAt DateTime
