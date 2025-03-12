@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CLIENT
+  OWNER
+  ADMIN
+  EMPLOYEE
+}
+
+enum ExpertiseLevel {
+  BEGINNER
+  INTERMEDIATE
+  SENIOR
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  name        String
+  surname     String
+  phoneNumber String
+  legalId     String
+  address     String
+  sex         String
+  birthDate   String
+  gender      String
+  role        Role
+  password    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum PaymentMethod {
+  CASH
+  CREDIT_CARD
+  DEBIT_CARD
+  BANK_TRANSFER
+  BANK_TRANSFER_QR
+}
+
+model Image {
+  id          Int    @id @default(autoincrement())
+  name        String
+  uri         String
+  contentType String
+  size        String
+}
+
+model Client {
+  id      Int     @id @default(autoincrement())
+  isLoyal Boolean
+}
