@@ -5,6 +5,21 @@
       "name": "SI514"
     },
     {
+      "path": "../beauty-salon",
+      "name": "Beauty Salon"
+    },
+    {
+      "path": "../beauty-salon/prisma",
+      "name": "Prisma"
+    },
+    {
+      "path": "../beauty-salon/app",
+      "name": "App"
+    },
+    {
+      "path": "../beauty-salon/"
+    },
+    {
       "path": "../Docs",
       "name": "Documentation"
     }
@@ -13,9 +28,16 @@
     "plantuml.exportFormat": "svg",
     "plantuml.exportOutDir": "diagrams",
     "cSpell.words": [
+      "cuid",
+      "datasource",
       "geolocalización",
       "jassielof",
       "Larman",
+      "linetype",
+      "polyline",
+      "postgresql",
+      "skinparam",
+      "sqlite",
       "Yudy"
     ]
   }

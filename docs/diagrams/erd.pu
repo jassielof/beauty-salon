@@ -1,0 +1,343 @@
+@startuml erd
+
+' !pragma layout smetana
+' left to right direction
+
+' skinparam linetype polyline
+' skinparam linetype ortho
+' skinparam groupInheritance 2
+
+hide methods
+
+namespace PaymentManagement {
+  entity PaymentInfo {
+    id Int
+    method PaymentMethod
+    amount Decimal
+    cardNumber String
+    cardHolder String
+    expirationDate String
+    securityCode String
+    bank String
+    accountNumber String
+    accountHolder String
+    transactionId String
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    appointmentId Int
+  }
+
+  entity Bill {
+    id Int
+    paymentId Int
+    date DateTime
+    nit String
+    name String
+    surname String
+    createdAt DateTime
+    updatedAt DateTime
+  }
+
+  enum PaymentMethod {
+    CASH
+    CREDIT_CARD
+    DEBIT_CARD
+    BANK_TRANSFER
+    BANK_TRANSFER_QR
+  }
+}
+
+
+
+namespace EmployeeManagement {
+  enum ExpertiseLevel {
+    BEGINNER
+    INTERMEDIATE
+    SENIOR
+  }
+
+  entity Specialty {
+    id Int
+    name String
+    description String
+    createdAt DateTime
+    updatedAt DateTime
+  }
+
+  entity EmployeeSchedule {
+    id Int
+    day WeekDay
+    startTime Time
+    endTime Time
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    employeeId Int
+  }
+
+  entity EmployeeSpecialty {
+    id Int
+    expertiseLevel ExpertiseLevel
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    employeeId Int
+    specialtyId Int
+  }
+}
+
+namespace AppointmentManagement {
+  entity Appointment {
+    id Int
+    date DateTime
+    note String
+    status AppointmentStatus
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    clientId Int
+    employeeId Int
+    branchId Int
+  }
+
+  entity AppointmentService {
+    id Int
+    price Decimal
+    quantity Int
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    appointmentId Int
+    serviceId Int
+  }
+
+  enum AppointmentStatus {
+    REQUESTED
+    BOOKED
+    CONFIRMED
+    CANCELLED
+    COMPLETED
+  }
+}
+
+namespace FileManagement {
+  entity File {
+    id Int
+    name String
+    uri String
+    contentType String
+    size String
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    entityId Int
+    entityType String
+  }
+}
+
+namespace ServiceManagement {
+  entity Notification {
+    id Int
+    message String
+    isRead Boolean
+    date DateTime
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    userId Int
+  }
+
+  entity Review {
+    id Int
+    rating Float
+    comment String
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    clientId Int
+    serviceId Int
+  }
+
+  entity Service {
+    id Int
+    name String
+    description String
+    price Decimal
+    duration Int
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    categoryId Int
+    branchId Int
+  }
+
+  entity Category {
+    id Int
+    name String
+    description String
+    createdAt DateTime
+    updatedAt DateTime
+  }
+
+  entity Promotion {
+    id Int
+    name String
+    description String
+    discount Float
+    startDate DateTime
+    endDate DateTime
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    serviceId Int
+  }
+}
+
+
+namespace SalonManagement {
+  entity SocialNetwork {
+    id Int
+    name String
+    url String
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    salonId Int
+  }
+
+  entity BeautySalon {
+    id Int
+    name String
+    address String
+    phoneNumber String
+    email String
+    description String
+    logoUri String
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    ownerId Int
+  }
+
+  entity Branch {
+    id Int
+    name String
+    address String
+    phoneNumber String
+    email String
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    salonId Int
+  }
+
+  enum WeekDay {
+    MONDAY
+    TUESDAY
+    WEDNESDAY
+    THURSDAY
+    FRIDAY
+    SATURDAY
+    SUNDAY
+  }
+
+  entity OpeningHours {
+    id Int
+    day WeekDay
+    openTime Time
+    closeTime Time
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    branchId Int
+  }
+}
+
+
+
+namespace Authentication {
+  entity Employee {
+    id Int
+    bio String
+    startDate DateTime
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    userId Int
+    branchId Int
+  }
+
+  entity Client {
+    id Int
+    bool IsLoyal
+    createdAt DateTime
+    updatedAt DateTime
+    --
+    userId Int
+  }
+
+  entity User {
+    id Int
+    name String
+    surname String
+    email String
+    phoneNumber String
+    legalId String
+    address String
+    sex String
+    gender String
+    birthDate DateTime
+    password String
+    role Role
+    createdAt DateTime
+    updatedAt DateTime
+  }
+
+  enum Role {
+    ADMIN
+    OWNER
+    CLIENT
+    EMPLOYEE
+  }
+}
+
+User }|..|| Role : Has >
+User "1" <|-- "1" Client : Is >
+User "1" <|-- "1" Employee : Is >
+User ||..|{ BeautySalon : Owns >
+User ||..|{ Notification : Receives >
+
+Client ||..o{ Appointment : Makes >/
+
+Service ||..|{ Review : Receives >
+Service ||..|{ Promotion : Has >
+Service }|..|| Category : Belongs to >
+
+PaymentInfo ..> PaymentMethod : Uses >
+
+OpeningHours ..> WeekDay : On >
+
+Appointment ..> AppointmentStatus : Can be >
+Appointment ||..|{ AppointmentService : Includes >
+Appointment ||..|| PaymentInfo : Has >
+
+PaymentInfo ||..|| Bill : Generates >
+
+BeautySalon ||..|{ Branch : Has >
+BeautySalon ||..|{ SocialNetwork : Has >
+
+Branch ||..|{ Employee : Employs >
+Branch ||..|{ OpeningHours : Defines >
+Branch ||..|{ Service : Offers >
+Branch ||..|{ Appointment : Hosts >
+
+EmployeeSpecialty ..> ExpertiseLevel
+
+Employee ||..|{ Appointment : Services >
+Employee ||..|{ EmployeeSchedule : Has >
+Employee }|..|{ Specialty : Has >
+(Employee, Specialty) .. EmployeeSpecialty
+
+
+@enduml

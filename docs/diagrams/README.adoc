@@ -1,0 +1,27 @@
+= Diagrams
+:toc:
+
+== Entity Relationship Diagram
+[plantuml]
+....
+include::./erd.pu[]
+....
+
+== Class Diagram
+[plantuml]
+....
+include::./class.pu[]
+....
+
+== Domain Model Diagram
+
+[plantuml]
+....
+include::./domain.pu[]
+....
+
+== Package Diagram
+[plantuml]
+....
+include::./package.pu[]
+....
