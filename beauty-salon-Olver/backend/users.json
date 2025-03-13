@@ -50,6 +50,12 @@
         "price": "200",
         "currency": "BS",
         "id": 1
+      },
+      {
+        "service": "Peinado",
+        "price": "50",
+        "currency": "BS",
+        "id": 2
       }
     ],
     "employees": [
@@ -390,5 +396,16 @@
       }
     ],
     "userType": "business"
+  },
+  {
+    "id": 18,
+    "name": "Mario",
+    "paternalSurname": "Dorado",
+    "maternalSurname": "Landivar",
+    "phoneNumber": "75695497",
+    "sex": "Otro",
+    "email": "tutia@gmail.com",
+    "password": "Mario12345",
+    "userType": "client"
   }
 ]
