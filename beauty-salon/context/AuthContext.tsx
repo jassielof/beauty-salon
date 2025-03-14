@@ -1,4 +1,5 @@
-// AuthContext.tsx
+'use client'; // Marca este archivo como un Client Component
+
 import React, { createContext, useContext, useState } from 'react';
 
 // Definir la interfaz User

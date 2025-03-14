@@ -1,14 +1,17 @@
-import { useNavigate } from 'react-router-dom';
+// app/register/page.tsx
+"use client"; // Marca este componente como un Client Component
+
+import { useRouter } from 'next/navigation'; // Usa next/navigation en lugar de next/router
 
 const Register = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleClientRegister = () => {
-    navigate('/register/client'); // Redirige al formulario de registro de cliente
+    router.push('/register/client'); // Redirige al formulario de registro de cliente
   };
 
   const handleBusinessRegister = () => {
-    navigate('/register/business'); // Redirige al formulario de registro de negocio
+    router.push('/register/business'); // Redirige al formulario de registro de negocio
   };
 
   return (

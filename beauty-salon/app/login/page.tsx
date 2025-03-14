@@ -1,18 +1,23 @@
+/*"use client"; // Indica que este es un componente del cliente
+
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useRouter } from 'next/navigation'; // Usa el enrutador de Next.js
+import { useAuth } from '../context/AuthContext'; // Importa el contexto de autenticación
+import prisma from '@/lib/prisma'; // Importa Prisma Client
+import bcrypt from 'bcryptjs'; // Biblioteca para comparar contraseñas
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-  const { login } = useAuth();
+  const router = useRouter(); // Usa el enrutador de Next.js
+  const { login } = useAuth(); // Obtén la función `login` del contexto
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // Validación básica
     if (!email || !password) {
       setError('Por favor, complete todos los campos.');
       return;
@@ -22,23 +27,33 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await fetch('http://localhost:5000/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
+      // Buscar al usuario en la base de datos
+      const user = await prisma.user.findUnique({ where: { email } });
 
-      if (!response.ok) {
+      if (!user) {
         throw new Error('Credenciales incorrectas');
       }
 
-      const data = await response.json();
-      login({ username: data.user.email, userType: data.user.userType, email: data.user.email });
+      // Comparar la contraseña hasheada
+      const isPasswordValid = await bcrypt.compare(password, user.password);
 
-      if (data.user.userType === 'client') {
-        navigate('/dashboard/client');
-      } else if (data.user.userType === 'business') {
-        navigate('/dashboard/business');
+      if (!isPasswordValid) {
+        throw new Error('Credenciales incorrectas');
+      }
+
+      // Actualizar el contexto de autenticación
+      login({
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+      });
+
+      // Redirigir según el tipo de usuario
+      if (user.role === 'CLIENT') {
+        router.push('/dashboard/client');
+      } else if (user.role === 'OWNER') {
+        router.push('/dashboard/business');
       }
     } catch (error) {
       setError('Credenciales incorrectas');
@@ -119,4 +134,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Login;*/
