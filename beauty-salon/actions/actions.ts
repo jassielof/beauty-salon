@@ -1,6 +1,6 @@
-"use server"
+"use server";
 
-import prisma from "@/lib/prisma"
+import prisma from "@/lib/prisma";
 
 export async function createClient(clientData: {
   name: string;
@@ -15,6 +15,7 @@ export async function createClient(clientData: {
   birthDate: string;
 }) {
   try {
+    // Crear el usuario en la base de datos
     const newUser = await prisma.user.create({
       data: {
         email: clientData.email,
@@ -30,6 +31,7 @@ export async function createClient(clientData: {
       },
     });
 
+    // Crear el cliente asociado al usuario
     await prisma.client.create({
       data: {
         isLoyal: false, // Asumiendo que este es el valor predeterminado
@@ -37,11 +39,10 @@ export async function createClient(clientData: {
       },
     });
 
-    return { success: true, message: 'Cliente creado exitosamente' };
+    // Devolver el usuario creado junto con un mensaje de éxito
+    return { success: true, message: 'Cliente creado exitosamente', user: newUser };
   } catch (error) {
     console.error('Error al crear el cliente:', error);
     return { success: false, message: 'Error al crear el cliente' };
   }
 }
-
-

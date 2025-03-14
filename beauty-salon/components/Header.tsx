@@ -11,9 +11,9 @@ const Header = () => {
   };
 
   const handleDashboardClick = () => {
-    if (user?.userType === 'client') {
+    if (user?.role === 'CLIENT') {
       window.location.href = '/dashboard/client';
-    } else if (user?.userType === 'business') {
+    } else if (user?.role === 'OWNER') {
       window.location.href = '/dashboard/business';
     }
   };
@@ -27,30 +27,36 @@ const Header = () => {
         <nav className="hidden md:flex space-x-6">
           {user ? (
             <div className="flex items-center space-x-4">
+              {/* Mostrar el correo del usuario */}
               <div
                 className={`px-4 py-2 rounded-lg text-white font-semibold ${
-                  user.userType === 'client'
+                  user.role === 'CLIENT'
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600'
                     : 'bg-gradient-to-r from-green-600 to-teal-600'
                 }`}
               >
-                {user.username} ({user.userType === 'client' ? 'Cliente' : 'Negocio'})
+                {user.email} ({user.role === 'CLIENT' ? 'Cliente' : 'Negocio'})
               </div>
+
+              {/* Botón de Dashboard */}
               <button
                 onClick={handleDashboardClick}
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg"
               >
                 Dashboard
               </button>
+
+              {/* Botón de Cerrar sesión */}
               <button
                 onClick={handleLogout}
-                className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
+                className="bg-gradient-to-r from-red-600 to-pink-600 text-white px-4 py-2 rounded-lg hover:from-red-700 hover:to-pink-700 transition-all transform hover:scale-105 shadow-lg"
               >
                 Cerrar sesión
               </button>
             </div>
           ) : (
             <>
+              {/* Enlaces para usuarios no logueados */}
               <Link href="/business" className="text-gray-600 hover:text-gray-900">
                 Negocios
               </Link>
@@ -59,7 +65,7 @@ const Header = () => {
               </Link>
               <Link
                 href="/register"
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg"
               >
                 Registrarse
               </Link>

@@ -1,23 +1,25 @@
-/*"use client"; // Indica que este es un componente del cliente
+// app/login/page.tsx
+"use client";
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation'; // Usa el enrutador de Next.js
-import { useAuth } from '../context/AuthContext'; // Importa el contexto de autenticación
-import prisma from '@/lib/prisma'; // Importa Prisma Client
-import bcrypt from 'bcryptjs'; // Biblioteca para comparar contraseñas
+import { useRouter } from 'next/navigation';
+import { useAuth } from '../../context/AuthContext';
+import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcryptjs';
+
+const prisma = new PrismaClient();
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const router = useRouter(); // Usa el enrutador de Next.js
-  const { login } = useAuth(); // Obtén la función `login` del contexto
+  const router = useRouter();
+  const { login } = useAuth();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Validación básica
     if (!email || !password) {
       setError('Por favor, complete todos los campos.');
       return;
@@ -27,36 +29,54 @@ const Login = () => {
     setError('');
 
     try {
-      // Buscar al usuario en la base de datos
-      const user = await prisma.user.findUnique({ where: { email } });
+      const user = await prisma.user.findUnique({
+        where: { email },
+      });
 
       if (!user) {
-        throw new Error('Credenciales incorrectas');
+        setError('Usuario no encontrado.');
+        return;
       }
 
-      // Comparar la contraseña hasheada
       const isPasswordValid = await bcrypt.compare(password, user.password);
 
       if (!isPasswordValid) {
-        throw new Error('Credenciales incorrectas');
+        setError('Contraseña incorrecta.');
+        return;
       }
 
-      // Actualizar el contexto de autenticación
+      // Logueamos al usuario con los datos obtenidos de la base de datos
       login({
         id: user.id,
         email: user.email,
         name: user.name,
+        surname: user.surname,
         role: user.role,
       });
 
-      // Redirigir según el tipo de usuario
-      if (user.role === 'CLIENT') {
-        router.push('/dashboard/client');
-      } else if (user.role === 'OWNER') {
-        router.push('/dashboard/business');
+      // Redirigimos según el rol del usuario
+      switch (user.role) {
+        case 'CLIENT':
+          router.push('/dashboard/client');
+          break;
+        case 'OWNER':
+          router.push('/dashboard/business');
+          break;
+        case 'ADMIN':
+          router.push('/dashboard/admin');
+          break;
+        case 'EMPLOYEE':
+          router.push('/dashboard/employee');
+          break;
+        default:
+          router.push('/');
       }
     } catch (error) {
-      setError('Credenciales incorrectas');
+      if (error instanceof Error) {
+        setError(error.message); // Muestra el mensaje de error específico
+      } else {
+        setError('Error al iniciar sesión.'); // Mensaje genérico si no es un Error
+      }
     } finally {
       setLoading(false);
     }
@@ -82,13 +102,13 @@ const Login = () => {
                 placeholder="Ingrese su correo electrónico"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 rounded-lg border text-gray-500 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="password">
+              <label className="block text-sm font-medium text text-gray-700 mb-2" htmlFor="password">
                 Contraseña
               </label>
               <input
@@ -97,16 +117,12 @@ const Login = () => {
                 placeholder="Ingrese su contraseña"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full px-4 py-3 rounded-lg border text-gray-500 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                 required
               />
             </div>
 
-            {error && (
-              <div className="text-red-500 text-sm text-center">
-                {error}
-              </div>
-            )}
+            {error && <div className="text-red-500 text-sm text-center">{error}</div>}
 
             <button
               type="submit"
@@ -120,10 +136,7 @@ const Login = () => {
           <div className="text-center mt-6">
             <p className="text-gray-600">
               ¿No tienes una cuenta?{' '}
-              <a
-                href="/register"
-                className="text-blue-600 hover:text-blue-700 font-semibold"
-              >
+              <a href="/register" className="text-blue-600 hover:text-blue-700 font-semibold">
                 Regístrate
               </a>
             </p>
@@ -134,4 +147,4 @@ const Login = () => {
   );
 };
 
-export default Login;*/
+export default Login;

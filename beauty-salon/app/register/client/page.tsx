@@ -1,4 +1,5 @@
-"use client"; 
+"use client";
+
 import { createClient } from '@/actions/actions';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -22,35 +23,39 @@ const ClientRegister = () => {
   const [birthDate, setBirthDate] = useState('');
   const [error, setError] = useState('');
 
-  // Manejador de envío de formulario
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    // Validación de campos obligatorios
     if (!name || !paternalSurname || !maternalSurname || !phoneNumber || !sex || !email || !password || !confirmPassword || !legalId || !address || !birthDate) {
       setError('Por favor, complete todos los campos.');
       return;
     }
 
+    // Validación de formato de correo electrónico
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setError('Ingrese un correo electrónico válido.');
       return;
     }
 
+    // Validación de longitud de contraseña
     if (password.length < 8) {
       setError('La contraseña debe tener al menos 8 caracteres.');
       return;
     }
 
+    // Validación de coincidencia de contraseñas
     if (password !== confirmPassword) {
       setError('Las contraseñas no coinciden.');
       return;
     }
 
     try {
+      // Hashear la contraseña antes de enviarla al servidor
       const hashedPassword = await bcrypt.hash(password, 10);
 
-      // Aquí pasamos los datos para crear al cliente
+      // Datos del cliente para enviar al servidor
       const clientData = {
         name,
         paternalSurname,
@@ -64,16 +69,29 @@ const ClientRegister = () => {
         birthDate,
       };
 
-      // Llamamos a la función createClient pasando clientData
-      const result = await createClient(clientData); 
+      // Llamar a la función createClient para registrar al cliente
+      const result = await createClient(clientData);
 
       if (result.success) {
-        login({ username: email, userType: 'client', email });
-        router.push('/dashboard/client');
+        // Verificar si result.user está definido
+        if (result.user) {
+          // Loguear al usuario después del registro
+          login({
+            id: result.user.id, // Acceder al ID del usuario creado
+            email: result.user.email,
+            name: result.user.name,
+            surname: result.user.surname,
+            role: result.user.role,
+          });
+
+          // Redirigir al dashboard del cliente
+          router.push('/dashboard/client');
+        } else {
+          setError('Error: No se pudo obtener la información del usuario.');
+        }
       } else {
         setError(result.message);
       }
-
     } catch (error) {
       console.error('Error al registrar el cliente:', error);
       setError('Error de conexión con el servidor.');
@@ -84,13 +102,13 @@ const ClientRegister = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-50 to-purple-50 p-4 pt-24">
       <div className="bg-white p-8 rounded-2xl shadow-2xl border border-gray-100 w-full max-w-md overflow-y-auto">
         <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold text-gray-800 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text  leading-tight py-2">
+          <h2 className="text-4xl font-bold text-gray-800 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text leading-tight py-2">
             Registro de Cliente
           </h2>
           <p className="text-gray-500 mt-2">Crea tu cuenta para empezar</p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">  {/* Se usa onSubmit en vez de action */}
+        <form onSubmit={handleSubmit} className="space-y-6">
           <InputField label="Nombre" id="name" value={name} setValue={setName} placeholder="Ingrese su nombre" />
           <InputField label="Apellido Paterno" id="paternalSurname" value={paternalSurname} setValue={setPaternalSurname} placeholder="Ingrese su apellido paterno" />
           <InputField label="Apellido Materno" id="maternalSurname" value={maternalSurname} setValue={setMaternalSurname} placeholder="Ingrese su apellido materno" />

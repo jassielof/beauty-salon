@@ -1,26 +1,26 @@
-'use client'; // Marca este archivo como un Client Component
+// context/AuthContext.tsx
+'use client'; // Agrega esta línea
 
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 
-// Definir la interfaz User
+// Definimos la interfaz del usuario basada en tu esquema de Prisma
 interface User {
-  username: string;
-  userType: 'client' | 'business';
-  email: string; // Asegúrate de que esta propiedad esté definida
+  id: number;
+  email: string;
+  name: string;
+  surname: string;
+  role: 'CLIENT' | 'OWNER' | 'ADMIN' | 'EMPLOYEE'; // Los roles definidos en tu enum de Prisma
 }
 
-// Definir el tipo para el contexto de autenticación
 interface AuthContextType {
   user: User | null;
   login: (userData: User) => void;
   logout: () => void;
 }
 
-// Crear el contexto de autenticación
-const AuthContext = createContext<AuthContextType | undefined>(undefined);
+const AuthContext = createContext<AuthContextType | null>(null);
 
-// Proveedor de autenticación
-export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
 
   const login = (userData: User) => {
@@ -38,11 +38,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   );
 };
 
-// Hook para usar el contexto de autenticación
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth debe usarse dentro de un AuthProvider');
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 };
