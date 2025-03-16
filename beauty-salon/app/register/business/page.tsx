@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { createBusiness } from '@/actions'; // Importa la función de servidor
+import { createBusiness } from '@/actions/actions'; // Importa la función de servidor
 
 const BusinessRegister = () => {
   const [salonName, setSalonName] = useState('');
@@ -66,37 +66,37 @@ const BusinessRegister = () => {
   };
 
   // Funciones para manejar servicios y empleados
-  const addService = () => {
-    setServices([...services, { service: '', price: '', currency: '' }]);
-  };
+  // const addService = () => {
+  //   setServices([...services, { service: '', price: '', currency: '' }]);
+  // };
 
-  const removeService = (index: number) => {
-    const updatedServices = services.filter((_, i) => i !== index);
-    setServices(updatedServices);
-  };
+  // const removeService = (index: number) => {
+  //   const updatedServices = services.filter((_, i) => i !== index);
+  //   setServices(updatedServices);
+  // };
 
-  const updateService = (index: number, field: string, value: string) => {
-    const updatedServices = services.map((service, i) =>
-      i === index ? { ...service, [field]: value } : service
-    );
-    setServices(updatedServices);
-  };
+  // const updateService = (index: number, field: string, value: string) => {
+  //   const updatedServices = services.map((service, i) =>
+  //     i === index ? { ...service, [field]: value } : service
+  //   );
+  //   setServices(updatedServices);
+  // };
 
-  const addEmployee = () => {
-    setEmployees([...employees, { name: '', role: '' }]);
-  };
+  // const addEmployee = () => {
+  //   setEmployees([...employees, { name: '', role: '' }]);
+  // };
 
-  const removeEmployee = (index: number) => {
-    const updatedEmployees = employees.filter((_, i) => i !== index);
-    setEmployees(updatedEmployees);
-  };
+  // const removeEmployee = (index: number) => {
+  //   const updatedEmployees = employees.filter((_, i) => i !== index);
+  //   setEmployees(updatedEmployees);
+  // };
 
-  const updateEmployee = (index: number, field: string, value: string) => {
-    const updatedEmployees = employees.map((employee, i) =>
-      i === index ? { ...employee, [field]: value } : employee
-    );
-    setEmployees(updatedEmployees);
-  };
+  // const updateEmployee = (index: number, field: string, value: string) => {
+  //   const updatedEmployees = employees.map((employee, i) =>
+  //     i === index ? { ...employee, [field]: value } : employee
+  //   );
+  //   setEmployees(updatedEmployees);
+  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-50 to-purple-50 p-4 pt-24">
