@@ -1,6 +1,7 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useAuth } from './AuthContext';
+'use client'; // Asegúrate de marcar este componente como un Client Component
+
+import { redirect } from 'next/navigation';
+import { useAuth } from '../context/AuthContext';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -11,7 +12,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, requiredUserT
   const { user } = useAuth();
 
   if (!user || user.userType !== requiredUserType) {
-    return <Navigate to="/login" />;
+    redirect('/login'); // Redirige a la página de inicio de sesión
   }
 
   return children;
