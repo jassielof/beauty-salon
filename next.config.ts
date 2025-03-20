@@ -1,3 +1,4 @@
+import MillionLint from "@million/lint";
 import type { NextConfig } from "next";
 
 // TODO: Fix vercel images not rendering/loading because the project is not the root directory of the repository, but rather in a subdirectory (/beauty-salon)
@@ -6,4 +7,7 @@ const nextConfig: NextConfig = {
   /* config options here */
 };
 
-export default nextConfig;
+export default MillionLint.next({
+  enabled: true,
+  rsc: true
+})(nextConfig);
