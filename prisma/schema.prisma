@@ -7,7 +7,7 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-// Payment Management
+// MARK: Payment Management
 enum PaymentMethod {
   CASH
   CREDIT_CARD
@@ -44,7 +44,7 @@ model Bill {
   updatedAt DateTime @updatedAt
 }
 
-// Employee Management
+// MARK: Employee Management
 enum ExpertiseLevel {
   BEGINNER
   INTERMEDIATE
@@ -68,7 +68,7 @@ model EmployeeSchedule {
   updatedAt DateTime @updatedAt
 }
 
-// Authentication
+// MARK: Authentication
 enum Role {
   CLIENT
   OWNER
@@ -77,23 +77,24 @@ enum Role {
 }
 
 model User {
-  id           Int            @id @default(autoincrement())
-  email        String         @unique
-  name         String
-  surname      String
-  phoneNumber  String
-  legalId      String         @unique
-  address      String
-  sex          String
-  birthDate    DateTime
-  role         Role
-  password     String
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  Clients      Client[]
-  Employees    Employee[]
-  BeautySalon  BeautySalon[]
-  Notification Notification[]
+  id            Int            @id @default(autoincrement())
+  email         String         @unique
+  emailVerified DateTime?
+  name          String
+  surname       String
+  phoneNumber   String
+  legalId       String         @unique
+  address       String
+  sex           String
+  birthDate     DateTime
+  image         String?
+  role          Role
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  Clients       Client[]
+  Employees     Employee[]
+  BeautySalon   BeautySalon[]
+  Notification  Notification[]
 }
 
 model Client {
