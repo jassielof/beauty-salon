@@ -1,72 +1,109 @@
 "use client";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { addSalon } from "@/lib/actions/salon";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { FormMessage } from "@/components/form-message";
+import { Button } from "@/components/ui/button";
 
-import { useState } from "react";
+const formSchema = z.object({
+  name: z.string().min(1, "Salon name is required"),
+  address: z.string().min(1, "Address is required"),
+  phone: z.string().min(1, "Phone number is required"),
+});
 
-interface SalonFormProps {
-  addSalon: (formData: FormData) => Promise<any>;
-}
+export default function SalonForm({ userId }: { userId: string }) {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      address: "",
+      phone: "",
+    },
+  });
 
-export default function SalonForm({ addSalon }: SalonFormProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setIsSubmitting(true);
-
-    const formData = new FormData(event.currentTarget);
-    await addSalon(formData);
-
-    setIsSubmitting(false);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const formData = new FormData();
+    formData.append("name", values.name);
+    formData.append("address", values.address);
+    formData.append("phone", values.phone);
+    await addSalon(formData, userId);
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md">
-      <div className="mb-4">
-        <label htmlFor="name" className="block text-sm font-medium mb-1">
-          Salon Name
-        </label>
-        <input
-          type="text"
-          id="name"
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
           name="name"
-          required
-          className="w-full px-3 py-2 border rounded-md"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Salon name</FormLabel>
+              <FormControl>
+                <Input placeholder="name" {...field} />
+              </FormControl>
+              <FormDescription>
+                This is the name of your salon. It will be displayed to customers.
+              </FormDescription>
+              <FormMessage
+                message={{
+                  success: "Salon name is valid",
+                }}
+              />
+            </FormItem>
+          )}
         />
-      </div>
-
-      <div className="mb-4">
-        <label htmlFor="address" className="block text-sm font-medium mb-1">
-          Address
-        </label>
-        <input
-          type="text"
-          id="address"
+        <FormField
+          control={form.control}
           name="address"
-          required
-          className="w-full px-3 py-2 border rounded-md"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Address</FormLabel>
+              <FormControl>
+                <Input placeholder="address" {...field} />
+              </FormControl>
+              <FormDescription>
+                This is the address of your salon. It will be displayed to customers.
+              </FormDescription>
+              <FormMessage
+                message={{
+                  success: "Address is valid",
+                }}
+              />
+            </FormItem>
+          )}
         />
-      </div>
-
-      <div className="mb-4">
-        <label htmlFor="phone" className="block text-sm font-medium mb-1">
-          Phone Number
-        </label>
-        <input
-          type="tel"
-          id="phone"
+        <FormField
+          control={form.control}
           name="phone"
-          required
-          className="w-full px-3 py-2 border rounded-md"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Phone Number</FormLabel>
+              <FormControl>
+                <Input placeholder="phone" {...field} />
+              </FormControl>
+              <FormDescription>
+                This is the phone number of your salon. It will be displayed to customers.
+              </FormDescription>
+              <FormMessage
+                message={{
+                  success: "Phone number is valid",
+                }}
+              />
+            </FormItem>
+          )}
         />
-      </div>
-
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 disabled:bg-blue-300"
-      >
-        {isSubmitting ? "Submitting..." : "Register Salon"}
-      </button>
-    </form>
+        <Button type="submit">Submit</Button>
+      </form>
+    </Form>
   );
 }
