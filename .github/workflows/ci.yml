@@ -1,4 +1,4 @@
-name: Next.JS CI
+name: Django CI
 
 on:
   push:
@@ -16,14 +16,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Bun
-        uses: oven-sh/setup-bun@v1
+      - name: Set up Python
+        uses: actions/setup-python@v5
 
-      - name: Install dependencies
-        run: bun install
+      - name: Install uv
+        run: pip install uv
 
-      - name: Lint the project
-        run: bun run lint
+      - name: Install dependencies with uv
+        run: uv pip install -r requirements.txt || uv pip install .
 
-      - name: Build the project
-        run: bun run build
+      - name: Ensure Django 5.2 is installed
+        run: uv pip install django==5.2
+
+      - name: Run migrations
+        run: uv python manage.py migrate
+
+      - name: Run tests
+        run: uv python manage.py test
+
+      - name: Lint with ruff
+        run: |
+          uv pip install ruff
+          uv python -m ruff .
