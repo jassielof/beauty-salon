@@ -26,7 +26,6 @@ Thumbs.db
 # Migrations
 */migrations/*.pyc
 */migrations/__pycache__/
-*/migrations/*.py
 
 # Coverage reports
 htmlcov/

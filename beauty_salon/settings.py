@@ -88,11 +88,11 @@ DATABASES = {
     },
     "production": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("PGDATABASE"),
-        "USER": os.environ.get("PGUSER"),
-        "PASSWORD": os.environ.get("PGPASSWORD"),
-        "HOST": os.environ.get("PGHOST"),
-        "PORT": os.environ.get("PGPORT"),
+        "NAME": os.environ.get("PGDATABASE", "beauty_salon"),
+        "USER": os.environ.get("PGUSER", "jassiel"),
+        "PASSWORD": os.environ.get("PGPASSWORD", "jassiel"),
+        "HOST": os.environ.get("PGHOST", "localhost"),
+        "PORT": os.environ.get("PGPORT", "5432"),
     },
 }
 
