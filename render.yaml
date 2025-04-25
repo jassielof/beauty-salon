@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: beauty_salon
+    runtime: python
+    repo: https://github.com/jassielof/beauty-salon.git
+    branch: main
+    buildCommand: |
+      python -m pip install --upgrade pip
+      python -m pip install --upgrade uv
+      python -m uv sync
+    startCommand: |
+      python -m
+      . venv/bin/activate
+      python manage.py migrate --noinput
+      python manage.py collectstatic --noinput
+      python manage.py runserver 0.0.0.0:10000
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: beauty_salon.settings
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: PORT
+        value: "10000"
+      - key: DATABASE_URL
+        sync: false
