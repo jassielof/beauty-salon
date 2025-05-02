@@ -1,15 +1,3 @@
-CREATE TABLE beauty_salon (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  address TEXT NOT NULL,
-  phone TEXT NOT NULL,
-  email TEXT NOT NULL UNIQUE,
-  description TEXT NOT NULL,
-  logo_uri TEXT NOT NULL,
-  created_at TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP(3) NOT NULL,
-  owner_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE
-);
 CREATE TABLE opening_hours (
   id SERIAL PRIMARY KEY,
   day week_day NOT NULL,

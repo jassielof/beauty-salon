@@ -15,9 +15,14 @@ db.sqlite3
 .env
 *.env
 .env.*
+!.env.example
 
 # VSCode
 .vscode/
+
+# PyCharm
+.idea/
+
 
 # OS files
 .DS_Store
