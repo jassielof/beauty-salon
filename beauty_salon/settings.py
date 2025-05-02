@@ -100,6 +100,8 @@ if os.environ.get("DJANGO_ENV") == "production":
 
 # Authentication
 AUTH_USER_MODEL = "core.User"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
 
 
 # Password validation
