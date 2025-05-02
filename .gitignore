@@ -8,8 +8,6 @@ db.sqlite3
 # Django media/static files
 /media
 /staticfiles
-/static/**/*
-!/static/.gitkeep
 
 # Environment
 .env
