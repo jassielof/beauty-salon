@@ -9,7 +9,10 @@ from core.views.user_views import (
     UserUpdateView,
 )
 
+from core.views.index_views import IndexView
+
 urlpatterns = [
+    path("", IndexView.as_view(), name="index"),
     path("admin/", admin.site.urls),
     path("users/", UserListView.as_view(), name="user-list"),
     path("users/<int:pk>/", UserDetailView.as_view(), name="user-detail"),
