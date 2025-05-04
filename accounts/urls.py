@@ -12,4 +12,7 @@ urlpatterns = [
     path(
         "manage/customers/add/", views.CustomerCreateView.as_view(), name="customer_add"
     ),
+    path(
+        "dashboard/owner/", views.OwnerDashboardView.as_view(), name="owner_dashboard"
+    ),
 ]

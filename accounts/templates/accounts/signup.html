@@ -1,6 +1,10 @@
-<h2>Salon Owner Signup</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }} {# Render form fields as paragraphs #}
-  <button type="submit">Sign Up</button>
-</form>
+{% extends 'core/layouts/form.layout.html' %}
+
+{% block content %}
+  <h2>Salon Owner Signup</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }} {# Render form fields as paragraphs #}
+    <button type="submit">Sign Up</button>
+  </form>
+{% endblock %}

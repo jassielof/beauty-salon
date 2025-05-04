@@ -28,7 +28,7 @@ class OwnerSignUpView(generic.CreateView):
 
 class CustomLogInView(LoginView):
     form_class = CustomAuthenticationForm
-    template_name = "accounts/log-in.html"
+    template_name = "accounts/login.html"
 
     def get_success_url(self):
         url = super().get_success_url()
@@ -103,3 +103,11 @@ class CustomerCreateView(OwnerRequiredMixin, generic.View):
 
 
 # Add Employees/Customers CRUD views using OwnerRequiredMixin
+class OwnerDashboardView(OwnerRequiredMixin, generic.TemplateView):
+    template_name = "accounts/owner_dashboard.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        context["salons"] = user.owned_salons.all()
+        return context
