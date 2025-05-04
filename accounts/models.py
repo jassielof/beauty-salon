@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from core.enums import UserRoles
+
+from core.enums.user_roles import UserRoles
 
 
 class User(AbstractUser):
@@ -13,7 +14,7 @@ class User(AbstractUser):
     sex = models.CharField(max_length=10, blank=True)
     birth_date = models.DateField(blank=True, null=True)
     role = models.CharField(
-        max_length=10, choices=UserRoles, default=UserRoles.CUSTOMER
+        max_length=10, choices=UserRoles.choices, default=UserRoles.CUSTOMER
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

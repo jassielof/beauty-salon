@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import User, BeautySalon, SocialMedia, Branch
+
+from accounts.models import User
+from salons.models import BeautySalon, Branch, SocialNetwork
+
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
@@ -16,8 +19,8 @@ class BeautySalonAdmin(admin.ModelAdmin):
     ordering = ("name",)
 
 
-@admin.register(SocialMedia)
-class SocialMediaAdmin(admin.ModelAdmin):
+@admin.register(SocialNetwork)
+class SocialNetworkAdmin(admin.ModelAdmin):
     list_display = ("name", "url")
     search_fields = ("name",)
     ordering = ("name",)

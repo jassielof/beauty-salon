@@ -13,7 +13,6 @@ from accounts.forms import (
     EmployeeProfileForm,
     OwnerSignUpForm,
 )
-from accounts.models import CustomerProfile
 
 
 class OwnerSignUpView(generic.CreateView):
@@ -23,6 +22,7 @@ class OwnerSignUpView(generic.CreateView):
 
     def form_valid(self, form):
         user = form.save()
+        print(user)
         return super().form_valid(form)
 
 
