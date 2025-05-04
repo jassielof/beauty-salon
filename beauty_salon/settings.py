@@ -43,13 +43,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "core.apps.CoreConfig",
-    "accounts",
-    "salons",
-    "employees",
-    "services",
-    "appointments",
-    "payments",
-    "files",
+    "accounts.apps.AccountsConfig",
+    "salons.apps.SalonsConfig",
+    "employees.apps.EmployeesConfig",
+    "services.apps.ServicesConfig",
+    "appointments.apps.AppointmentsConfig",
+    "payments.apps.PaymentsConfig",
+    "files.apps.FilesConfig",
 ]
 
 MIDDLEWARE = [

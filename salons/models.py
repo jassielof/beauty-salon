@@ -2,14 +2,14 @@ from django.conf import settings
 from django.db import models
 from core.enums.user_roles import UserRoles
 from core.enums.week_day import WeekDay
-from core.models.base import TimestampedModel
+from core.models import TimestampedModel
 
 
 class BeautySalon(TimestampedModel):
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        related_name="owned_salon",
+        related_name="owned_salons",
         limit_choices_to={"role": UserRoles.OWNER},
     )
     name = models.CharField(max_length=200)
