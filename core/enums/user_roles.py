@@ -1,6 +1,8 @@
-USER_ROLES = [
-    ("admin", "Admin"),
-    ("employee", "Employee"),
-    ("customer", "Customer"),
-    ("owner", "Owner"),
-]
+from django.db import models
+
+
+class UserRoles(models.TextChoices):
+    ADMIN = "ADMIN", "Admin"
+    EMPLOYEE = "EMPLOYEE", "Employee"
+    CUSTOMER = "CUSTOMER", "Customer"
+    OWNER = "OWNER", "Owner"

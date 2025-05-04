@@ -6,3 +6,4 @@ from .employee import Employee
 from .owner import Owner
 from .user import User
 from .social_media import SocialMedia
+from .base import TimestampedModel

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-from django.urls import path
+from django.urls import include, path
 
 from core.views.sign_up_views import sign_up
 from core.views.user_views import (
@@ -34,4 +34,5 @@ urlpatterns = [
     path("users/create/", UserCreateView.as_view(), name="user-create"),
     path("users/<int:pk>/edit/", UserUpdateView.as_view(), name="user-edit"),
     path("users/<int:pk>/delete/", UserDeleteView.as_view(), name="user-delete"),
+    path("accounts/", include("accounts.urls")),
 ]

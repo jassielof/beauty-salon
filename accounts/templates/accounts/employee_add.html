@@ -1,0 +1,13 @@
+<h2>Add New Employee</h2>
+<form method="post" novalidate>
+  {# Use novalidate to disable browser validation if using Django's #}
+  {% csrf_token %}
+
+  <h3>User Account Details</h3>
+  {{ user_form.as_p }}
+
+  <h3>Employee Profile Details</h3>
+  {{ profile_form.as_p }}
+
+  <button type="submit">Create Employee</button>
+</form>
