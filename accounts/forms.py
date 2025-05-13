@@ -103,3 +103,65 @@ class CustomerProfileForm(forms.ModelForm):
     class Meta:
         model = CustomerProfile
         fields = ("is_loyal",)
+
+
+class EmployeeUserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = (
+            "email",
+            "first_name",
+            "last_name",
+            "phone_number",
+            "legal_id",
+            "address",
+            "sex",
+            "gender",
+            "birth_date",
+            "is_active",
+        )
+
+
+class EmployeeProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = EmployeeProfile
+        fields = ("branch", "bio", "start_date")
+
+    def __init__(self, *args, **kwargs):
+        owner = kwargs.pop("owner", None)
+        super().__init__(*args, **kwargs)
+        if owner and hasattr(owner, "owned_salons"):
+            owner_salons = owner.owned_salons.all()
+            branches_queryset = Branch.objects.filter(salon__in=owner_salons)
+            self.fields["branch"].queryset = branches_queryset
+            if self.instance and self.instance.branch:
+                if self.instance.branch not in branches_queryset:
+                    self.fields["branch"].queryset = (
+                        branches_queryset
+                        | Branch.objects.filter(pk=self.instance.branch.pk)
+                    )
+        else:
+            self.fields["branch"].queryset = Branch.objects.none()
+
+
+class CustomerUserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = (
+            "email",
+            "first_name",
+            "last_name",
+            "phone_number",
+            "legal_id",
+            "address",
+            "sex",
+            "gender",
+            "birth_date",
+            "is_active",
+        )
+
+
+class CustomerProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = CustomerProfile
+        fields = ("is_loyal",)

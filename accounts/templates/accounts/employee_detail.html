@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Employee Details{% endblock %}
+
+{% block content %}
+<h1>Employee: {{ employee_profile.user.get_full_name|default:employee_profile.user.email }}</h1>
+
+{% if messages %} {# Display messages from update actions #}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<h2>Account Information</h2>
+<p><strong>Email:</strong> {{ employee_profile.user.email }}</p>
+<p><strong>First Name:</strong> {{ employee_profile.user.first_name|default:"-" }}</p>
+<p><strong>Last Name:</strong> {{ employee_profile.user.last_name|default:"-" }}</p>
+<p><strong>Phone:</strong> {{ employee_profile.user.phone_number|default:"-" }}</p>
+<p><strong>Is Active (can login):</strong> {{ employee_profile.user.is_active|yesno:"Yes,No" }}</p>
+{# Add other User fields as needed #}
+
+<h2>Profile Information</h2>
+<p><strong>Branch:</strong> {{ employee_profile.branch.name|default:"Unassigned" }} ({{ employee_profile.branch.salon.name }})</p>
+<p><strong>Start Date:</strong> {{ employee_profile.start_date|date:"Y-m-d"|default:"-" }}</p>
+<p><strong>Bio:</strong> {{ employee_profile.bio|linebreaksbr|default:"-" }}</p>
+
+<a href="{% url 'employee_edit' employee_profile.pk %}">Edit Employee</a> |
+<a href="{% url 'employee_list' %}">Back to List</a> |
+<a href="{% url 'owner_dashboard' %}">Back to Dashboard</a>
+{% endblock %}

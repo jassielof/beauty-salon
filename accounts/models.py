@@ -35,6 +35,7 @@ class User(AbstractUser):
     legal_id = models.CharField(max_length=50, blank=True)
     address = models.TextField(blank=True)
     sex = models.CharField(max_length=10, blank=True)
+    gender = models.CharField(max_length=10, blank=True)
     birth_date = models.DateField(blank=True, null=True)
     role = models.CharField(
         max_length=10, choices=UserRoles.choices, default=UserRoles.CUSTOMER

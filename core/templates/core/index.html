@@ -5,33 +5,23 @@
 {% endblock %}
 
 {% block content %}
-  <div class="container mt-4">
-    <div class="card">
-      <div class="card-header bg-primary text-white">
-        <h2 class="mb-0">{{ welcome_message }}</h2>
+  <main>
+    <section>
+      <header>
+        <h2>{{ welcome_message }}</h2>
+      </header>
+      <div>
+        <article>
+          <h5>Users</h5>
+          <p>Manage users of the system</p>
+          <a href="#">View Users</a>
+        </article>
+        <article>
+          <h5>Appointments</h5>
+          <p>Manage beauty salon appointments</p>
+          <a href="#">View Appointments</a>
+        </article>
       </div>
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Users</h5>
-                <p class="card-text">Manage users of the system</p>
-                {% comment %} <a href="{% url 'user-list' %}" class="btn btn-primary"><i class="bi bi-people"></i> View Users</a> {% endcomment %}
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card mb-3">
-              <div class="card-body">
-                <h5 class="card-title">Appointments</h5>
-                <p class="card-text">Manage beauty salon appointments</p>
-                <a href="#" class="btn btn-primary"><i class="bi bi-calendar"></i> View Appointments</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    </section>
+  </main>
 {% endblock %}
