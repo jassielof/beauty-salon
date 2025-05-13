@@ -1,0 +1,59 @@
+{% extends 'core/layouts/layout.html' %}
+{% block title %}
+  {{ salon.name }}
+{% endblock %}
+
+{% block content %}
+  <h1>{{ salon.name }}</h1>
+  {% if salon.logo_uri %}
+    <img src="{{ salon.logo_uri.url }}" alt="{{ salon.name }} Logo" style="max-width:200px; max-height:200px;" />
+  {% endif %}
+  <p>
+    <strong>Address:</strong> {{ salon.address }}
+  </p>
+  <p>
+    <strong>Phone:</strong> {{ salon.phone_number|default:'-' }}
+  </p>
+  <p>
+    <strong>Email:</strong> {{ salon.email|default:'-' }}
+  </p>
+  <p>
+    <strong>Description:</strong> {{ salon.description|linebreaksbr|default:'-' }}
+  </p>
+
+  <p>
+    <a href="{% url 'salon_edit' salon.pk %}">Edit Salon Details</a> |
+    <a href="{% url 'salon_list' %}">Back to Salons</a>
+  </p>
+
+  <h2>Social Networks</h2>
+  {% if social_networks %}
+    <ul>
+      {% for sn in social_networks %}
+        <li>
+          {{ sn.name }}: <a href="{{ sn.url }}" target="_blank">{{ sn.url }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No social networks added yet.</p>
+  {% endif %}
+
+  <h2>Branches</h2>
+  <p>
+    <a href="{% url 'branch_create' salon_pk=salon.pk %}">Add New Branch</a>
+  </p>
+  {% if branches %}
+    <ul>
+      {% for branch in branches %}
+        <li>
+          <a href="{% url 'branch_detail' branch.pk %}">{{ branch.name }}</a>
+          - <a href="{% url 'branch_edit' branch.pk %}">Edit</a>
+          - <a href="{% url 'branch_delete' branch.pk %}">Delete</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No branches added to this salon yet.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'core/layouts/layout.html' %}
+{% block title %}
+  {{ form_title }}
+{% endblock %}
+
+{% block content %}
+  <h1>{{ form_title }}</h1>
+
+  <form method="post"
+    action="{% if salon_pk %}
+      {% url 'salon_edit' salon_pk %}
+    {% else %}
+      {% url 'salon_create' %}
+    {% endif %}"
+    enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <fieldset>
+      <legend>Salon Information</legend>
+      {% for field in salon_form %}
+        <div class="form-group">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.help_text %}
+            <small>{{ field.help_text }}</small>
+          {% endif %}
+          {% for error in field.errors %}
+            <div class="error">{{ error }}</div>
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </fieldset>
+
+    <fieldset>
+      <legend>Social Networks</legend>
+      {{ social_network_formset.management_form }}
+      {% for form in social_network_formset %}
+        <div class="social-network-form">
+          {% for field in form.visible_fields %}
+            <div class="form-group">
+              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+              {{ field }}
+              {% if field.help_text %}
+                <small>{{ field.help_text }}</small>
+              {% endif %}
+              {% for error in field.errors %}
+                <div class="error">{{ error }}</div>
+              {% endfor %}
+            </div>
+          {% endfor %}
+          {% if social_network_formset.can_delete and form.instance.pk %}
+            <div class="form-group">
+              <label>{{ form.DELETE.label }}</label>
+              {{ form.DELETE }}
+            </div>
+          {% endif %}
+        </div>
+        <hr />
+      {% endfor %}
+    </fieldset>
+
+    <button type="submit">
+      {% if salon_pk %}
+        Save Changes
+      {% else %}
+        Create Salon
+      {% endif %}
+    </button>
+    {% if salon_pk %}
+      <a href="{% url 'salon_detail' salon_pk %}">Cancel</a>
+    {% else %}
+      <a href="{% url 'salon_list' %}">Cancel</a>
+    {% endif %}
+  </form>
+{% endblock %}

@@ -59,6 +59,12 @@ class EmployeeCreationForm(forms.ModelForm):
 
 
 class EmployeeProfileForm(forms.ModelForm):
+    start_date = forms.DateField(
+        widget=forms.DateInput(attrs={"type": "date"}),
+        help_text="Select the start date of the employee.",
+        required=False,
+    )
+
     class Meta:
         model = EmployeeProfile
         fields = ("branch", "bio", "start_date")

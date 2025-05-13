@@ -73,7 +73,7 @@ class OwnerRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
 
 
 class EmployeeCreateView(OwnerRequiredMixin, generic.View):
-    template_name = "accounts/employee_add.html"
+    template_name = "accounts/employee_form.html"
 
     def get(self, request, *args, **kwargs):
         user_form = EmployeeCreationForm()
@@ -91,7 +91,7 @@ class EmployeeCreateView(OwnerRequiredMixin, generic.View):
                     profile = profile_form.save(commit=False)
                     profile.user = new_employee_user
                     profile.save()
-                return redirect("some_employee_list_view")
+                return redirect("employees_list")
             except Exception as e:
                 print(e)
         context = {"user_form": user_form, "profile_form": profile_form}
@@ -117,7 +117,7 @@ class CustomerCreateView(OwnerRequiredMixin, generic.View):
                     profile = profile_form.save(commit=False)
                     profile.user = new_customer_user
                     profile.save()
-                return redirect("some_customer_list_view")
+                return redirect("customer_list")
             except Exception as e:
                 print(e)
         context = {"user_form": user_form, "profile_form": profile_form}
@@ -330,7 +330,7 @@ class EmployeeDeleteView(OwnerRequiredMixin, generic.DeleteView):
     model = User  # We target the User for deletion, Cascade should handle profile
     template_name = "accounts/employee_confirm_delete.html"
     context_object_name = "employee_user"  # Pass user object to template
-    success_url = reverse_lazy("employee_list")
+    success_url = reverse_lazy("employees_list")
 
     def get_queryset(self):
         """Ensure owner can only delete users who are employees in their salons."""

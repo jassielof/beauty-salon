@@ -9,7 +9,7 @@
       {% endblock %}
     </title>
     {% load static %}
-    {% comment %} <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css" /> {% endcomment %}
+    <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css" />
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}" />
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}" />
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}" />
@@ -20,9 +20,9 @@
   </head>
   <body class="layout-simple">
     <header>
-      <h1>Beauty Salon</h1>
+      <h1><a href="/salons">Beauty Salon</a></h1>
     </header>
-    <main class="container flex-fill">
+    <main>
       {% block content %}
 
       {% endblock %}
