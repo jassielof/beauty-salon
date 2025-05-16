@@ -1,0 +1,14 @@
+[project]
+name = "beauty-salon"
+version = "0.1.0"
+description = "Beauty salon web app"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "django>=5.2",
+    "gunicorn>=23.0.0",
+    "psycopg[binary,pool]>=3.2.6",
+    "python-dotenv>=1.1.0",
+    "ruff>=0.11.6",
+    "whitenoise>=6.9.0",
+]

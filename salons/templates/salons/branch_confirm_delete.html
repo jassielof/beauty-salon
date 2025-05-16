@@ -1,0 +1,18 @@
+{% extends 'core/layouts/layout.html' %}
+{% block title %}
+  Confirm Delete Branch
+{% endblock %}
+
+{% block content %}
+  <h1>Confirm Deletion: {{ branch.name }}</h1>
+  <p>
+    Are you sure you want to delete the branch "<strong>{{ branch.name }}</strong>" from salon "<strong>{{ branch.salon.name }}</strong>"?
+  </p>
+  <p>This will also delete its opening hours and may affect employees or services linked to it (depending on `on_delete` settings). This action cannot be undone.</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete Branch</button>
+    <a href="{% url 'branch_detail' branch.pk %}">Cancel</a>
+  </form>
+{% endblock %}

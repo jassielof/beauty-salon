@@ -1,0 +1,69 @@
+{% extends 'core/layouts/layout.html' %}
+
+{% block title %}
+  Manage Customers
+{% endblock %}
+
+{% block content %}
+  <section>
+    <h1>Manage Customers</h1>
+    <p>
+      <a href="{% url 'customer_add' %}">Add New Customer</a>
+    </p>
+
+    {% if customer_profiles %}
+      <table>
+        <caption>Customer List</caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Loyal</th>
+            <th>Active</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for profile in customer_profiles %}
+            <tr>
+              <td>
+                {% if profile.user.get_full_name %}
+                  {{ profile.user.get_full_name }}
+                {% else %}
+                  N/A
+                {% endif %}
+              </td>
+              <td>{{ profile.user.email }}</td>
+              <td>
+                {% if profile.is_loyal %}
+                  Yes
+                {% else %}
+                  No
+                {% endif %}
+              </td>
+              <td>
+                {% if profile.user.is_active %}
+                  Yes
+                {% else %}
+                  No
+                {% endif %}
+              </td>
+              <td>
+                <a href="{% url 'customer_detail' profile.pk %}">View</a>
+                |
+                <a href="{% url 'customer_edit' profile.pk %}">Edit</a>
+                |
+                <a href="{% url 'customer_delete' profile.user.pk %}">Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>No customers found.</p>
+    {% endif %}
+    <p>
+      <a href="{% url 'owner_dashboard' %}">Back to Dashboard</a>
+    </p>
+  </section>
+{% endblock %}

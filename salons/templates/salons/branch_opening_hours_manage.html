@@ -1,0 +1,52 @@
+{% extends 'core/layouts/layout.html' %}
+
+{% block title %}
+  Manage Opening Hours for {{ branch.name }}
+{% endblock %}
+
+{% block content %}
+  <h1>Manage Opening Hours for {{ branch.name }} ({{ branch.salon.name }})</h1>
+  {% include 'salons/_messages.html' %}
+
+  <form method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <table>
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Open Time</th>
+          <th>Close Time</th>
+          <th>Delete?</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for form in formset %}
+          <tr>
+            <td>
+              {{ form.id }} {# Important for formset to work #}
+              {{ form.day.errors }}
+              {{ form.day }}
+            </td>
+            <td>{{ form.open_time.errors }}
+              {{ form.open_time }}</td>
+            <td>{{ form.close_time.errors }}
+              {{ form.close_time }}</td>
+            <td>
+              {% if form.instance.pk and formset.can_delete %}
+                <!-- Show delete only for existing entries -->
+                {{ form.DELETE.errors }}
+                {{ form.DELETE }}
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <p>
+      <small>Leave open/close times blank for days the branch is closed. Select "Delete" to remove an existing schedule for a day.</small>
+    </p>
+    <button type="submit">Save Opening Hours</button>
+    <a href="{% url 'salon_detail' pk=branch.salon.pk %}">Back to {{ branch.salon.name }}</a>
+  </form>
+{% endblock %}

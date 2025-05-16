@@ -1,0 +1,47 @@
+# Django
+*.pyc
+__pycache__/
+db.sqlite3
+*.sqlite3
+*.log
+
+# Django media/static files
+/media
+/staticfiles
+
+# Environment
+.env
+*.env
+.env.*
+!.env.example
+
+# VSCode
+.vscode/
+
+# PyCharm
+.idea/
+
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Migrations
+*/migrations/*.pyc
+*/migrations/__pycache__/
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+.nox/
+.cache/
+.pytest_cache/
+
+# Node modules (if using npm/yarn)
+node_modules/
+
+# Other
+*.bak
+*.swp
+*.swo

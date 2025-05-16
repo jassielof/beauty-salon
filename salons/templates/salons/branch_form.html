@@ -1,0 +1,43 @@
+{% extends 'core/layouts/layout.html' %}
+{% block title %}{{ form_title }}{% endblock %}
+
+{% block content %}
+<h1>{{ form_title }}</h1>
+<h3>For Salon: <a href="{% url 'salon_detail' salon.pk %}">{{ salon.name }}</a></h3>
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{# Use branch_pk for update action, otherwise it's create with salon_pk #}
+<form method="post" action="{% if branch_pk %}{% url 'branch_edit' branch_pk %}{% else %}{% url 'branch_create' salon_pk=salon.pk %}{% endif %}">
+    {% csrf_token %}
+    {{ branch_form.as_p }}
+
+    <fieldset>
+        <legend>Opening Hours</legend>
+        {{ opening_hours_formset.management_form }}
+        {% for form in opening_hours_formset %}
+            <div class="opening-hours-form">
+                {% if form.instance.pk %}{{ form.id }}{% endif %} {# Hidden ID for existing form #}
+                {{ form.as_p }}
+                {% if opening_hours_formset.can_delete and form.instance.pk %}
+                    <p>{{ form.DELETE.label_tag }} {{ form.DELETE }}</p>
+                {% endif %}
+            </div>
+            <hr>
+        {% endfor %}
+    </fieldset>
+
+    <button type="submit">{% if branch_pk %}Save Changes{% else %}Create Branch{% endif %}</button>
+    {% if branch_pk %}
+        <a href="{% url 'branch_detail' branch_pk %}">Cancel</a>
+    {% else %}
+        <a href="{% url 'salon_detail' salon.pk %}">Cancel</a>
+    {% endif %}
+</form>
+{% endblock %}

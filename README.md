@@ -1,3 +1,1 @@
-# SI514
-
-UPSA - Gestión de Sistemas
+# Beauty Salon Project for Systems Management Course (SI514)

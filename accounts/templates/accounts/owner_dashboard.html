@@ -1,0 +1,23 @@
+{% extends 'core/layouts/layout.html' %}
+{% block content %}
+  <section>
+    <header>
+      <h1>Owner Dashboard</h1>
+      <h2>Welcome, {{ user.first_name }}</h2>
+    </header>
+    <p>Manage your beauty salon appointments and services.</p>
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'employees_list' %}">View employees</a>
+        </li>
+        <li>
+          <a href="{% url 'customers_list' %}">View customers</a>
+        </li>
+        <li>
+          <a href="{% url 'salon_list' %}">View salons</a>
+        </li>
+      </ul>
+    </nav>
+  </section>
+{% endblock %}

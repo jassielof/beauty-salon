@@ -1,0 +1,47 @@
+{% extends 'core/layouts/layout.html' %}
+{% block title %}
+  My Beauty Salons
+{% endblock %}
+
+{% block content %}
+  <main>
+    <header>
+      <h1>My Beauty Salons</h1>
+      <nav>
+        <a href="{% url 'salon_create' %}">Create New Salon</a>
+      </nav>
+    </header>
+
+    {% if salons %}
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Branches</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for salon in salons %}
+            <tr>
+              <td>
+                <a href="{% url 'salon_detail' salon.pk %}">{{ salon.name }}</a>
+              </td>
+              <td>{{ salon.branches.count }} branch{{ salon.branches.count|pluralize }}</td>
+              <td>
+                <a href="{% url 'salon_edit' salon.pk %}">Edit</a> |
+                <a href="{% url 'salon_delete' salon.pk %}">Delete</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p>You haven't created any beauty salons yet.</p>
+    {% endif %}
+
+    <footer>
+      <a href="{% url 'owner_dashboard' %}">Back to Dashboard</a>
+    </footer>
+  </main>
+{% endblock %}

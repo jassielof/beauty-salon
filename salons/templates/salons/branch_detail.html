@@ -1,0 +1,37 @@
+{% extends 'core/layouts/layout.html' %}
+{% block title %}
+  {{ branch.name }} - {{ branch.salon.name }}
+{% endblock %}
+
+{% block content %}
+  <h1>Branch: {{ branch.name }}</h1>
+  <h3>Part of Salon: <a href="{% url 'salon_detail' branch.salon.pk %}">{{ branch.salon.name }}</a></h3>
+
+  <p>
+    <strong>Address:</strong> {{ branch.address }}
+  </p>
+  <p>
+    <strong>Phone:</strong> {{ branch.phone_number|default:'-' }}
+  </p>
+  <p>
+    <strong>Email:</strong> {{ branch.email|default:'-' }}
+  </p>
+
+  <p>
+    <a href="{% url 'branch_edit' branch.pk %}">Edit Branch Details</a> |
+    <a href="{% url 'salon_detail' branch.salon.pk %}">Back to Salon</a>
+  </p>
+
+  <h2>Opening Hours</h2>
+  {% if opening_hours %}
+    <ul>
+      {% for oh in opening_hours %}
+        <li>{{ oh.get_day_display }}: {{ oh.open_time|time:'H:i' }} - {{ oh.close_time|time:'H:i' }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No opening hours defined yet.</p>
+  {% endif %}
+
+  {# Add sections for Employees and Services at this branch later #}
+{% endblock %}
