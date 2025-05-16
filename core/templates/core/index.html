@@ -1,27 +1,51 @@
 {% extends 'core/layouts/layout.html' %}
 
-{% block title %}
-  Home - Beauty Salon
-{% endblock %}
+{% block title %}Inicio - Beauty Salon {% endblock %}
 
 {% block content %}
-  <main>
-    <section>
-      <header>
-        <h2>{{ welcome_message }}</h2>
-      </header>
-      <div>
-        <article>
-          <h5>Users</h5>
-          <p>Manage users of the system</p>
-          <a href="#">View Users</a>
-        </article>
-        <article>
-          <h5>Appointments</h5>
-          <p>Manage beauty salon appointments</p>
-          <a href="#">View Appointments</a>
-        </article>
+<div class="header">
+  <h1>Bienvenido a Beauty Salon</h1>
+  <p>Tu solución profesional para la gestión de salones de belleza</p>
+</div>
+
+<div class="container">
+  <div class="card-grid">
+    <!-- Tarjeta 1 -->
+    <div class="card">
+      <div class="card-img">
+        <i class="fas fa-users"></i>
       </div>
-    </section>
-  </main>
+      <div class="card-content">
+        <h3>Gestión de Clientes</h3>
+        <p>Administra el historial de tus clientes, preferencias y tratamientos especiales.</p>
+        <a href="#" class="btn btn-primary">Ver Clientes</a>
+      </div>
+    </div>
+    
+    <!-- Tarjeta 2 -->
+    <div class="card">
+      <div class="card-img">
+        <i class="fas fa-calendar-check"></i>
+      </div>
+      <div class="card-content">
+        <h3>Citas Programadas</h3>
+        <p>Organiza y visualiza todas las citas en un calendario interactivo.</p>
+        <a href="#" class="btn btn-primary">Ver Calendario</a>
+      </div>
+    </div>
+    
+    <!-- Tarjeta 3 -->
+    <div class="card">
+      <div class="card-img">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <div class="card-content">
+        <h3>Reportes</h3>
+        <p>Genera reportes detallados de ingresos, servicios más populares y clientes frecuentes.</p>
+        <a href="#" class="btn btn-primary">Ver Reportes</a>
+      </div>
+    </div>
+  </div>
+  
+
 {% endblock %}
