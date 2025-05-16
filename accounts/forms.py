@@ -99,7 +99,7 @@ class CustomerCreationForm(forms.ModelForm):
     def save(self, commit=True):
         user = super().save(commit=False)
         user.role = UserRoles.CUSTOMER
-        user.set_password(self.cleaned_date["password"])
+        user.set_password(self.cleaned_data["password"])
         if commit:
             user.save()
         return user

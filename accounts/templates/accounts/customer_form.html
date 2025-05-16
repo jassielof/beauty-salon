@@ -1,0 +1,44 @@
+{% extends 'core/layouts/layout.html' %}
+
+{% block title %}
+  {{ form_title|default:'Customer Form' }}
+{% endblock %}
+
+{% block content %}
+  <section>
+    <header>
+      <h1>{{ form_title|default:'Customer Form' }}</h1>
+    </header>
+
+    {# If it's an update form, the action points to the edit URL #}
+    {# If it's a create form, the action points to the add URL #}
+    <form method="post"
+      action="{% if profile_pk %}
+        {% url 'customer_edit' profile_pk %}
+      {% else %}
+        {% url 'customer_add' %}
+      {% endif %}"
+      novalidate>
+      {% csrf_token %}
+
+      <h2>User Account Details</h2>
+      {{ user_form.as_p }}
+
+      <h2>Customer Profile Details</h2>
+      {{ profile_form.as_p }}
+
+      <button type="submit">
+        {% if profile_pk %}
+          Save Changes
+        {% else %}
+          Create Customer
+        {% endif %}
+      </button>
+      {% if profile_pk %}
+        <a href="{% url 'customer_detail' profile_pk %}">Cancel</a>
+      {% else %}
+        <a href="{% url 'customers_list' %}">Cancel</a>
+      {% endif %}
+    </form>
+  </section>
+{% endblock %}

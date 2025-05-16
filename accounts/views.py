@@ -99,7 +99,7 @@ class EmployeeCreateView(OwnerRequiredMixin, generic.View):
 
 
 class CustomerCreateView(OwnerRequiredMixin, generic.View):
-    template_name = "accounts/client_add.html"
+    template_name = "accounts/customer_form.html"
 
     def get(self, request, *args, **kwargs):
         user_form = CustomerCreationForm()
