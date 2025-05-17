@@ -1,0 +1,175 @@
+/* static/css/branch-detail.css */
+
+/* Contenedor principal */
+.branch-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Encabezado */
+.branch-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.branch-title {
+  font-size: 2rem;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
+}
+
+.salon-link {
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+.salon-link a {
+  color: #4f46e5;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.salon-link a:hover {
+  text-decoration: underline;
+}
+
+/* Información de la sucursal */
+.branch-info {
+  background-color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 1.2rem;
+}
+
+.info-label {
+  color: #4b5563;
+  font-weight: 600;
+  min-width: 120px;
+  margin-right: 1rem;
+}
+
+.info-value {
+  flex: 1;
+  color: #374151;
+}
+
+/* Horario de apertura */
+.opening-hours {
+  background-color: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 1.6rem;
+  color: #4f46e5;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.hours-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.hours-item {
+  background-color: #f9fafb;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #4f46e5;
+}
+
+/* Enlaces de acción */
+.action-links {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #4f46e5;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #4338ca;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+.btn-secondary {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+.btn-secondary:hover {
+  background-color: #e5e7eb;
+}
+
+/* Mensaje vacío */
+.empty-message {
+  text-align: center;
+  color: #6b7280;
+  font-style: italic;
+  padding: 1.5rem;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+}
+
+/* Versión móvil */
+@media (max-width: 768px) {
+  .branch-container {
+    padding: 1rem;
+  }
+  
+  .branch-title {
+    font-size: 1.8rem;
+  }
+  
+  .info-row {
+    flex-direction: column;
+  }
+  
+  .info-label {
+    margin-bottom: 0.5rem;
+  }
+  
+  .hours-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .action-links {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}

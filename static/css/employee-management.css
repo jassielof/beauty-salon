@@ -1,0 +1,178 @@
+/* static/css/employee-management.css */
+
+section {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+  font-size: 2rem;
+  color: #4f46e5;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+/* Botón principal */
+section > p:first-of-type {
+  margin-bottom: 2rem;
+}
+
+section > p:first-of-type a {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: #4f46e5;
+  color: white;
+  border-radius: 8px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+section > p:first-of-type a:hover {
+  background-color: #4338ca;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+/* Tabla de empleados */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+caption {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #4b5563;
+  text-align: left;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0;
+}
+
+thead {
+  background-color: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+th {
+  padding: 1rem;
+  text-align: left;
+  color: #4b5563;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+  vertical-align: top;
+}
+
+tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Estado Activo/Inactivo */
+td:nth-child(5) {
+  font-weight: 500;
+}
+
+td:nth-child(5):contains("Yes") {
+  color: #10b981;
+}
+
+td:nth-child(5):contains("No") {
+  color: #ef4444;
+}
+
+/* Acciones */
+td:last-child {
+  white-space: nowrap;
+}
+
+td:last-child a {
+  padding: 0.4rem 0.8rem;
+  margin: 0 0.2rem;
+  border-radius: 4px;
+  color: #4f46e5;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+td:last-child a:hover {
+  background-color: #f3f4f6;
+  text-decoration: none;
+}
+
+td:last-child a:last-child {
+  color: #ef4444;
+}
+
+td:last-child a:last-child:hover {
+  background-color: #fee2e2;
+}
+
+/* Mensaje cuando no hay empleados */
+section > p:nth-of-type(2) {
+  padding: 2rem;
+  text-align: center;
+  color: #6b7280;
+  font-size: 1.1rem;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+/* Enlace de retorno */
+section > p:last-of-type {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+section > p:last-of-type a {
+  display: inline-block;
+  padding: 0.7rem 1.5rem;
+  background-color: #f3f4f6;
+  color: #4b5563;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+section > p:last-of-type a:hover {
+  background-color: #e5e7eb;
+  text-decoration: none;
+}
+
+/* Versión móvil */
+@media (max-width: 768px) {
+  section {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  th, td {
+    padding: 0.8rem;
+  }
+  
+  section > p:first-of-type a,
+  section > p:last-of-type a {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,104 @@
+/* static/css/confirm-delete-salon.css */
+
+/* Fondo y tipografía general */
+body {
+  background-color: #f9fafb;
+  color: #374151;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+/* Contenedor del contenido */
+.form-container {
+  max-width: 700px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+/* Título principal */
+h1 {
+  font-size: 2rem;
+  color: #4f46e5;
+  margin-bottom: 1rem;
+}
+
+/* Párrafos de advertencia */
+p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+p strong {
+  color: #b91c1c;
+}
+
+/* Botones */
+form {
+  margin-top: 2rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+button[type="submit"] {
+  padding: 0.8rem 1.5rem;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+}
+
+a.cancel-link {
+  padding: 0.8rem 1.5rem;
+  background-color: #f3f4f6;
+  color: #4b5563;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a.cancel-link:hover {
+  background-color: #e5e7eb;
+  text-decoration: none;
+}
+
+/* Adaptación móvil */
+@media (max-width: 768px) {
+  .form-container {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  button[type="submit"],
+  a.cancel-link {
+    width: 100%;
+    text-align: center;
+  }
+}

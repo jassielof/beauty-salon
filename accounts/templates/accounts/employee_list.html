@@ -1,7 +1,12 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
 
 {% block title %}
   Manage Employees
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/employee-management.css' %}">
 {% endblock %}
 
 {% block content %}

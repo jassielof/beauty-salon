@@ -1,0 +1,143 @@
+/* static/css/salon-list.css */
+
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+
+/* Estilos para la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+thead {
+  background-color: #f9fafb;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+th {
+  padding: 1rem;
+  text-align: left;
+  color: #4b5563;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 1.2rem 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  color: #374151;
+}
+
+tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Estilos para enlaces */
+a {
+  color: #4f46e5;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #4338ca;
+  text-decoration: underline;
+}
+
+/* Botones */
+nav a {
+  display: inline-block;
+  padding: 0.7rem 1.2rem;
+  background-color: #4f46e5;
+  color: white;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+nav a:hover {
+  background-color: #4338ca;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3);
+}
+
+/* Acciones */
+td a {
+  padding: 0.4rem 0.6rem;
+  margin: 0 0.2rem;
+  border-radius: 4px;
+}
+
+td a:hover {
+  background-color: #f3f4f6;
+  text-decoration: none;
+}
+
+/* Mensaje cuando no hay salones */
+main > p {
+  padding: 2rem;
+  text-align: center;
+  color: #6b7280;
+  font-size: 1.1rem;
+  background-color: #f9fafb;
+  border-radius: 8px;
+}
+
+/* Footer */
+footer {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+footer a {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: #f3f4f6;
+  color: #4b5563;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+footer a:hover {
+  background-color: #e5e7eb;
+  text-decoration: none;
+}
+
+/* Versión móvil */
+@media (max-width: 768px) {
+  main {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  th, td {
+    padding: 0.8rem;
+  }
+}

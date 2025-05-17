@@ -1,6 +1,12 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
+
 {% block title %}
   {{ form_title }}
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/salon-form.css' %}">
 {% endblock %}
 
 {% block content %}

@@ -1,59 +1,81 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
+
 {% block title %}
   {{ salon.name }}
 {% endblock %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/salon-detail.css' %}">
+{% endblock %}
+
 {% block content %}
-  <h1>{{ salon.name }}</h1>
-  {% if salon.logo_uri %}
-    <img src="{{ salon.logo_uri.url }}" alt="{{ salon.name }} Logo" style="max-width:200px; max-height:200px;" />
-  {% endif %}
-  <p>
-    <strong>Address:</strong> {{ salon.address }}
-  </p>
-  <p>
-    <strong>Phone:</strong> {{ salon.phone_number|default:'-' }}
-  </p>
-  <p>
-    <strong>Email:</strong> {{ salon.email|default:'-' }}
-  </p>
-  <p>
-    <strong>Description:</strong> {{ salon.description|linebreaksbr|default:'-' }}
-  </p>
+<div class="main-container">
+  <header class="salon-header">
+    <h1 class="salon-title">{{ salon.name }}</h1>
+    {% if salon.logo_uri %}
+      <img src="{{ salon.logo_uri.url }}" alt="{{ salon.name }} Logo" class="salon-logo" />
+    {% endif %}
+  </header>
 
-  <p>
-    <a href="{% url 'salon_edit' salon.pk %}">Edit Salon Details</a> |
-    <a href="{% url 'salon_list' %}">Back to Salons</a>
-  </p>
+  <section class="salon-info">
+    <div class="info-item">
+      <span class="info-label">Address:</span>
+      <span class="info-value">{{ salon.address }}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Phone:</span>
+      <span class="info-value">{{ salon.phone_number|default:'-' }}</span>
+    </div>
+    <div class="info-item">
+      <span class="info-label">Email:</span>
+      <span class="info-value">{{ salon.email|default:'-' }}</span>
+    </div>
+    <div class="description">
+      <div class="info-item">
+        <span class="info-label">Description:</span>
+        <span class="info-value">{{ salon.description|linebreaksbr|default:'-' }}</span>
+      </div>
+    </div>
+  </section>
 
-  <h2>Social Networks</h2>
-  {% if social_networks %}
-    <ul>
-      {% for sn in social_networks %}
-        <li>
-          {{ sn.name }}: <a href="{{ sn.url }}" target="_blank">{{ sn.url }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No social networks added yet.</p>
-  {% endif %}
+  <div class="action-links">
+    <a href="{% url 'salon_edit' salon.pk %}" class="btn btn-primary">Edit Salon Details</a>
+    <a href="{% url 'salon_list' %}" class="btn btn-secondary">Back to Salons</a>
+  </div>
 
-  <h2>Branches</h2>
-  <p>
-    <a href="{% url 'branch_create' salon_pk=salon.pk %}">Add New Branch</a>
-  </p>
-  {% if branches %}
-    <ul>
-      {% for branch in branches %}
-        <li>
-          <a href="{% url 'branch_detail' branch.pk %}">{{ branch.name }}</a>
-          - <a href="{% url 'branch_edit' branch.pk %}">Edit</a>
-          - <a href="{% url 'branch_delete' branch.pk %}">Delete</a>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No branches added to this salon yet.</p>
-  {% endif %}
+  <section class="section">
+    <h2 class="section-title">Social Networks</h2>
+    {% if social_networks %}
+      <ul class="item-list">
+        {% for sn in social_networks %}
+          <li class="list-item">
+            <strong>{{ sn.name }}:</strong> <a href="{{ sn.url }}" target="_blank" class="item-link">{{ sn.url }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="empty-message">No social networks added yet.</p>
+    {% endif %}
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">Branches</h2>
+    <a href="{% url 'branch_create' salon_pk=salon.pk %}" class="btn btn-primary">Add New Branch</a>
+    
+    {% if branches %}
+      <ul class="item-list">
+        {% for branch in branches %}
+          <li class="list-item">
+            <a href="{% url 'branch_detail' branch.pk %}" class="item-link">{{ branch.name }}</a>
+            <a href="{% url 'branch_edit' branch.pk %}" class="action-link">Edit</a>
+            <a href="{% url 'branch_delete' branch.pk %}" class="action-link">Delete</a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="empty-message">No branches added to this salon yet.</p>
+    {% endif %}
+  </section>
+</div>
 {% endblock %}

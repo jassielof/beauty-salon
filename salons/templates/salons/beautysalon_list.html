@@ -1,6 +1,12 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
+
 {% block title %}
   My Beauty Salons
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/salon-list.css' %}">
 {% endblock %}
 
 {% block content %}

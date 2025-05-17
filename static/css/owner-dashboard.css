@@ -1,0 +1,117 @@
+/* static/css/owner-dashboard.css */
+
+/* Estructura principal */
+section {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Encabezado */
+header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+h1 {
+  font-size: 2.2rem;
+  color: #4f46e5;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Texto descriptivo */
+p {
+  font-size: 1.1rem;
+  color: #4b5563;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+/* Navegación */
+nav ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+nav li {
+  transition: transform 0.3s ease;
+}
+
+nav li:hover {
+  transform: translateY(-3px);
+}
+
+nav a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  padding: 1.5rem;
+  background-color: #f9fafb;
+  border-radius: 10px;
+  color: #4f46e5;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  border: 2px solid #e5e7eb;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+nav a:hover {
+  background-color: #4f46e5;
+  color: white;
+  border-color: #4f46e5;
+  box-shadow: 0 5px 15px rgba(79, 70, 229, 0.2);
+}
+
+/* Íconos (opcional - si quieres añadirlos más tarde) */
+nav a::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Versión móvil */
+@media (max-width: 768px) {
+  section {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.2rem;
+  }
+  
+  nav ul {
+    grid-template-columns: 1fr;
+  }
+  
+  nav a {
+    height: auto;
+    padding: 1.2rem;
+  }
+}

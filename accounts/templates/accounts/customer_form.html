@@ -1,17 +1,20 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
 
 {% block title %}
   {{ form_title|default:'Customer Form' }}
 {% endblock %}
 
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/customer-form.css' %}">
+{% endblock %}
+
 {% block content %}
-  <section>
+  <section class="form-container">
     <header>
       <h1>{{ form_title|default:'Customer Form' }}</h1>
     </header>
 
-    {# If it's an update form, the action points to the edit URL #}
-    {# If it's a create form, the action points to the add URL #}
     <form method="post"
       action="{% if profile_pk %}
         {% url 'customer_edit' profile_pk %}
@@ -21,24 +24,30 @@
       novalidate>
       {% csrf_token %}
 
-      <h2>User Account Details</h2>
-      {{ user_form.as_p }}
+      <fieldset>
+        <legend>User Account Details</legend>
+        {{ user_form.as_p }}
+      </fieldset>
 
-      <h2>Customer Profile Details</h2>
-      {{ profile_form.as_p }}
+      <fieldset>
+        <legend>Customer Profile Details</legend>
+        {{ profile_form.as_p }}
+      </fieldset>
 
-      <button type="submit">
+      <div class="form-actions">
+        <button type="submit">
+          {% if profile_pk %}
+            Save Changes
+          {% else %}
+            Create Customer
+          {% endif %}
+        </button>
         {% if profile_pk %}
-          Save Changes
+          <a href="{% url 'customer_detail' profile_pk %}" class="cancel-link">Cancel</a>
         {% else %}
-          Create Customer
+          <a href="{% url 'customers_list' %}" class="cancel-link">Cancel</a>
         {% endif %}
-      </button>
-      {% if profile_pk %}
-        <a href="{% url 'customer_detail' profile_pk %}">Cancel</a>
-      {% else %}
-        <a href="{% url 'customers_list' %}">Cancel</a>
-      {% endif %}
+      </div>
     </form>
   </section>
 {% endblock %}

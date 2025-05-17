@@ -1,43 +1,84 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
+
 {% block title %}{{ form_title }}{% endblock %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/branch-form.css' %}">
+{% endblock %}
+
 {% block content %}
-<h1>{{ form_title }}</h1>
-<h3>For Salon: <a href="{% url 'salon_detail' salon.pk %}">{{ salon.name }}</a></h3>
+<div class="form-container">
+  <h1>{{ form_title }}</h1>
+  <h3>For Salon: <a href="{% url 'salon_detail' salon.pk %}">{{ salon.name }}</a></h3>
 
-{% if messages %}
+  {% if messages %}
     <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
     </ul>
-{% endif %}
+  {% endif %}
 
-{# Use branch_pk for update action, otherwise it's create with salon_pk #}
-<form method="post" action="{% if branch_pk %}{% url 'branch_edit' branch_pk %}{% else %}{% url 'branch_create' salon_pk=salon.pk %}{% endif %}">
+  <form method="post" action="{% if branch_pk %}{% url 'branch_edit' branch_pk %}{% else %}{% url 'branch_create' salon_pk=salon.pk %}{% endif %}">
     {% csrf_token %}
-    {{ branch_form.as_p }}
-
-    <fieldset>
-        <legend>Opening Hours</legend>
-        {{ opening_hours_formset.management_form }}
-        {% for form in opening_hours_formset %}
-            <div class="opening-hours-form">
-                {% if form.instance.pk %}{{ form.id }}{% endif %} {# Hidden ID for existing form #}
-                {{ form.as_p }}
-                {% if opening_hours_formset.can_delete and form.instance.pk %}
-                    <p>{{ form.DELETE.label_tag }} {{ form.DELETE }}</p>
-                {% endif %}
-            </div>
-            <hr>
+    
+    <!-- Formulario principal de sucursal -->
+    {% for field in branch_form %}
+      <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.help_text %}
+          <small>{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <div class="error">{{ error }}</div>
         {% endfor %}
+      </div>
+    {% endfor %}
+
+    <!-- Horario de apertura -->
+    <fieldset>
+      <legend>Opening Hours</legend>
+      {{ opening_hours_formset.management_form }}
+      {% for form in opening_hours_formset %}
+        <div class="opening-hours-form">
+          {% if form.instance.pk %}{{ form.id }}{% endif %}
+          
+          {% for field in form.visible_fields %}
+            <div class="form-group">
+              {{ field.label_tag }}
+              {{ field }}
+              {% if field.help_text %}
+                <small>{{ field.help_text }}</small>
+              {% endif %}
+              {% for error in field.errors %}
+                <div class="error">{{ error }}</div>
+              {% endfor %}
+            </div>
+          {% endfor %}
+          
+          {% if opening_hours_formset.can_delete and form.instance.pk %}
+            <div class="form-group delete-checkbox">
+              {{ form.DELETE }}
+              {{ form.DELETE.label_tag }}
+            </div>
+          {% endif %}
+        </div>
+        <hr>
+      {% endfor %}
     </fieldset>
 
-    <button type="submit">{% if branch_pk %}Save Changes{% else %}Create Branch{% endif %}</button>
-    {% if branch_pk %}
-        <a href="{% url 'branch_detail' branch_pk %}">Cancel</a>
-    {% else %}
-        <a href="{% url 'salon_detail' salon.pk %}">Cancel</a>
-    {% endif %}
-</form>
+    <div class="form-actions">
+      <button type="submit">
+        {% if branch_pk %}Save Changes{% else %}Create Branch{% endif %}
+      </button>
+      {% if branch_pk %}
+        <a href="{% url 'branch_detail' branch_pk %}" class="cancel-link">Cancel</a>
+      {% else %}
+        <a href="{% url 'salon_detail' salon.pk %}" class="cancel-link">Cancel</a>
+      {% endif %}
+    </div>
+  </form>
+</div>
 {% endblock %}

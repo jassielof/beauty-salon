@@ -1,18 +1,32 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
+
 {% block title %}
   Confirm Delete Branch
 {% endblock %}
 
-{% block content %}
-  <h1>Confirm Deletion: {{ branch.name }}</h1>
-  <p>
-    Are you sure you want to delete the branch "<strong>{{ branch.name }}</strong>" from salon "<strong>{{ branch.salon.name }}</strong>"?
-  </p>
-  <p>This will also delete its opening hours and may affect employees or services linked to it (depending on `on_delete` settings). This action cannot be undone.</p>
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/branch-form.css' %}">
+{% endblock %}
 
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit">Yes, Delete Branch</button>
-    <a href="{% url 'branch_detail' branch.pk %}">Cancel</a>
-  </form>
+{% block content %}
+  <div class="form-container">
+    <h1>Confirm Deletion: {{ branch.name }}</h1>
+
+    <p>
+      Are you sure you want to delete the branch <strong>"{{ branch.name }}"</strong> from salon <strong>"{{ branch.salon.name }}"</strong>?
+    </p>
+
+    <p>
+      <strong>Warning:</strong> This will also delete its opening hours and may affect employees or services linked to it. This action cannot be undone.
+    </p>
+
+    <form method="post">
+      {% csrf_token %}
+      <div class="form-actions">
+        <button type="submit">Yes, Delete Branch</button>
+        <a href="{% url 'branch_detail' branch.pk %}" class="cancel-link">Cancel</a>
+      </div>
+    </form>
+  </div>
 {% endblock %}

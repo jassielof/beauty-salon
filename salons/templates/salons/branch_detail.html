@@ -1,37 +1,54 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
+
 {% block title %}
   {{ branch.name }} - {{ branch.salon.name }}
 {% endblock %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/branch-detail.css' %}">
+{% endblock %}
+
 {% block content %}
-  <h1>Branch: {{ branch.name }}</h1>
-  <h3>Part of Salon: <a href="{% url 'salon_detail' branch.salon.pk %}">{{ branch.salon.name }}</a></h3>
+<div class="branch-container">
+  <header class="branch-header">
+    <h1 class="branch-title">Branch: {{ branch.name }}</h1>
+    <p class="salon-link">Part of Salon: <a href="{% url 'salon_detail' branch.salon.pk %}">{{ branch.salon.name }}</a></p>
+  </header>
 
-  <p>
-    <strong>Address:</strong> {{ branch.address }}
-  </p>
-  <p>
-    <strong>Phone:</strong> {{ branch.phone_number|default:'-' }}
-  </p>
-  <p>
-    <strong>Email:</strong> {{ branch.email|default:'-' }}
-  </p>
+  <section class="branch-info">
+    <div class="info-row">
+      <span class="info-label">Address:</span>
+      <span class="info-value">{{ branch.address }}</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Phone:</span>
+      <span class="info-value">{{ branch.phone_number|default:'-' }}</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Email:</span>
+      <span class="info-value">{{ branch.email|default:'-' }}</span>
+    </div>
+  </section>
 
-  <p>
-    <a href="{% url 'branch_edit' branch.pk %}">Edit Branch Details</a> |
-    <a href="{% url 'salon_detail' branch.salon.pk %}">Back to Salon</a>
-  </p>
+  <div class="action-links">
+    <a href="{% url 'branch_edit' branch.pk %}" class="btn btn-primary">Edit Branch Details</a>
+    <a href="{% url 'salon_detail' branch.salon.pk %}" class="btn btn-secondary">Back to Salon</a>
+  </div>
 
-  <h2>Opening Hours</h2>
-  {% if opening_hours %}
-    <ul>
-      {% for oh in opening_hours %}
-        <li>{{ oh.get_day_display }}: {{ oh.open_time|time:'H:i' }} - {{ oh.close_time|time:'H:i' }}</li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No opening hours defined yet.</p>
-  {% endif %}
-
-  {# Add sections for Employees and Services at this branch later #}
+  <section class="opening-hours">
+    <h2 class="section-title">Opening Hours</h2>
+    {% if opening_hours %}
+      <ul class="hours-list">
+        {% for oh in opening_hours %}
+          <li class="hours-item">
+            {{ oh.get_day_display }}: {{ oh.open_time|time:'H:i' }} - {{ oh.close_time|time:'H:i' }}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="empty-message">No opening hours defined yet.</p>
+    {% endif %}
+  </section>
+</div>
 {% endblock %}

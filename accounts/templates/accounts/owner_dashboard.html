@@ -1,4 +1,10 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/owner-dashboard.css' %}">
+{% endblock %}
+
 {% block content %}
   <section>
     <header>

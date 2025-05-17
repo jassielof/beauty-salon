@@ -1,0 +1,144 @@
+/* Estilos generales para la sección del formulario */
+section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Estilo para el encabezado */
+header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+header h1 {
+  color: #4f46e5; /* azul principal */
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Estilos para el formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Estilos para los títulos de sección */
+h2 {
+  color: #374151; /* gris oscuro */
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb; /* gris claro */
+}
+
+/* Estilos para los párrafos generados por as_p */
+form p {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilos para las etiquetas */
+label {
+  font-weight: 500;
+  color: #374151; /* gris oscuro */
+  margin-bottom: 0.5rem;
+}
+
+/* Estilos para los campos de entrada */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select,
+textarea {
+  padding: 0.8rem;
+  border: 1px solid #d1d5db; /* borde gris claro */
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #f9fafb; /* fondo claro */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #4f46e5; /* azul principal */
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2); /* sombra azul */
+}
+
+/* Estilos para los botones */
+button[type="submit"] {
+  padding: 0.8rem 1.5rem;
+  background-color: #4f46e5; /* azul principal */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.2s;
+  align-self: flex-start;
+}
+
+button[type="submit"]:hover {
+  background-color: #4338ca; /* azul oscuro */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+}
+
+/* Estilos para el enlace Cancelar */
+a {
+  padding: 0.8rem 1.5rem;
+  background-color: #f3f4f6; /* gris claro */
+  color: #4b5563; /* gris oscuro */
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+a:hover {
+  background-color: #e5e7eb; /* gris más oscuro */
+}
+
+/* Estilos para mensajes de error */
+.errorlist {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  section {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  form p {
+    flex-direction: column;
+  }
+
+  button[type="submit"], a {
+    width: 100%;
+    margin: 0.5rem 0;
+    text-align: center;
+    margin-left: 0;
+  }
+}

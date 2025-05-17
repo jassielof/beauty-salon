@@ -1,7 +1,12 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
 
 {% block title %}
   {{ form_title|default:'Employee Form' }}
+{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/employee-form.css' %}">
 {% endblock %}
 
 {% block content %}

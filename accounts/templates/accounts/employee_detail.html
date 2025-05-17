@@ -1,8 +1,14 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
 
 {% block title %}
   Employee Details
 {% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/employee-form.css' %}">
+{% endblock %}
+
 
 {% block content %}
   <section>

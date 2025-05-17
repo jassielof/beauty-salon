@@ -1,12 +1,22 @@
 {% extends 'core/layouts/layout.html' %}
-{% block content %}
-  <h2>Login</h2>
+{% load static %}
 
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
-  {# Optional: Add link to password reset #}
-  {# <p><a href="{% url 'password_reset' %}">Forgot password?</a></p> #}
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="login-wrapper">
+  <div class="login-form-container">
+    <h2 class="form-title">Login</h2>
+    
+    <form method="post" class="django-form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="submit-btn">Login</button>
+    </form>
+    
+
+  </div>
+</div>
 {% endblock %}
