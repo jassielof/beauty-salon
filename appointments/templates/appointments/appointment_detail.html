@@ -1,0 +1,115 @@
+{% extends 'core/layouts/layout.html' %}
+{% load static %}
+
+{% block title %}Detalles de Cita #{{ appointment.id }}{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/apdetail.css' %}">
+{% endblock %}
+
+
+ 
+{% block content %}
+<div class="appointment-detail-container">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="mb-0">Detalles de Cita #{{ appointment.id }}</h2>
+                <div>
+                    <a href="{% url 'appointments:update' appointment.pk %}" class="btn btn-warning btn-sm">
+                        <i class="fas fa-edit"></i> Editar
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="section-title">Información Básica</h4>
+                    <ul class="list-group list-group-flush mb-4">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span class="fw-bold">Estado:</span>
+                            <span class="badge bg-{{ appointment.status }}">
+                                {{ appointment.get_status_display }}
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span class="fw-bold">Fecha:</span>
+                            <span>{{ appointment.date|date:"d/m/Y" }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span class="fw-bold">Hora:</span>
+                            <span>{{ appointment.time|time:"H:i" }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span class="fw-bold">Duración:</span>
+                            <span>{{ appointment.duration }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="section-title">Información de Pago</h4>
+                    <ul class="list-group list-group-flush mb-4">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span class="fw-bold">Método de Pago:</span>
+                            <span>{{ appointment.get_payment_method_display }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span class="fw-bold">Salón:</span>
+                            <span>{{ appointment.beauty_salon.name }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span class="fw-bold">Sucursal:</span>
+                            <span>{{ appointment.branch.name }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="section-title">Cliente</h4>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ appointment.customer.user.get_full_name }}</h5>
+                            <p class="card-text">
+                                <i class="fas fa-phone"></i> {{ appointment.customer.phone_number }}<br>
+                                <i class="fas fa-envelope"></i> {{ appointment.customer.user.email }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="section-title">Empleado</h4>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ appointment.employee.user.get_full_name }}</h5>
+                            <p class="card-text">
+                                <i class="fas fa-phone"></i> {{ appointment.employee.phone_number }}<br>
+                                <i class="fas fa-envelope"></i> {{ appointment.employee.user.email }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="section-title">Notas</h4>
+            <div class="card">
+                <div class="card-body">
+                    {% if appointment.note %}
+                    <p class="card-text">{{ appointment.note }}</p>
+                    {% else %}
+                    <p class="card-text text-muted">No hay notas registradas para esta cita.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end mt-4">
+                <a href="{% url 'appointments:list' %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Volver al listado
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}  

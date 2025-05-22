@@ -1,0 +1,16 @@
+{% extends 'core/layouts/layout.html' %}
+
+{% block title %}Eliminar Servicio{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Confirmar Eliminación</h1>
+    <p>¿Estás seguro que deseas eliminar el servicio "{{ service.name }}"?</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'services:list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

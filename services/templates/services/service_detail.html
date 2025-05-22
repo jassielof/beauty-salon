@@ -1,0 +1,17 @@
+{% extends 'core/layouts/layout.html' %}
+
+{% block title %}Detalle de Servicio{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ service.name }}</h1>
+    <p><strong>Descripción:</strong> {{ service.description }}</p>
+    <p><strong>Precio:</strong> ${{ service.price }}</p>
+    <p><strong>Duración:</strong> {{ service.duration }}</p>
+    <p><strong>Sucursal:</strong> {{ service.branch.name }}</p>
+    <p><strong>Salón:</strong> {{ service.beauty_salon.name }}</p>
+    
+    <a href="{% url 'services:update' service.pk %}" class="btn btn-warning">Editar</a>
+    <a href="{% url 'services:list' %}" class="btn btn-secondary">Volver</a>
+</div>
+{% endblock %}

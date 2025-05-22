@@ -1,0 +1,138 @@
+/* appointment.css */
+
+.appointment-detail-container {
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #0d6efd;
+}
+
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    border-bottom: none;
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    background-color: #4f46e5;
+    color: white;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.list-group-item:last-child {
+    border-bottom: none;
+}
+
+.badge {
+    padding: 0.5em 0.75em;
+    font-size: 0.9em;
+    border-radius: 0.5em;
+    text-transform: capitalize;
+}
+
+/* Colores de estados personalizados */
+.bg-pending {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.bg-completed {
+    background-color: #198754;
+}
+
+.bg-cancelled {
+    background-color: #dc3545;
+}
+
+.card .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.card .card-text {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.card .card-text i {
+    margin-right: 0.5rem;
+    color: #6c757d;
+}
+
+.btn {
+    font-size: 0.95rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 6px;
+}
+
+.btn-warning {
+    color: #212529;
+    background-color: #ffc107;
+    border: none;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+    color: white;
+}
+
+.btn-secondary:hover,
+.btn-warning:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .appointment-detail-container {
+        padding: 1rem;
+    }
+
+    .list-group-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .list-group-item span {
+        margin-bottom: 0.3rem;
+    }
+
+    .d-flex.justify-content-between {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .d-flex.justify-content-end {
+        justify-content: center !important;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+}

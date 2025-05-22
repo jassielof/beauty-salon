@@ -1,0 +1,39 @@
+{% extends 'core/layouts/layout.html' %}
+{% load static %}
+
+{% block title %}Confirmar Eliminación{% endblock %}
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/apdelete.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="delete-confirmation-container">
+    <div class="card shadow-sm">
+        <div class="card-header bg-danger text-white">
+            <h2 class="mb-0">Confirmar Eliminación</h2>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <p class="lead">¿Estás seguro que deseas eliminar la siguiente cita?</p>
+                
+                <div class="alert alert-warning">
+                    <strong>Cita #{{ object.id }}</strong><br>
+                    Cliente: {{ object.customer.user.get_full_name }}<br>
+                    Fecha: {{ object.date|date:"d/m/Y" }} a las {{ object.time|time:"H:i" }}<br>
+                    Estado: {{ object.get_status_display }}
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{% url 'appointments:detail' object.pk %}" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Confirmar Eliminación
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

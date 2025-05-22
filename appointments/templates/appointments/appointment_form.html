@@ -1,0 +1,163 @@
+{% extends 'core/layouts/layout.html' %}
+{% load static %}
+
+{% block title %}{{ form_title|default:'Formulario de Cita' }}{% endblock %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/acustomer-form.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="appointment-form-container">
+    <div class="card">
+        <div class="card-header">
+            <h2>{{ form_title|default:'Formulario de Cita' }}</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" novalidate class="appointment-form">
+                {% csrf_token %}
+                
+                {% if form.non_field_errors %}
+                <div class="form-error">
+                    {% for error in form.non_field_errors %}
+                    <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ form.customer.id_for_label }}" class="form-label">
+                            <i class="fas fa-user"></i> {{ form.customer.label }}
+                        </label>
+                        <div class="select-container">
+                            {{ form.customer }}
+                        </div>
+                        {% for error in form.customer.errors %}
+                        <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.employee.id_for_label }}" class="form-label">
+                            <i class="fas fa-id-badge"></i> {{ form.employee.label }}
+                        </label>
+                        <div class="select-container">
+                            {{ form.employee }}
+                        </div>
+                        {% for error in form.employee.errors %}
+                        <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ form.date.id_for_label }}" class="form-label">
+                            <i class="far fa-calendar-alt"></i> {{ form.date.label }}
+                        </label>
+                        {{ form.date }}
+                        {% for error in form.date.errors %}
+                        <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.time.id_for_label }}" class="form-label">
+                            <i class="far fa-clock"></i> {{ form.time.label }}
+                        </label>
+                        {{ form.time }}
+                        {% for error in form.time.errors %}
+                        <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.duration.id_for_label }}" class="form-label">
+                            <i class="fas fa-hourglass-half"></i> {{ form.duration.label }}
+                        </label>
+                        <div class="select-container">
+                            {{ form.duration }}
+                        </div>
+                        {% for error in form.duration.errors %}
+                        <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ form.beauty_salon.id_for_label }}" class="form-label">
+                            <i class="fas fa-spa"></i> {{ form.beauty_salon.label }}
+                        </label>
+                        <div class="select-container">
+                            {{ form.beauty_salon }}
+                        </div>
+                        {% for error in form.beauty_salon.errors %}
+                        <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.branch.id_for_label }}" class="form-label">
+                            <i class="fas fa-map-marker-alt"></i> {{ form.branch.label }}
+                        </label>
+                        <div class="select-container">
+                            {{ form.branch }}
+                        </div>
+                        {% for error in form.branch.errors %}
+                        <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="{{ form.status.id_for_label }}" class="form-label">
+                            <i class="fas fa-info-circle"></i> {{ form.status.label }}
+                        </label>
+                        <div class="select-container">
+                            {{ form.status }}
+                        </div>
+                        {% for error in form.status.errors %}
+                        <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.payment_method.id_for_label }}" class="form-label">
+                            <i class="fas fa-credit-card"></i> {{ form.payment_method.label }}
+                        </label>
+                        <div class="select-container">
+                            {{ form.payment_method }}
+                        </div>
+                        {% for error in form.payment_method.errors %}
+                        <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.note.id_for_label }}" class="form-label">
+                        <i class="far fa-sticky-note"></i> {{ form.note.label }}
+                    </label>
+                    {{ form.note }}
+                    {% for error in form.note.errors %}
+                    <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="form-actions">
+                    <a href="{% url 'appointments:list' %}" class="btn btn-cancel">
+                        <i class="fas fa-times"></i> Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-submit">
+                        <i class="fas fa-save"></i> Guardar Cita
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
