@@ -6,9 +6,14 @@ class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
         fields = ['name', 'description', 'price', 'duration', 'branch']
+        DURATION_CHOICES = [
+            (1800, '30 minutos'),
+            (3600, '1 hora'),
+            (7200, '2 horas'),
+        ]
         widgets = {
             'description': forms.Textarea(attrs={'rows': 3}),
-            'duration': forms.TimeInput(attrs={'type': 'time'}),
+            'duration': forms.Select(choices=DURATION_CHOICES),
         }
         labels = {
             'name': 'Nombre del Servicio',

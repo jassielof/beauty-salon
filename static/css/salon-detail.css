@@ -4,7 +4,7 @@
 body {
   background-color: #f9fafb;
   color: #374151;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   padding: 0;
   margin: 0;
@@ -12,7 +12,7 @@ body {
 
 /* Contenedor principal */
 .main-container {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
 }
@@ -26,72 +26,23 @@ body {
 }
 
 .salon-title {
-  font-size: 2.2rem;
-  color: #4f46e5;
-  margin-bottom: 1rem;
-  font-weight: 700;
-}
-
-/* Logo del salón */
-.salon-logo {
-  display: block;
-  margin: 0 auto 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 220px;
-  height: auto;
-  border: 1px solid #e5e7eb;
-}
-
-/* Información del salón */
-.salon-info {
-  background-color: white;
-  border-radius: 12px;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.info-item {
-  margin-bottom: 1.2rem;
-  display: flex;
-  align-items: flex-start;
-}
-
-.info-label {
-  color: #4b5563;
+  font-size: 2rem;
   font-weight: 600;
-  min-width: 120px;
-  margin-right: 1rem;
+  margin-bottom: 1rem;
+  color: #111827;
 }
 
-.info-value {
-  flex: 1;
-}
-
-/* Descripción */
-.description {
-  background-color: #f3f4f6;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin: 2rem 0;
-}
-
-/* Secciones */
-.section {
-  background-color: white;
-  border-radius: 12px;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.section-title {
-  font-size: 1.6rem;
-  color: #4f46e5;
+/* Tarjeta */
+.card {
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  overflow: hidden;
   margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid #e5e7eb;
+}
+
+.card-body {
+  padding: 1.5rem;
 }
 
 /* Listas */
@@ -102,17 +53,16 @@ body {
 }
 
 .list-item {
-  background-color: #f9fafb;
-  padding: 1.2rem;
+  background-color: #ffffff;
+  padding: 0.75rem 1rem;
   margin-bottom: 1rem;
-  border-radius: 8px;
-  border-left: 4px solid #4f46e5;
-  transition: all 0.2s ease;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  transition: background-color 0.3s ease;
 }
 
 .list-item:hover {
-  transform: translateX(5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9fafb;
 }
 
 /* Enlaces */
@@ -124,28 +74,32 @@ body {
 }
 
 .btn {
-  display: inline-block;
-  padding: 0.8rem 1.5rem;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.6rem;
   border-radius: 6px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  transition: opacity 0.3s;
+  border: none;
+  color: white;
 }
 
 .btn-primary {
   background-color: #4f46e5;
+  border: none;
   color: white;
 }
 
 .btn-primary:hover {
   background-color: #4338ca;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
 }
 
 .btn-secondary {
   background-color: #f3f4f6;
   color: #4b5563;
+  border: none;
 }
 
 .btn-secondary:hover {
@@ -168,7 +122,7 @@ body {
   color: #4f46e5;
 }
 
-/* Mensaje vacío */
+/* Texto sin datos */
 .empty-message {
   text-align: center;
   color: #6b7280;
@@ -178,26 +132,19 @@ body {
   border-radius: 8px;
 }
 
-/* Versión móvil */
+/* Responsive */
 @media (max-width: 768px) {
   .main-container {
     padding: 1rem;
   }
   
   .salon-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   
-  .section-title {
-    font-size: 1.4rem;
-  }
-  
-  .info-item {
-    flex-direction: column;
-  }
-  
-  .info-label {
-    margin-bottom: 0.5rem;
+  .list-item {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
   }
   
   .action-links {

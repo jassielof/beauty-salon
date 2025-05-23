@@ -1,16 +1,38 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
 
-{% block title %}Eliminar Servicio{% endblock %}
+{% block title %}Confirmar Eliminación{% endblock %}
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/servicedelete.css' %}">
+{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>Confirmar Eliminación</h1>
-    <p>¿Estás seguro que deseas eliminar el servicio "{{ service.name }}"?</p>
-    
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Eliminar</button>
-        <a href="{% url 'services:list' %}" class="btn btn-secondary">Cancelar</a>
-    </form>
+<div class="delete-confirmation-container">
+    <div class="card shadow-sm">
+        <div class="card-header bg-danger text-white">
+            <h2 class="mb-0">Confirmar Eliminación</h2>
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <p class="lead">¿Estás seguro que deseas eliminar el siguiente servicio?</p>
+                
+                <div class="alert alert-warning">
+                    <strong>Servicio: {{ service.name }}</strong><br>
+                    Descripción: {{ service.description }}<br>
+                    Duración: {{ service.duration }} minutos
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{% url 'services:list' %}" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash"></i> Confirmar Eliminación
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

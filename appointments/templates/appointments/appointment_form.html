@@ -74,13 +74,13 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="{{ form.duration.id_for_label }}" class="form-label">
-                            <i class="fas fa-hourglass-half"></i> {{ form.duration.label }}
+                        <label for="{{ form.services.id_for_label }}" class="form-label">
+                            <i class="fas fa-concierge-bell"></i> {{ form.services.label }}
                         </label>
                         <div class="select-container">
-                            {{ form.duration }}
+                            {{ form.services }}
                         </div>
-                        {% for error in form.duration.errors %}
+                        {% for error in form.services.errors %}
                         <p class="error-message">{{ error }}</p>
                         {% endfor %}
                     </div>

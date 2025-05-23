@@ -27,6 +27,9 @@ class AppointmentCreateView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
+        # For ForeignKey, assign directly instead of set()
+        form.instance.services = form.cleaned_data['services']
+        form.instance.save()
         messages.success(self.request, 'Cita creada exitosamente!')
         return response
 

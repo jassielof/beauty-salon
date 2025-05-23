@@ -26,7 +26,17 @@ class ServiceCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('services:list')
 
     def form_valid(self, form):
-        form.instance.beauty_salon = self.request.user.beautysalon
+        # Fix: Assign beauty_salon properly from user profile or related model
+        # Assuming user has a related BeautySalon via a profile or similar
+        try:
+            form.instance.beauty_salon = self.request.user.customer_profile.beauty_salon
+        except AttributeError:
+            # Try to get beauty_salon from branch if available in form data
+            branch = form.cleaned_data.get('branch')
+            if branch:
+                form.instance.beauty_salon = branch.salon
+            else:
+                form.instance.beauty_salon = None  # or handle appropriately
         response = super().form_valid(form)
         messages.success(self.request, f'El servicio "{self.object.name}" ha sido creado exitosamente.')
         return response

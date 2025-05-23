@@ -1,0 +1,134 @@
+/* Contenedor principal del formulario */
+.container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Título del formulario */
+.container h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  font-style: bold;
+  margin-bottom: 1.5rem;
+  color: #4338ca;
+  text-align: center;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Estilo para los campos de formulario generados por form.as_p */
+form p {
+  margin: 0;
+}
+
+form label {
+  font-weight: 600;
+  color: #374151;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form input[type="password"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1.5px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  font-family: inherit;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form select:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 5px rgba(79, 70, 229, 0.5);
+}
+
+/* Botones */
+.btn-primary {
+  background-color: #4f46e5;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+.btn-primary:hover {
+  background-color: #4338ca;
+}
+
+.btn-secondary {
+  background-color: #6b7280;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.btn-secondary:hover {
+  background-color: #4b5563;
+}
+
+/* Botones contenedor para que estén alineados horizontalmente */
+form > .btn-primary,
+form > .btn-secondary {
+  max-width: 200px;
+}
+
+/* Contenedor para botones para que estén uno al lado del otro */
+form .btn-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .container {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .btn-primary, .btn-secondary {
+    max-width: 100%;
+    font-size: 1rem;
+  }
+
+  form .btn-group {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}

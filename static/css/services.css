@@ -1,5 +1,5 @@
 /* Contenedor principal */
-.appointment-container {
+.container {
   padding: 2rem;
   max-width: 1200px;
   margin: auto;
@@ -7,11 +7,30 @@
 }
 
 /* Encabezado */
-.appointment-container h1 {
+.container h1 {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 1rem;
   color: #111827;
+}
+
+/* Botón "Nuevo Servicio" */
+.btn-primary {
+  background-color: #4f46e5;
+  border: none;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #4338ca;
 }
 
 /* Tarjeta */
@@ -19,8 +38,6 @@
   border-radius: 10px;
   border: 1px solid #e5e7eb;
   background-color: #ffffff;
-  overflow: hidden;
-  margin-bottom: 1.5rem;
 }
 
 .card-body {
@@ -44,7 +61,8 @@
   font-size: 0.85rem;
 }
 
-.table th, .table td {
+.table th,
+.table td {
   padding: 0.75rem 1rem;
   text-align: left;
   white-space: nowrap;
@@ -74,15 +92,15 @@
 }
 
 .bg-pending {
-  background-color: #f59e0b;
+  background-color: #f59e0b; /* amarillo */
 }
 
 .bg-confirmed {
-  background-color: #10b981;
+  background-color: #10b981; /* verde */
 }
 
 .bg-cancelled {
-  background-color: #ef4444;
+  background-color: #ef4444; /* rojo */
 }
 
 /* Botones de acción */
@@ -121,25 +139,6 @@
   opacity: 0.85;
 }
 
-/* Botón "Nueva Cita" */
-.btn-primary {
-  background-color: #4f46e5;
-  border: none;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: 500;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: background 0.3s;
-}
-
-.btn-primary:hover {
-  background-color: #4338ca;
-}
-
 /* Paginación */
 .pagination {
   display: flex;
@@ -172,7 +171,7 @@
 
 /* Responsive mejora */
 @media (max-width: 768px) {
-  .appointment-container h1 {
+  .container h1 {
     font-size: 1.5rem;
   }
 
@@ -181,7 +180,8 @@
     padding: 0.5rem 1rem;
   }
 
-  .table th, .table td {
+  .table th,
+  .table td {
     padding: 0.6rem 0.8rem;
     font-size: 0.9rem;
   }

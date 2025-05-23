@@ -1,41 +1,90 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
 
 {% block title %}Lista de Servicios{% endblock %}
 
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/services.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container">
-    <h1>Servicios</h1>
-    <a href="{% url 'services:create' %}" class="btn btn-primary">Nuevo Servicio</a>
-    
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Duración</th>
-                <th>Sucursal</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for service in services %}
-            <tr>
-                <td>{{ service.name }}</td>
-                <td>${{ service.price }}</td>
-                <td>{{ service.duration }}</td>
-                <td>{{ service.branch.name }}</td>
-                <td>
-                    <a href="{% url 'services:detail' service.pk %}" class="btn btn-info">Ver</a>
-                    <a href="{% url 'services:update' service.pk %}" class="btn btn-warning">Editar</a>
-                    <a href="{% url 'services:delete' service.pk %}" class="btn btn-danger">Eliminar</a>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="5">No hay servicios registrados</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="appointment-container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Lista de Servicios</h1>
+        <a href="{% url 'services:create' %}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Nuevo Servicio
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Precio</th>
+                            <th>Duración</th>
+                            <th>Sucursal</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for service in services %}
+                        <tr>
+                            <td>{{ service.name }}</td>
+                            <td>${{ service.price }}</td>
+                            <td>{{ service.duration }}</td>
+                            <td>{{ service.branch.name }}</td>
+                            <td>
+                                <a href="{% url 'services:detail' service.pk %}" class="btn btn-sm btn-info" title="Ver">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{% url 'services:update' service.pk %}" class="btn btn-sm btn-warning" title="Editar">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="{% url 'services:delete' service.pk %}" class="btn btn-sm btn-danger" title="Eliminar">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center">No hay servicios registrados</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% if is_paginated %}
+            <div class="d-flex justify-content-center mt-4">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+                        </li>
+                        {% endif %}
+
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                                <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}

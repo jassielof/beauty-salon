@@ -1,17 +1,45 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
 
 {% block title %}Detalle de Servicio{% endblock %}
 
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'css/service-details.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container">
-    <h1>{{ service.name }}</h1>
-    <p><strong>Descripción:</strong> {{ service.description }}</p>
-    <p><strong>Precio:</strong> ${{ service.price }}</p>
-    <p><strong>Duración:</strong> {{ service.duration }}</p>
-    <p><strong>Sucursal:</strong> {{ service.branch.name }}</p>
-    <p><strong>Salón:</strong> {{ service.beauty_salon.name }}</p>
-    
-    <a href="{% url 'services:update' service.pk %}" class="btn btn-warning">Editar</a>
-    <a href="{% url 'services:list' %}" class="btn btn-secondary">Volver</a>
+<div class="appointment-detail-container">
+    <div class="card">
+        <div class="card-header">
+            {{ service.name }}
+        </div>
+        <div class="card-body">
+            <div class="list-group-item">
+                <span><strong>Descripción:</strong></span>
+                <span>{{ service.description }}</span>
+            </div>
+            <div class="list-group-item">
+                <span><strong>Precio:</strong></span>
+                <span>${{ service.price }}</span>
+            </div>
+            <div class="list-group-item">
+                <span><strong>Duración:</strong></span>
+                <span>{{ service.duration }}</span>
+            </div>
+            <div class="list-group-item">
+                <span><strong>Sucursal:</strong></span>
+                <span>{{ service.branch.name }}</span>
+            </div>
+            <div class="list-group-item">
+                <span><strong>Salón:</strong></span>
+                <span>{{ service.beauty_salon.name }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end" style="gap: 0.5rem;">
+        <a href="{% url 'services:update' service.pk %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'services:list' %}" class="btn btn-secondary">Volver</a>
+    </div>
 </div>
 {% endblock %}
