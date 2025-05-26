@@ -4,7 +4,6 @@ from core.enums.appointment_status import APPOINTMENT_STATUS
 from core.enums.payment_methods import PAYMENT_METHODS
 
 from services.models import Service
-from django import forms
 
 
 class AppointmentForm(forms.ModelForm):

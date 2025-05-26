@@ -1,6 +1,6 @@
 from django import forms
 from .models import Service
-from salons.models import BeautySalon, Branch
+from salons.models import Branch
 
 class ServiceForm(forms.ModelForm):
     class Meta:

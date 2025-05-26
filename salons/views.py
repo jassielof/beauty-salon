@@ -8,14 +8,13 @@ from django.db import transaction
 
 from core.enums.user_roles import UserRoles  # For atomic operations with formsets
 
-from .models import BeautySalon, Branch, OpeningHours, SocialNetwork
+from .models import BeautySalon, Branch
 from .forms import (
     BeautySalonForm,
     BranchForm,
     OpeningHoursFormSet,
     SocialNetworkFormSet,  # Import the formsets
 )
-from accounts.models import User  # To check user role
 
 
 # --- Mixin (Can be imported from accounts.views if preferred) ---
