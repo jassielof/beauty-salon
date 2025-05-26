@@ -51,6 +51,7 @@ class CustomLogInView(LoginView):
 
 class CustomLogOutView(LogoutView):
     next_page = reverse_lazy("index")
+    # http_method_names = ["get", "post"]
 
 
 class OwnerRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
