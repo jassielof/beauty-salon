@@ -1,10 +1,38 @@
 {% extends 'core/layouts/layout.html' %}
+{% load static %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
 
 {% block content %}
-  <h2>Salon Owner Signup</h2>
-  <form method="post">
+<div class="signup-container">
+  <div class="signup-header">
+    <h2>Registro para Dueños de Salón</h2>
+  </div>
+  
+  <form method="post" class="signup-form">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign Up</button>
+    
+    {% for field in form %}
+    <div class="form-group">
+      {{ field.label_tag }}
+      {{ field }}
+      {% if field.errors %}
+        <ul class="errorlist">
+          {% for error in field.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    {% endfor %}
+    
+    <button type="submit" class="signup-submit">Registrarse</button>
   </form>
+  
+  <div class="login-link">
+    ¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión</a>
+  </div>
+</div>
 {% endblock %}
