@@ -103,8 +103,8 @@ DATABASES = {
     },
 }
 
-if os.environ.get("DJANGO_ENV") == "production":
-    DATABASES["default"] = DATABASES["production"]
+# if os.environ.get("DJANGO_ENV") == "production":
+#     DATABASES["default"] = DATABASES["production"]
 
 # Authentication
 AUTH_USER_MODEL = "accounts.User"
